@@ -71,15 +71,15 @@ def real_scraper_task(req: ScrapeRequest):
         db.commit()
 
         def handle_lead(item):
-            # Filter: Only keep businesses that DO NOT have a website
-            if item.get("Has Website"):
-                return
-                
-            # Score Lead (Data Completeness Score)
+            # Score Lead (Lead Potential Score)
+            # We give high priority (preference) to leads WITHOUT a website
             score = 0
+            if not item.get("Has Website"): 
+                score += 50  # Huge boost for not having a website
+            
             if item["Phone"]: score += 20
             if item["WhatsApp Link"]: score += 20
-            if item["Rating"] > 0: score += 20
+            if item["Rating"] > 0: score += 10
                 
             grade = "A+" if score >= 80 else ("B" if score >= 60 else ("C" if score >= 40 else "D"))
             
