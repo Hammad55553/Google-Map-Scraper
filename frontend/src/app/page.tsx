@@ -351,13 +351,38 @@ export default function Dashboard() {
                       ✉️ View / Edit Pitch
                     </button>
                     {lead.phone && (
-                      <a 
-                        href={`${lead.whatsapp_link}?text=${encodeURIComponent(lead.recommended_pitch)}`} 
-                        target="_blank" 
-                        className="text-green-600 hover:text-green-900 bg-green-50 px-3 py-1 rounded border border-green-200 transition-colors inline-flex items-center text-xs font-semibold"
-                      >
-                        <span className="mr-1">💬</span> Send on WhatsApp
-                      </a>
+                      <>
+                        <a 
+                          href={`${lead.whatsapp_link}?text=${encodeURIComponent(lead.recommended_pitch)}`} 
+                          target="_blank" 
+                          className="text-green-600 hover:text-green-900 bg-green-50 px-3 py-1 rounded border border-green-200 transition-colors inline-flex items-center text-xs font-semibold"
+                        >
+                          <span className="mr-1">💬</span> Send on WhatsApp
+                        </a>
+                        <button
+                          onClick={async () => {
+                            try {
+                              const res = await fetch('/api/calls/outbound', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ phone: lead.phone, pitch: lead.recommended_pitch })
+                              });
+                              const data = await res.json();
+                              if (data.error) {
+                                alert(data.error);
+                              } else {
+                                alert("Calling " + lead.business_name + " via Twilio!");
+                              }
+                            } catch(e) {
+                              console.error(e);
+                              alert("Error initiating call");
+                            }
+                          }}
+                          className="text-purple-600 hover:text-purple-900 bg-purple-50 px-3 py-1 rounded border border-purple-200 transition-colors inline-flex items-center text-xs font-semibold"
+                        >
+                          <span className="mr-1">🤖</span> AI Call Lead
+                        </button>
+                      </>
                     )}
                   </td>
                 </tr>

@@ -12,6 +12,9 @@ from pitch_generator import generate_bilingual_pitch
 
 app = FastAPI()
 
+from calling import router as calling_router
+app.include_router(calling_router)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
