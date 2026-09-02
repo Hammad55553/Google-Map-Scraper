@@ -111,7 +111,7 @@ export default function Dashboard() {
 
   const fetchLeads = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/leads');
+      const res = await fetch('/api/leads');
       const data = await res.json();
       setLeads(data);
     } catch (e) {
@@ -131,7 +131,7 @@ export default function Dashboard() {
     if (isScraping) {
       interval = setInterval(async () => {
         try {
-          const res = await fetch('http://127.0.0.1:8000/api/scrape/status');
+          const res = await fetch('/api/scrape/status');
           const statusData = await res.json();
           
           setProgress(statusData.progress);
@@ -168,7 +168,7 @@ export default function Dashboard() {
     setProgress(0);
     setProgressMessage('Starting...');
     try {
-      await fetch('http://localhost:8000/api/scrape', {
+      await fetch('/api/scrape', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -184,7 +184,7 @@ export default function Dashboard() {
   const handleSavePitch = async () => {
     if (!editingLead) return;
     try {
-      await fetch(`http://localhost:8000/api/leads/${editingLead.id}/pitch`, {
+      await fetch(`/api/leads/${editingLead.id}/pitch`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pitch: editedPitch })
@@ -199,7 +199,7 @@ export default function Dashboard() {
   const handleClear = async () => {
     if (!confirm('Are you sure you want to clear all leads?')) return;
     try {
-      await fetch('http://localhost:8000/api/leads', { method: 'DELETE' });
+      await fetch('/api/leads', { method: 'DELETE' });
       fetchLeads();
     } catch (e) {
       console.error(e);

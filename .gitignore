@@ -17,3 +17,4 @@ backend/.pytest_cache/
 
 # OS Files
 .DS_Store
+frontend/api/venv/
