@@ -22,7 +22,7 @@ type Lead = {
 export default function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ country: 'Saudi Arabia', city: 'Riyadh', category: 'Beauty Salon', radius: '20' });
+  const [form, setForm] = useState({ country: '', city: '', category: '', radius: '20' });
 
   const [isMounted, setIsMounted] = useState(false);
 

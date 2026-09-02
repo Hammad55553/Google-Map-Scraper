@@ -59,9 +59,9 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
         
         for i, element in enumerate(elements):
             try:
-                # Update progress during extraction phase (from limit to 2*limit)
+                # Update progress during extraction phase
                 if progress_callback:
-                    progress_callback(limit + i + 1, limit * 2)
+                    progress_callback(items_count + i + 1, items_count * 2)
                     
                 name_element = element.locator('div.fontHeadlineSmall')
                 name = await name_element.text_content() if await name_element.count() > 0 else "Unknown"

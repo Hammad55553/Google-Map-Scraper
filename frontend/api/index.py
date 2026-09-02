@@ -59,9 +59,9 @@ def real_scraper_task(req: ScrapeRequest):
     
     search_query = f"{req.category} in {req.city}, {req.country}"
     
-    def update_progress(msg, prog):
-        scrape_status["message"] = msg
-        scrape_status["progress"] = prog
+    def update_progress(current, total):
+        scrape_status["progress"] = int((current / total) * 100) if total > 0 else 0
+        scrape_status["message"] = f"Processing item {current} of {total}"
 
     try:
         db = SessionLocal()
