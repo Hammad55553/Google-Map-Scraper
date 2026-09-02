@@ -37,9 +37,24 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 msg['To'] = lead.email
                 msg['Subject'] = f"Quick question for {lead.business_name}"
                 
-                # We use the recommended pitch as the email body
-                body = lead.recommended_pitch
-                msg.attach(MIMEText(body, 'plain'))
+                # Convert WhatsApp Markdown (*bold*) to HTML (<b>bold</b>)
+                import re
+                html_body = lead.recommended_pitch
+                # Replace *text* with <b>text</b>
+                html_body = re.sub(r'\*(.*?)\*', r'<b>\1</b>', html_body)
+                # Convert newlines to <br> for HTML email
+                html_body = html_body.replace('\n', '<br>')
+                
+                # Wrap in basic HTML structure with modern font
+                final_html = f"""
+                <html>
+                  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    {html_body}
+                  </body>
+                </html>
+                """
+                
+                msg.attach(MIMEText(final_html, 'html'))
                 
                 server.send_message(msg)
                 success_count += 1
