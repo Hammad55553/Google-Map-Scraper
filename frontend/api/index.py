@@ -69,6 +69,9 @@ def real_scraper_task(req: ScrapeRequest):
         # Clear old leads at the start of the search
         db.query(Lead).delete()
         db.commit()
+        
+        # Load all previously contacted emails for fast duplicate checking
+        contacted_emails = {h.email.lower() for h in db.query(ContactHistory.email).all()}
 
         def handle_lead(item):
             # Score Lead (Lead Potential Score)

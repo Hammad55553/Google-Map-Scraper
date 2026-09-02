@@ -118,40 +118,28 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
                 email = ""
                 if has_website and website:
                     try:
-                        headers = {
-                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-                        }
-                        
-                        async def fetch_emails(url):
+                        async def fetch_emails_real(url):
                             try:
-                                resp = await page.request.get(url, timeout=8000, headers=headers)
-                                if resp.ok:
-                                    html_c = await resp.text()
-                                    found = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}', html_c)
-                                    # Filter false positives like images, css, js
-                                    return [e for e in found if not e.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.js', '.css', '.woff', '.ttf', '.mp4')) and not e.startswith('sentry-')]
+                                # We use a real browser page navigation which completely bypasses 403 blocks from Cloudflare
+                                await email_page.goto(url, timeout=8000, wait_until="domcontentloaded")
+                                html_c = await email_page.content()
+                                found = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}', html_c)
+                                return [e for e in found if not e.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.js', '.css', '.woff', '.ttf', '.mp4', '.pdf')) and not e.startswith('sentry-')]
                             except:
-                                pass
-                            return []
+                                return []
 
-                        # Check homepage and contact page concurrently
-                        contact_url = website.rstrip('/') + '/contact'
-                        contact_us_url = website.rstrip('/') + '/contact-us'
+                        # Try homepage first
+                        all_emails = await fetch_emails_real(website)
                         
-                        results_emails = await asyncio.gather(
-                            fetch_emails(website),
-                            fetch_emails(contact_url),
-                            fetch_emails(contact_us_url),
-                            return_exceptions=True
-                        )
-                        
-                        all_emails = []
-                        for res in results_emails:
-                            if isinstance(res, list):
-                                all_emails.extend(res)
+                        # If no email on homepage, try contact page
+                        if not all_emails:
+                            contact_url = website.rstrip('/') + '/contact'
+                            all_emails = await fetch_emails_real(contact_url)
+                            
+                        if not all_emails:
+                            contact_us_url = website.rstrip('/') + '/contact-us'
+                            all_emails = await fetch_emails_real(contact_us_url)
                                 
-                        # Return the first valid email found
                         if all_emails:
                             email = all_emails[0]
                             
