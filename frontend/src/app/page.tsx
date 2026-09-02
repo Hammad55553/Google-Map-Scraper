@@ -269,14 +269,46 @@ export default function Dashboard() {
             </h1>
             <p className="text-sm text-slate-500 mt-1 font-medium">B2B Lead Generation & Outreach System</p>
           </div>
-          <div className="flex items-center space-x-3 w-full md:w-auto">
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <a
               href="/api/export"
               target="_blank"
-              className="flex-1 md:flex-none text-center px-5 py-2.5 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 hover:shadow-md transition-all duration-200 font-medium text-sm"
+              className="flex-1 md:flex-none text-center px-5 py-2.5 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 hover:shadow-md transition-all duration-200 font-medium text-sm whitespace-nowrap"
             >
               📊 Export Excel
             </a>
+            <label className="flex-1 md:flex-none text-center px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:shadow-md transition-all duration-200 font-medium text-sm cursor-pointer whitespace-nowrap">
+              📥 Import Excel/CSV
+              <input 
+                type="file" 
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+                className="hidden" 
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  
+                  const formData = new FormData();
+                  formData.append('file', file);
+                  
+                  try {
+                    const res = await fetch('/api/import', {
+                      method: 'POST',
+                      body: formData
+                    });
+                    const data = await res.json();
+                    if (data.error) alert(data.error);
+                    else {
+                      alert(data.message);
+                      fetchLeads();
+                    }
+                  } catch (err) {
+                    console.error(err);
+                    alert("Failed to upload file");
+                  }
+                  e.target.value = '';
+                }}
+              />
+            </label>
             <button
               onClick={handleClear}
               className="flex-1 md:flex-none px-5 py-2.5 bg-rose-50 text-rose-600 border border-rose-200 rounded-lg hover:bg-rose-100 hover:border-rose-300 transition-all duration-200 font-medium text-sm"
@@ -477,7 +509,7 @@ export default function Dashboard() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                     <div>{lead.has_website ? '✅ Web' : '❌ Web'}</div>
-                    {lead.email && <div className="text-xs text-indigo-600 font-medium mt-1">📧 {lead.email}</div>}
+                    {lead.email && <div className="text-xs text-indigo-600 font-medium mt-1 w-[150px] xl:w-[200px] truncate" title={lead.email}>📧 {lead.email}</div>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2 flex items-center pt-6">
                     <a 
