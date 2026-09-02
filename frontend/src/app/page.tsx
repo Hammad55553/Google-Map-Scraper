@@ -22,7 +22,7 @@ type Lead = {
 export default function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ country: '', city: '', category: '', radius: '20' });
+  const [form, setForm] = useState({ country: '', state: '', city: '', category: '', radius: '20' });
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -35,6 +35,7 @@ export default function Dashboard() {
   const [scoreDetailsLead, setScoreDetailsLead] = useState<Lead | null>(null);
   
   const [countries, setCountries] = useState<string[]>([]);
+  const [states, setStates] = useState<any[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   
   const popularCategories = [
@@ -56,29 +57,46 @@ export default function Dashboard() {
       .catch(err => console.error("Error fetching countries:", err));
   }, []);
 
-  // Fetch cities when country changes
+  // Fetch states when country changes
   useEffect(() => {
+    setForm(f => ({ ...f, state: '', city: '' }));
+    setStates([]);
+    setCities([]);
     if (!form.country) return;
     
-    // Simple way to fetch cities for a country
-    fetch('https://countriesnow.space/api/v0.1/countries/cities', {
+    fetch('https://countriesnow.space/api/v0.1/countries/states', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ country: form.country })
     })
       .then(res => res.json())
       .then(data => {
-        if (!data.error) {
-          setCities(data.data);
-        } else {
-          setCities([]); // reset if country not found in API
+        if (!data.error && data.data && data.data.states) {
+          setStates(data.data.states.map((s: any) => s.name));
         }
       })
-      .catch(err => {
-        console.error("Error fetching cities:", err);
-        setCities([]);
-      });
+      .catch(err => console.error(err));
   }, [form.country]);
+
+  // Fetch cities when state changes
+  useEffect(() => {
+    setForm(f => ({ ...f, city: '' }));
+    setCities([]);
+    if (!form.country || !form.state) return;
+    
+    fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ country: form.country, state: form.state })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error && data.data) {
+          setCities(data.data);
+        }
+      })
+      .catch(err => console.error(err));
+  }, [form.state]);
 
   const getScoreBreakdown = (lead: Lead) => {
     const breakdown = [];
@@ -231,7 +249,7 @@ export default function Dashboard() {
 
         <section className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-lg font-semibold mb-4 text-gray-700">Find Businesses That Need Your Service</h2>
-          <form onSubmit={handleScrape} className="grid grid-cols-5 gap-4 items-end">
+          <form onSubmit={handleScrape} className="grid grid-cols-6 gap-4 items-end">
             <div>
               <label className="block text-sm text-gray-600 mb-1">Country</label>
               <input 
@@ -244,6 +262,20 @@ export default function Dashboard() {
               />
               <datalist id="countries-list">
                 {countries.map(c => <option key={c} value={c} />)}
+              </datalist>
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">State/Province</label>
+              <input 
+                type="text" 
+                list="states-list"
+                className="w-full border p-2 rounded text-black" 
+                value={form.state} 
+                onChange={e => setForm({...form, state: e.target.value})} 
+                placeholder="Select a state..."
+              />
+              <datalist id="states-list">
+                {states.map(s => <option key={s} value={s} />)}
               </datalist>
             </div>
             <div>

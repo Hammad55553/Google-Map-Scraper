@@ -31,6 +31,7 @@ def get_db():
 
 class ScrapeRequest(BaseModel):
     country: str
+    state: str
     city: str
     category: str
     radius: str
@@ -57,7 +58,7 @@ def real_scraper_task(req: ScrapeRequest):
     scrape_status["progress"] = 0
     scrape_status["message"] = "Initializing scraper..."
     
-    search_query = f"{req.category} in {req.city}, {req.country}"
+    search_query = f"{req.category} in {req.city}, {req.state}, {req.country}"
     
     def update_progress(current, total):
         scrape_status["progress"] = int((current / total) * 100) if total > 0 else 0
