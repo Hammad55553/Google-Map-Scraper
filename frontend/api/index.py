@@ -128,6 +128,46 @@ def start_scraping(req: ScrapeRequest, background_tasks: BackgroundTasks):
 def get_scrape_status():
     return scrape_status
 
+# Global state for tracking email campaign progress
+email_campaign_status = {
+    "status": "idle",
+    "message": ""
+}
+
+class EmailCampaignRequest(BaseModel):
+    gmail_address: str
+    app_password: str
+
+def run_email_campaign_task(req: EmailCampaignRequest):
+    global email_campaign_status
+    email_campaign_status["status"] = "running"
+    email_campaign_status["message"] = "Initializing campaign..."
+    
+    def update_status(msg):
+        email_campaign_status["message"] = msg
+        print(f"Email Campaign: {msg}")
+        
+    db = SessionLocal()
+    leads = db.query(Lead).all()
+    db.close()
+    
+    # We must import email_sender dynamically or locally to avoid circular imports if any, but since it's just a file, we'll do it safely
+    from email_sender import send_bulk_emails
+    asyncio.run(send_bulk_emails(req.gmail_address, req.app_password, leads, update_status))
+    
+    email_campaign_status["status"] = "idle"
+
+@app.post("/api/emails/campaign")
+def start_email_campaign(req: EmailCampaignRequest, background_tasks: BackgroundTasks):
+    if email_campaign_status["status"] == "running":
+        return {"error": "A campaign is already running"}
+    background_tasks.add_task(run_email_campaign_task, req)
+    return {"message": "Email campaign started"}
+
+@app.get("/api/emails/status")
+def get_email_status():
+    return email_campaign_status
+
 @app.get("/api/leads")
 def get_leads(db: Session = Depends(get_db)):
     leads = db.query(Lead).order_by(Lead.lead_score.desc()).all()

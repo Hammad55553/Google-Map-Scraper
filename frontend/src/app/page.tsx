@@ -297,6 +297,58 @@ export default function Dashboard() {
           )}
         </section>
 
+        <section className="bg-white p-6 rounded-lg shadow">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">Automated Email Campaign</h2>
+          <p className="text-sm text-gray-500 mb-4">Send personalized pitches to all scraped leads that have an email address.</p>
+          <div className="grid grid-cols-3 gap-4 items-end">
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Your Gmail Address</label>
+              <input 
+                type="email" 
+                id="email-campaign-address"
+                className="w-full border p-2 rounded text-black" 
+                placeholder="you@gmail.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Google App Password</label>
+              <input 
+                type="password" 
+                id="email-campaign-password"
+                className="w-full border p-2 rounded text-black" 
+                placeholder="16-character app password"
+              />
+            </div>
+            <div>
+              <button 
+                onClick={async () => {
+                  const gmail = (document.getElementById('email-campaign-address') as HTMLInputElement).value;
+                  const password = (document.getElementById('email-campaign-password') as HTMLInputElement).value;
+                  if (!gmail || !password) return alert("Please enter both Gmail address and App Password");
+                  
+                  try {
+                    const res = await fetch('/api/emails/campaign', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ gmail_address: gmail, app_password: password })
+                    });
+                    const data = await res.json();
+                    if (data.error) alert(data.error);
+                    else {
+                      alert("Email Campaign Started! Check backend logs for progress.");
+                    }
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }}
+                className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 font-medium"
+              >
+                Start Email Campaign
+              </button>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-white rounded-lg shadow overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-100">
