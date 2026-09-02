@@ -503,7 +503,7 @@ export default function Dashboard() {
                     <div className="text-xs text-slate-500 mt-1">{lead.lead_grade}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${lead.status === 'Contacted' ? 'bg-indigo-100 text-indigo-800' : 'bg-green-100 text-green-800'}`}>
                       {lead.status}
                     </span>
                   </td>
@@ -519,7 +519,7 @@ export default function Dashboard() {
                     >
                       📍 Map
                     </a>
-                    {sentEmailIds.includes(lead.id) && (
+                    {(sentEmailIds.includes(lead.id) || lead.status === 'Contacted') && (
                       <span className="text-emerald-700 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-bold flex items-center">
                         ✅ Sent
                       </span>

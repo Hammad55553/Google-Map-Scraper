@@ -28,6 +28,25 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
         server.login(sender_email, app_password)
         
         success_count = 0
+        
+        # Deduplicate and filter out already contacted leads
+        unique_emails = set()
+        filtered_leads = []
+        for lead in leads_with_email:
+            if lead.status == "Contacted":
+                continue
+            if lead.email.lower() not in unique_emails:
+                unique_emails.add(lead.email.lower())
+                filtered_leads.append(lead)
+                
+        leads_with_email = filtered_leads
+        total = len(leads_with_email)
+        
+        if total == 0:
+            server.quit()
+            update_status_callback("No new/unique emails to send.", 0, 0, None)
+            return
+
         for idx, lead in enumerate(leads_with_email):
             update_status_callback(f"Sending email {idx + 1}/{total} to {lead.business_name}...", idx + 1, total, None)
             
@@ -58,6 +77,10 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 
                 server.send_message(msg)
                 success_count += 1
+                
+                # Update database status permanently
+                lead.status = "Contacted"
+                db.commit()
                 
                 # Update status with lead_id so UI can show the tick mark!
                 update_status_callback(f"Sent successfully to {lead.business_name}", idx + 1, total, lead.id)
