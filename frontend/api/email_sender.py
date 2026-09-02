@@ -16,10 +16,10 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
     total = len(leads_with_email)
     
     if total == 0:
-        update_status_callback("No emails to send.")
+        update_status_callback("No emails to send.", 0, 0, None)
         return
 
-    update_status_callback(f"Connecting to Gmail SMTP server...")
+    update_status_callback(f"Connecting to Gmail SMTP server...", 0, total, None)
     
     try:
         # Setup SMTP connection
@@ -29,7 +29,7 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
         
         success_count = 0
         for idx, lead in enumerate(leads_with_email):
-            update_status_callback(f"Sending email {idx + 1}/{total} to {lead.business_name}...")
+            update_status_callback(f"Sending email {idx + 1}/{total} to {lead.business_name}...", idx + 1, total, None)
             
             try:
                 msg = MIMEMultipart()
@@ -59,6 +59,9 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 server.send_message(msg)
                 success_count += 1
                 
+                # Update status with lead_id so UI can show the tick mark!
+                update_status_callback(f"Sent successfully to {lead.business_name}", idx + 1, total, lead.id)
+                
                 # Small delay to avoid Gmail rate limits
                 await asyncio.sleep(2)
                 
@@ -66,8 +69,8 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 print(f"Failed to send email to {lead.email}: {e}")
                 
         server.quit()
-        update_status_callback(f"Campaign complete! Successfully sent {success_count} emails.")
+        update_status_callback(f"Campaign complete! Successfully sent {success_count} emails.", total, total, None)
         
     except Exception as e:
         print(f"SMTP Connection Error: {e}")
-        update_status_callback(f"Error connecting to Gmail: {str(e)}. Check your App Password.")
+        update_status_callback(f"Error connecting to Gmail: {str(e)}. Check your App Password.", 0, 0, None)

@@ -132,7 +132,9 @@ def get_scrape_status():
 # Global state for tracking email campaign progress
 email_campaign_status = {
     "status": "idle",
-    "message": ""
+    "message": "",
+    "progress": 0,
+    "sent_ids": []
 }
 
 class EmailCampaignRequest(BaseModel):
@@ -143,9 +145,15 @@ def run_email_campaign_task(req: EmailCampaignRequest):
     global email_campaign_status
     email_campaign_status["status"] = "running"
     email_campaign_status["message"] = "Initializing campaign..."
+    email_campaign_status["progress"] = 0
+    email_campaign_status["sent_ids"] = []
     
-    def update_status(msg):
+    def update_status(msg, current=0, total=0, sent_lead_id=None):
         email_campaign_status["message"] = msg
+        if total > 0:
+            email_campaign_status["progress"] = int((current / total) * 100)
+        if sent_lead_id is not None:
+            email_campaign_status["sent_ids"].append(sent_lead_id)
         print(f"Email Campaign: {msg}")
         
     db = SessionLocal()

@@ -13,6 +13,7 @@ type Lead = {
   map_url: string;
   address: string;
   has_website: boolean;
+  email?: string;
   lead_score: number;
   lead_grade: string;
   recommended_pitch: string;
@@ -30,6 +31,10 @@ export default function Dashboard() {
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState('');
   const [isScraping, setIsScraping] = useState(false);
+  const [emailProgress, setEmailProgress] = useState(0);
+  const [emailMessage, setEmailMessage] = useState('');
+  const [isEmailing, setIsEmailing] = useState(false);
+  const [sentEmailIds, setSentEmailIds] = useState<number[]>([]);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [editedPitch, setEditedPitch] = useState('');
   const [scoreDetailsLead, setScoreDetailsLead] = useState<Lead | null>(null);
@@ -143,6 +148,33 @@ export default function Dashboard() {
     
     // Auto-refresh removed to prevent network spam when idle
   }, [isScraping]);
+
+  useEffect(() => {
+    let emailInterval: NodeJS.Timeout;
+    if (isEmailing) {
+      emailInterval = setInterval(async () => {
+        try {
+          const res = await fetch('/api/emails/status');
+          const data = await res.json();
+          setEmailProgress(data.progress || 0);
+          setEmailMessage(data.message || '');
+          if (data.sent_ids) setSentEmailIds(data.sent_ids);
+          
+          if (data.status === 'idle' || data.status === 'error') {
+            clearInterval(emailInterval);
+            setIsEmailing(false);
+            if (data.status === 'idle') {
+                setEmailMessage('Campaign finished!');
+                setTimeout(() => setEmailMessage(''), 4000);
+            }
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }, 1000);
+    }
+    return () => clearInterval(emailInterval);
+  }, [isEmailing]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -373,23 +405,31 @@ export default function Dashboard() {
                   if (!gmail || !password) return alert("Please enter both Gmail address and App Password");
                   
                   try {
+                    setIsEmailing(true);
+                    setEmailProgress(0);
+                    setEmailMessage('Starting campaign...');
                     const res = await fetch('/api/emails/campaign', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ gmail_address: gmail, app_password: password })
                     });
                     const data = await res.json();
-                    if (data.error) alert(data.error);
-                    else {
-                      alert("Email Campaign Started! Check backend logs for progress.");
+                    if (data.error) {
+                       alert(data.error);
+                       setIsEmailing(false);
                     }
                   } catch (e) {
                     console.error(e);
                   }
                 }}
-                className="w-full h-[46px] bg-violet-600 text-white px-4 rounded-lg hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transform transition-all duration-200 font-semibold shadow-sm flex justify-center items-center gap-2"
+                disabled={isEmailing}
+                className="w-full h-[46px] bg-violet-600 text-white px-4 rounded-lg hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transform transition-all duration-200 font-semibold shadow-sm flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed"
               >
-                Start Email Campaign
+                {isEmailing ? (
+                  <><span className="animate-spin">⏳</span> Sending...</>
+                ) : (
+                  <>Start Email Campaign</>
+                )}
               </button>
             </div>
           </div>
@@ -434,7 +474,8 @@ export default function Dashboard() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                    {lead.has_website ? '✅ Yes' : '❌ No'}
+                    <div>{lead.has_website ? '✅ Web' : '❌ Web'}</div>
+                    {lead.email && <div className="text-xs text-indigo-600 font-medium mt-1">📧 {lead.email}</div>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2 flex items-center pt-6">
                     <a 
@@ -444,6 +485,11 @@ export default function Dashboard() {
                     >
                       📍 Map
                     </a>
+                    {sentEmailIds.includes(lead.id) && (
+                      <span className="text-emerald-700 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-bold flex items-center">
+                        ✅ Sent
+                      </span>
+                    )}
                     <button 
                       className="text-blue-600 hover:text-blue-900 bg-blue-50 px-3 py-1 rounded border border-blue-200 text-xs font-semibold" 
                       onClick={() => {
