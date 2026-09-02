@@ -210,8 +210,14 @@ def export_leads():
     
     excel_file = generate_excel_from_leads(leads)
     
-    date_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"Leads_{date_str}.xlsx"
+    date_str = datetime.datetime.now().strftime("%Y%m%d_%H%M")
+    
+    if leads and leads[0].category and leads[0].city:
+        cat_clean = leads[0].category.replace(' ', '_').replace('/', '')
+        city_clean = leads[0].city.replace(' ', '_').replace('/', '')
+        filename = f"{cat_clean}_{city_clean}_{date_str}.xlsx"
+    else:
+        filename = f"Leads_{date_str}.xlsx"
     
     return StreamingResponse(
         excel_file,
