@@ -2,7 +2,7 @@ from fastapi import FastAPI, BackgroundTasks, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
-from database import SessionLocal, Lead
+from database import SessionLocal, Lead, ContactHistory
 import asyncio
 import uuid
 import random
@@ -103,7 +103,7 @@ def real_scraper_task(req: ScrapeRequest):
                 lead_score=score,
                 lead_grade=grade,
                 recommended_pitch=pitch,
-                status="New"
+                status="Duplicate" if item.get("Email") and item["Email"].lower() in contacted_emails else "New"
             )
             db.add(new_lead)
             db.commit()
@@ -198,7 +198,7 @@ def clear_leads(db: Session = Depends(get_db)):
     return {"message": "All leads cleared"}
 from index import app
 from fastapi.responses import StreamingResponse
-from database import SessionLocal, Lead
+from database import SessionLocal, Lead, ContactHistory
 from excel_export import generate_excel_from_leads
 import datetime
 
@@ -235,6 +235,9 @@ async def import_leads_csv(file: UploadFile = File(...), db: Session = Depends(g
         else:
             df = pd.read_excel(io.BytesIO(contents), engine='openpyxl')
             
+        # Load history
+        contacted_emails = {h.email.lower() for h in db.query(ContactHistory.email).all()}
+        
         # Clear existing leads
         db.query(Lead).delete()
         
@@ -265,7 +268,7 @@ async def import_leads_csv(file: UploadFile = File(...), db: Session = Depends(g
                 map_url=get_val("Map URL"),
                 lead_score=int(float(get_val("Lead Score", 0))),
                 lead_grade=get_val("Lead Grade"),
-                status=get_val("Status"),
+                status="Duplicate" if get_val("Email").lower() in contacted_emails else get_val("Status"),
                 recommended_pitch=get_val("Recommended Pitch")
             )
             db.add(lead)

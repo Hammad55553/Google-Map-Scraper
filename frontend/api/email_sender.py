@@ -33,7 +33,7 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
         unique_emails = set()
         filtered_leads = []
         for lead in leads_with_email:
-            if lead.status == "Contacted":
+            if lead.status in ["Contacted", "Duplicate"]:
                 continue
             if lead.email.lower() not in unique_emails:
                 unique_emails.add(lead.email.lower())
@@ -80,7 +80,14 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 
                 # Update database status permanently
                 lead.status = "Contacted"
-                db.commit()
+                try:
+                    history = ContactHistory(email=lead.email.lower(), contacted_at=str(datetime.datetime.now()))
+                    db.add(history)
+                    db.commit()
+                except IntegrityError:
+                    db.rollback() # Email already in history
+                except Exception:
+                    db.rollback()
                 
                 # Update status with lead_id so UI can show the tick mark!
                 update_status_callback(f"Sent successfully to {lead.business_name}", idx + 1, total, lead.id)

@@ -487,7 +487,7 @@ export default function Dashboard() {
             </thead>
             <tbody className="bg-white divide-y divide-slate-50">
               {leads.map((lead, idx) => (
-                <tr key={idx} className={`transition-colors ${lead.status === 'Contacted' ? 'bg-slate-50/80 opacity-75 grayscale-[20%]' : 'hover:bg-slate-50/80'}`}>
+                <tr key={idx} className={`transition-colors ${['Contacted', 'Duplicate'].includes(lead.status) ? 'bg-slate-50/80 opacity-75 grayscale-[20%]' : 'hover:bg-slate-50/80'}`}>
                   <td className="px-6 py-4">
                     <div className="font-medium text-slate-800">{lead.business_name}</div>
                     <div className="text-xs text-slate-500">{lead.category} • {lead.city} • {lead.rating} ★</div>
@@ -503,7 +503,11 @@ export default function Dashboard() {
                     <div className="text-xs text-slate-500 mt-1">{lead.lead_grade}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${lead.status === 'Contacted' ? 'bg-indigo-100 text-indigo-800' : 'bg-green-100 text-green-800'}`}>
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      lead.status === 'Contacted' ? 'bg-indigo-100 text-indigo-800' : 
+                      lead.status === 'Duplicate' ? 'bg-amber-100 text-amber-800' : 
+                      'bg-green-100 text-green-800'
+                    }`}>
                       {lead.status}
                     </span>
                   </td>

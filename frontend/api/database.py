@@ -49,4 +49,10 @@ class Lead(Base):
     recommended_pitch = Column(Text, nullable=True)
     status = Column(String, default="New") # New, Contacted, Won, Lost
 
+class ContactHistory(Base):
+    __tablename__ = "contact_history"
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True)
+    contacted_at = Column(String)
+
 Base.metadata.create_all(bind=engine)
