@@ -212,9 +212,21 @@ export default function Dashboard() {
         
         <header className="flex justify-between items-center bg-white p-6 rounded-lg shadow">
           <h1 className="text-2xl font-bold text-gray-800">B2B Lead Generation System</h1>
-          <button onClick={handleClear} className="bg-red-50 text-red-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-red-100 transition-colors">
-            Clear All Leads
-          </button>
+          <div className="flex items-center space-x-4">
+            <a
+              href="/api/export"
+              target="_blank"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            >
+              Export to Excel
+            </a>
+            <button
+              onClick={handleClear}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+            >
+              Clear All Leads
+            </button>
+          </div>
         </header>
 
         <section className="bg-white p-6 rounded-lg shadow">

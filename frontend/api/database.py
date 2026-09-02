@@ -36,6 +36,7 @@ class Lead(Base):
     map_url = Column(String, nullable=True)
     address = Column(String, nullable=True)
     website = Column(String, nullable=True)
+    email = Column(String, nullable=True)
     has_website = Column(Boolean, default=False)
     booking_detected = Column(Boolean, default=False)
     lead_score = Column(Integer, default=0)

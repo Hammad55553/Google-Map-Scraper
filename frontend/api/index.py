@@ -92,6 +92,7 @@ def real_scraper_task(req: ScrapeRequest):
                 whatsapp_link=item["WhatsApp Link"],
                 has_website=item["Has Website"],
                 website=item.get("Website URL", ""),
+                email=item.get("Email", ""),
                 address=item.get("Address", ""),
                 map_url=item.get("Map URL", ""),
                 booking_detected=False,
@@ -143,3 +144,25 @@ def clear_leads(db: Session = Depends(get_db)):
     db.query(Lead).delete()
     db.commit()
     return {"message": "All leads cleared"}
+from index import app
+from fastapi.responses import StreamingResponse
+from database import SessionLocal, Lead
+from excel_export import generate_excel_from_leads
+import datetime
+
+@app.get("/api/export")
+def export_leads():
+    db = SessionLocal()
+    leads = db.query(Lead).all()
+    db.close()
+    
+    excel_file = generate_excel_from_leads(leads)
+    
+    date_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"Leads_{date_str}.xlsx"
+    
+    return StreamingResponse(
+        excel_file,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename={filename}"}
+    )

@@ -108,12 +108,29 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
                 
                 wa_link = format_whatsapp_number(phone)
                 
+                # Email Extraction
+                email = ""
+                if has_website and website:
+                    try:
+                        # Quick fetch of the homepage
+                        response = await page.request.get(website, timeout=5000)
+                        if response.ok:
+                            html_content = await response.text()
+                            # Basic regex for email, ignoring some common image extensions
+                            emails_found = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+', html_content)
+                            valid_emails = [e for e in emails_found if not e.endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'))]
+                            if valid_emails:
+                                email = valid_emails[0]
+                    except Exception as email_err:
+                        print(f"Could not extract email for {name}: {email_err}")
+
                 item = {
                     "Name": name,
                     "Rating": float(rating_text.replace(",", ".").strip()) if rating_text else 0.0,
                     "Phone": phone,
                     "Has Website": has_website,
                     "Website URL": website,
+                    "Email": email,
                     "WhatsApp Link": wa_link,
                     "Map URL": map_url,
                     "Address": address
