@@ -14,6 +14,7 @@ type Lead = {
   map_url: string;
   address: string;
   has_website: boolean;
+  website?: string;
   email?: string;
   lead_score: number;
   lead_grade: string;
@@ -534,6 +535,15 @@ export default function Dashboard() {
                     >
                       📍 Map
                     </a>
+                    {lead.has_website && lead.website && (
+                      <a 
+                        href={lead.website} 
+                        target="_blank" 
+                        className="text-foreground hover:text-foreground bg-muted hover:bg-muted/80 px-3 py-1 rounded border border-border transition-colors inline-flex items-center text-xs font-semibold"
+                      >
+                        🌐 Web
+                      </a>
+                    )}
                     {(sentEmailIds.includes(lead.id) || lead.status === 'Contacted') && (
                       <span className="text-emerald-700 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-bold flex items-center">
                         ✅ Sent
