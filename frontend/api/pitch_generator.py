@@ -1,7 +1,7 @@
 def generate_bilingual_pitch(business_name, country):
     english_pitch = f"""Hi *{business_name}* team! 👋
 
-We're *Asper InfoTech*, a software development team based in Pakistan. We build custom digital solutions for businesses - from simple websites to complete business management systems.
+We're *Asper InfoTech*, a software development team based in Pakistan. We build custom digital solutions for businesses, from simple websites to complete business management systems.
 
 *🚀 What We Offer*
 *🌐 Websites & Online Stores*
@@ -11,7 +11,7 @@ Professional, fast and mobile-friendly websites, landing pages and e-commerce st
 Android & iOS apps for ordering, bookings, customer services, delivery tracking and more.
 
 *💳 POS Systems*
-Custom POS solutions for restaurants, retail stores, salons and other businesses - including billing, orders, inventory and payments.
+Custom POS solutions for restaurants, retail stores, salons and other businesses, including billing, orders, inventory and payments.
 
 *📅 Booking & Appointment Systems*
 Let customers book appointments online 24/7 with automated management.
@@ -20,7 +20,7 @@ Let customers book appointments online 24/7 with automated management.
 Automate customer support, FAQs, bookings and basic customer interactions.
 
 *⚙️ Custom Software*
-Have a specific idea? We build exactly what your business needs - no unnecessary features.
+Have a specific idea? We build exactly what your business needs with no unnecessary features.
 
 *💰 Affordable & Flexible*
 Our pricing is flexible and affordable, especially compared with large development companies. We can discuss your requirements and provide a suitable package for your budget.
@@ -33,7 +33,7 @@ Our pricing is flexible and affordable, especially compared with large developme
 ✓ Ongoing support after launch
 
 Have an idea or need a digital solution for *{business_name}*?
-Let's have a quick conversation about what you need. No obligation - just a quick discussion.
+Let's have a quick conversation about what you need. No obligation, just a quick discussion.
 
 📱 WhatsApp: +92 312 0441431
 📱 WhatsApp: +44 7367 364513
@@ -57,7 +57,7 @@ Let's have a quick conversation about what you need. No obligation - just a quic
 تطبيقات Android و iOS للطلبات والحجوزات وخدمة العملاء وتتبع التوصيل.
 
 *💳 أنظمة نقاط البيع (POS)*
-أنظمة نقاط بيع مخصصة للمطاعم ومتاجر التجزئة والصالونات - تشمل الفواتير والطلبات والمخزون والمدفوعات.
+أنظمة نقاط بيع مخصصة للمطاعم ومتاجر التجزئة والصالونات، تشمل الفواتير والطلبات والمخزون والمدفوعات.
 
 *📅 أنظمة الحجز والمواعيد*
 دع عملائك يحجزون المواعيد عبر الإنترنت على مدار الساعة طوال أيام الأسبوع.
@@ -78,7 +78,7 @@ Let's have a quick conversation about what you need. No obligation - just a quic
 ✓ دعم مستمر بعد الإطلاق
 
 هل لديك فكرة أو تحتاج إلى حل رقمي لـ *{business_name}*؟
-دعنا نجري محادثة سريعة حول ما تحتاجه. بدون أي التزام - مجرد نقاش سريع.
+دعنا نجري محادثة سريعة حول ما تحتاجه. بدون أي التزام، مجرد نقاش سريع.
 
 📱 WhatsApp: +92 312 0441431
 📱 WhatsApp: +44 7367 364513
@@ -91,7 +91,7 @@ Let's have a quick conversation about what you need. No obligation - just a quic
 
 Hi *{business_name}* team! 👋
 
-Hum *Asper InfoTech* hain, ek software development team. Hum businesses ke liye custom digital solutions banate hain - simple websites se lekar complete business management systems tak.
+Hum *Asper InfoTech* hain, ek software development team. Hum businesses ke liye custom digital solutions banate hain, simple websites se lekar complete business management systems tak.
 
 *🚀 Hum Kya Offer Karte Hain*
 *🌐 Websites & Online Stores*
@@ -101,7 +101,7 @@ Professional, fast aur mobile-friendly websites aur e-commerce stores.
 Android & iOS apps ordering, bookings, customer services, aur delivery tracking ke liye.
 
 *💳 POS Systems*
-Restaurants, retail stores, aur salons ke liye custom POS solutions - jisme billing, orders, inventory aur payments shamil hain.
+Restaurants, retail stores, aur salons ke liye custom POS solutions, jisme billing, orders, inventory aur payments shamil hain.
 
 *📅 Booking & Appointment Systems*
 Apne customers ko 24/7 online appointments book karne ki saholat dein.
@@ -122,13 +122,13 @@ Hamari pricing flexible aur affordable hai. Hum aapki requirements discuss karke
 ✓ Launch ke baad ongoing support
 
 Kya aapko *{business_name}* ke liye koi digital solution chahiye?
-Aayen is baare mein ek quick discussion karein. Koi obligation nahi - sirf ek choti si chat.
+Aayen is baare mein ek quick discussion karein. Koi obligation nahi, sirf ek choti si chat.
 
 
 
 مرحباً *{business_name}* کی ٹیم! 👋
 
-ہم *Asper InfoTech* ہیں، ایک پروفیشنل سافٹ ویئر ڈیویلپمنٹ ٹیم۔ ہم کاروبار کے لیے کسٹم ڈیجیٹل سلوشنز بناتے ہیں - سادہ ویب سائٹس سے لے کر مکمل بزنس مینجمنٹ سسٹمز تک۔
+ہم *Asper InfoTech* ہیں، ایک پروفیشنل سافٹ ویئر ڈیویلپمنٹ ٹیم۔ ہم کاروبار کے لیے کسٹم ڈیجیٹل سلوشنز بناتے ہیں، سادہ ویب سائٹس سے لے کر مکمل بزنس مینجمنٹ سسٹمز تک۔
 
 *🚀 ہم کیا پیش کرتے ہیں*
 *🌐 ویب سائٹس اور آن لائن اسٹورز*
@@ -138,7 +138,7 @@ Aayen is baare mein ek quick discussion karein. Koi obligation nahi - sirf ek ch
 آرڈرنگ، بکنگز، کسٹمر سروسز اور ڈیلیوری ٹریکنگ کے لیے اینڈرائیڈ اور آئی او ایس (iOS) ایپس۔
 
 *💳 POS سسٹمز*
-ریسٹورنٹس، ریٹیل اسٹورز اور سیلونز کے لیے کسٹم پی او ایس (POS) سلوشنز - جن میں بلنگ، آرڈرز، انوینٹری اور پیمنٹس شامل ہیں۔
+ریسٹورنٹس، ریٹیل اسٹورز اور سیلونز کے لیے کسٹم پی او ایس (POS) سلوشنز، جن میں بلنگ، آرڈرز، انوینٹری اور پیمنٹس شامل ہیں۔
 
 *📅 بکنگ اور اپوائنٹمنٹ سسٹمز*
 اپنے کسٹمرز کو خودکار مینجمنٹ کے ساتھ 24/7 آن لائن اپوائنٹمنٹ بک کرنے کی سہولت دیں۔
@@ -159,7 +159,7 @@ Aayen is baare mein ek quick discussion karein. Koi obligation nahi - sirf ek ch
 ✓ پراجیکٹ کے بعد مسلسل سپورٹ
 
 کیا آپ کو *{business_name}* کے لیے کسی ڈیجیٹل سلوشن کی ضرورت ہے؟
-آئیں اس بارے میں ایک مختصر سی بات چیت کریں۔ بغیر کسی پابندی کے - بس ایک عام سی ڈسکشن۔
+آئیں اس بارے میں ایک مختصر سی بات چیت کریں۔ بغیر کسی پابندی کے، بس ایک عام سی ڈسکشن۔
 
 📱 واٹس ایپ: +92 312 0441431
 📱 واٹس ایپ: +44 7367 364513
