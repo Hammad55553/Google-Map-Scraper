@@ -487,7 +487,7 @@ export default function Dashboard() {
             </thead>
             <tbody className="bg-white divide-y divide-slate-50">
               {leads.map((lead, idx) => (
-                <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
+                <tr key={idx} className={`transition-colors ${lead.status === 'Contacted' ? 'bg-slate-50/80 opacity-75 grayscale-[20%]' : 'hover:bg-slate-50/80'}`}>
                   <td className="px-6 py-4">
                     <div className="font-medium text-slate-800">{lead.business_name}</div>
                     <div className="text-xs text-slate-500">{lead.category} • {lead.city} • {lead.rating} ★</div>
