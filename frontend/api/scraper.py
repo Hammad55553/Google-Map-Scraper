@@ -14,7 +14,7 @@ def format_whatsapp_number(phone):
         pass
     return f"https://wa.me/{clean.replace('+', '')}"
 
-async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_found=None):
+async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_found=None, cancel_check=None):
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
@@ -38,6 +38,9 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
         items_count = 0
         scroll_attempts = 0
         while items_count < limit and scroll_attempts < 10:
+            if cancel_check and cancel_check():
+                print("Scraping cancelled during scrolling")
+                break
             await feed.hover()
             await page.mouse.wheel(0, 10000)
             await page.wait_for_timeout(2000)
@@ -58,6 +61,9 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
         elements = elements[:limit]
         
         for i, element in enumerate(elements):
+            if cancel_check and cancel_check():
+                print("Scraping cancelled during extraction")
+                break
             try:
                 # Update progress during extraction phase
                 if progress_callback:
@@ -146,5 +152,5 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
         await browser.close()
         return results
 
-def run_scraper(query, limit=20, progress_callback=None, on_lead_found=None):
-    return asyncio.run(scrape_google_maps(query, limit, progress_callback, on_lead_found))
+def run_scraper(query, limit=20, progress_callback=None, on_lead_found=None, cancel_check=None):
+    return asyncio.run(scrape_google_maps(query, limit, progress_callback, on_lead_found, cancel_check))
