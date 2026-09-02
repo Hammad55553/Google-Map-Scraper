@@ -6,3 +6,238 @@ INFO:     Started reloader process [18649] using StatReload
 INFO:     Started server process [18674]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:63983 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64012 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Searching for: Roofing Contractor in Tampa, Florida, United States
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 16 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 30 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 38 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 44 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 52 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 60 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 64 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 72 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 80 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 84 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 92 items...
+INFO:     127.0.0.1:64013 - "GET /api/export HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 100 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 104 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 112 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 120 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64013 - "GET /api/leads HTTP/1.1" 200 OK
