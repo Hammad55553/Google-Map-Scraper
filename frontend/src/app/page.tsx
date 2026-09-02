@@ -134,7 +134,9 @@ export default function Dashboard() {
 
   const fetchLeads = async () => {
     try {
-      const res = await fetch('/api/leads');
+      const res = await fetch('/api/leads?t=' + new Date().getTime(), {
+        cache: 'no-store'
+      });
       const data = await res.json();
       setLeads(data);
     } catch (e) {

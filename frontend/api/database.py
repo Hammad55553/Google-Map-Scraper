@@ -5,7 +5,12 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Use SUPABASE_URL if available, otherwise default to SQLite (for local testing before deploying)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./leads.db")
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+default_db_path = f"sqlite:///{os.path.join(BASE_DIR, 'leads.db')}"
+
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", default_db_path)
 
 # Supabase PostgreSQL connection requires a slightly different engine config than SQLite
 if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
