@@ -270,7 +270,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-900 dark:text-slate-100 font-sans selection:bg-indigo-100">
+    <div className={`min-h-screen p-4 md:p-8 font-sans selection:bg-indigo-100 transition-colors duration-300 ${isDarkMode ? "dark bg-slate-900 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       <div className="max-w-7xl mx-auto space-y-8">
         
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 gap-4 md:gap-0">
