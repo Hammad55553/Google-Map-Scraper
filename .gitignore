@@ -1,0 +1,19 @@
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Backend
+backend/venv/
+backend/__pycache__/
+backend/leads.db
+backend/.env
+backend/*.log
+backend/.pytest_cache/
+
+# OS Files
+.DS_Store
