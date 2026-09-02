@@ -264,7 +264,7 @@ export default function Dashboard() {
     <div className={`min-h-screen p-4 md:p-8 font-sans selection:bg-primary/20 bg-background text-foreground transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto space-y-8">
         
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 gap-4 md:gap-0">
+        <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border gap-4 md:gap-0">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
               <span className="text-primary">⚡</span> LeadGen Pro
@@ -323,9 +323,9 @@ export default function Dashboard() {
           </div>
         </header>
 
-        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden">
+        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-          <h2 className="text-xl font-bold mb-1 text-slate-800">1. Target Audience</h2>
+          <h2 className="text-xl font-bold mb-1 text-foreground">1. Target Audience</h2>
           <p className="text-sm text-muted-foreground mb-6 font-medium">Find highly-qualified B2B leads on Google Maps.</p>
           <form onSubmit={handleScrape} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5 items-end">
             <div>
@@ -333,7 +333,7 @@ export default function Dashboard() {
               <input 
                 type="text" 
                 list="countries-list"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 value={form.country} 
                 onChange={e => setForm({...form, country: e.target.value})} 
                 placeholder="Type or select a country..."
@@ -347,7 +347,7 @@ export default function Dashboard() {
               <input 
                 type="text" 
                 list="states-list"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 value={form.state} 
                 onChange={e => setForm({...form, state: e.target.value})} 
                 placeholder="Select a state..."
@@ -361,7 +361,7 @@ export default function Dashboard() {
               <input 
                 type="text" 
                 list="cities-list"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 value={form.city} 
                 onChange={e => setForm({...form, city: e.target.value})} 
                 placeholder="Type or select a city..."
@@ -375,7 +375,7 @@ export default function Dashboard() {
               <input 
                 type="text" 
                 list="categories-list"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 value={form.category} 
                 onChange={e => setForm({...form, category: e.target.value})} 
                 placeholder="E.g. Real Estate, Plumber..."
@@ -386,7 +386,7 @@ export default function Dashboard() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-foreground mb-1.5">Radius (km)</label>
-              <input type="text" className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" value={form.radius} onChange={e => setForm({...form, radius: e.target.value})} />
+              <input type="text" className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" value={form.radius} onChange={e => setForm({...form, radius: e.target.value})} />
             </div>
             <div>
               <button disabled={isScraping || loading} type="submit" className="w-full h-[46px] bg-indigo-600 text-white px-4 rounded-lg hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transform transition-all duration-200 font-semibold shadow-sm flex justify-center items-center gap-2">
@@ -400,7 +400,7 @@ export default function Dashboard() {
           </form>
           {isScraping && (
             <div className="w-full mt-6">
-              <div className="flex justify-between text-sm text-gray-600 mb-2 font-medium">
+              <div className="flex justify-between text-sm text-foreground mb-2 font-medium">
                 <span>{progressMessage}</span>
                 <span>{progress}%</span>
               </div>
@@ -411,9 +411,9 @@ export default function Dashboard() {
           )}
         </section>
 
-        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden">
+        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-violet-500"></div>
-          <h2 className="text-xl font-bold mb-1 text-slate-800">2. Email Outreach</h2>
+          <h2 className="text-xl font-bold mb-1 text-foreground">2. Email Outreach</h2>
           <p className="text-sm text-muted-foreground mb-6 font-medium">Send highly personalized AI pitches to all leads with an email address.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
             <div>
@@ -421,7 +421,7 @@ export default function Dashboard() {
               <input 
                 type="email" 
                 id="email-campaign-address"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 placeholder="you@gmail.com"
                 defaultValue="asperinfotech@gmail.com"
               />
@@ -431,7 +431,7 @@ export default function Dashboard() {
               <input 
                 type="password" 
                 id="email-campaign-password"
-                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 placeholder="16-character app password"
                 defaultValue="snqr frzo ivyy pmzo"
               />
@@ -475,8 +475,8 @@ export default function Dashboard() {
         </section>
 
         <section className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
-          <div className="px-6 py-5 border-b border-slate-100 bg-muted/50 flex justify-between items-center">
-             <h2 className="text-lg font-bold text-slate-800">3. Lead Database</h2>
+          <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
+             <h2 className="text-lg font-bold text-foreground">3. Lead Database</h2>
              <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">{leads.length} Leads</span>
           </div>
           <div className="overflow-x-auto">
@@ -494,9 +494,9 @@ export default function Dashboard() {
               {leads.map((lead, idx) => (
                 <tr key={idx} className={`transition-colors ${['Contacted', 'Duplicate'].includes(lead.status) ? 'bg-muted/80 opacity-75 grayscale-[20%]' : 'hover:bg-muted/50'}`}>
                   <td className="px-6 py-4">
-                    <div className="font-medium text-slate-800">{lead.business_name}</div>
+                    <div className="font-medium text-foreground">{lead.business_name}</div>
                     <div className="text-xs text-muted-foreground">{lead.category} • {lead.city} • {lead.rating} ★</div>
-                    {lead.address && <div className="text-xs text-slate-400 mt-1">{lead.address}</div>}
+                    {lead.address && <div className="text-xs text-muted-foreground mt-1">{lead.address}</div>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button 
@@ -524,7 +524,7 @@ export default function Dashboard() {
                     <a 
                       href={lead.map_url} 
                       target="_blank" 
-                      className="text-foreground hover:text-slate-800 bg-slate-100 hover:bg-gray-200 px-3 py-1 rounded border border-border transition-colors inline-flex items-center text-xs font-semibold"
+                      className="text-foreground hover:text-foreground bg-muted hover:bg-muted/80 px-3 py-1 rounded border border-border transition-colors inline-flex items-center text-xs font-semibold"
                     >
                       📍 Map
                     </a>
@@ -596,13 +596,13 @@ export default function Dashboard() {
           <div className="bg-card rounded-2xl p-8 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-gray-800">Profile Data Completeness</h3>
-              <button onClick={() => setScoreDetailsLead(null)} className="text-slate-400 hover:text-gray-600">
+              <button onClick={() => setScoreDetailsLead(null)} className="text-muted-foreground hover:text-foreground">
                 ✖
               </button>
             </div>
             <div className="mb-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
-              <p className="text-sm text-gray-600 mb-1">Business</p>
-              <p className="font-semibold text-slate-800">{scoreDetailsLead.business_name}</p>
+              <p className="text-sm text-foreground mb-1">Business</p>
+              <p className="font-semibold text-foreground">{scoreDetailsLead.business_name}</p>
             </div>
             
             <div className="space-y-3">
@@ -618,13 +618,13 @@ export default function Dashboard() {
             </div>
             
             <div className="mt-6 pt-4 border-t flex justify-between items-center">
-              <span className="text-gray-600 font-medium">Total Score</span>
-              <span className="text-2xl font-black text-slate-800">{scoreDetailsLead.lead_score}/100</span>
+              <span className="text-foreground font-medium">Total Score</span>
+              <span className="text-2xl font-black text-foreground">{scoreDetailsLead.lead_score}/100</span>
             </div>
             
             <button 
               onClick={() => setScoreDetailsLead(null)}
-              className="mt-6 w-full py-2 bg-slate-100 text-gray-800 font-medium hover:bg-gray-200 rounded-md transition-colors"
+              className="mt-6 w-full py-2 bg-muted text-gray-800 font-medium hover:bg-muted/80 rounded-md transition-colors"
             >
               Close
             </button>
@@ -647,7 +647,7 @@ export default function Dashboard() {
               <div className="flex space-x-3">
                 <button 
                   onClick={() => setEditingLead(null)}
-                  className="px-4 py-2 text-gray-600 hover:bg-slate-100 font-medium rounded-md transition-colors"
+                  className="px-4 py-2 text-foreground hover:bg-muted font-medium rounded-md transition-colors"
                 >
                   Cancel
                 </button>
