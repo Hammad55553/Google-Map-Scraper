@@ -129,8 +129,14 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
                     except:
                         return []
 
-                # Method 1: Scan Official Website
+                # Check if website is a social media page
+                is_social = False
                 if has_website and website:
+                    if any(domain in website.lower() for domain in ['facebook.com', 'instagram.com', 'twitter.com', 'linkedin.com', 'tiktok.com']):
+                        is_social = True
+
+                # Method 1: Scan Official Website (Skip for social media, directly use Google Search to bypass login walls)
+                if has_website and website and not is_social:
                     try:
                         all_emails = await fetch_emails_real(website)
                         if not all_emails:
@@ -146,7 +152,11 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
                 if not email:
                     import urllib.parse
                     try:
+                        # If it's a social link, add the platform name to search query to pull their public About page details
                         search_query = f'"{name}" email'
+                        if is_social:
+                            search_query = f'"{name}" email contact'
+                            
                         encoded_query = urllib.parse.quote(search_query)
                         # We use udm=50 as suggested, or standard search
                         google_search_url = f'https://www.google.com/search?q={encoded_query}&udm=50'
