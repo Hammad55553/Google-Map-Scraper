@@ -107,28 +107,34 @@ export default function Dashboard() {
 
   const getScoreBreakdown = (lead: Lead) => {
     const breakdown = [];
-    if (lead.has_website) {
-      breakdown.push({ label: 'Website Found', score: '+40', type: 'text-green-600', icon: '✅' });
+    if (!lead.has_website) {
+      breakdown.push({ label: 'No Website Found (High Priority)', score: '+50', type: 'text-emerald-500', icon: '⭐' });
     } else {
-      breakdown.push({ label: 'Missing Website', score: '0', type: 'text-red-500', icon: '❌' });
+      breakdown.push({ label: 'Has Website (Lower Priority)', score: '0', type: 'text-amber-500', icon: '🌐' });
     }
     
     if (lead.phone) {
-      breakdown.push({ label: 'Phone Number Found', score: '+20', type: 'text-green-600', icon: '✅' });
+      breakdown.push({ label: 'Phone Number Found', score: '+20', type: 'text-emerald-500', icon: '✅' });
     } else {
       breakdown.push({ label: 'Missing Phone Number', score: '0', type: 'text-red-500', icon: '❌' });
     }
     
     if (lead.whatsapp_link) {
-      breakdown.push({ label: 'WhatsApp Link Generated', score: '+20', type: 'text-green-600', icon: '✅' });
+      breakdown.push({ label: 'WhatsApp Link Generated', score: '+20', type: 'text-emerald-500', icon: '✅' });
     } else {
       breakdown.push({ label: 'Missing WhatsApp', score: '0', type: 'text-red-500', icon: '❌' });
     }
     
     if (lead.rating > 0) {
-      breakdown.push({ label: 'Google Rating Found', score: '+20', type: 'text-green-600', icon: '✅' });
+      breakdown.push({ label: 'Google Rating Found', score: '+10', type: 'text-emerald-500', icon: '✅' });
     } else {
       breakdown.push({ label: 'Missing Rating', score: '0', type: 'text-red-500', icon: '❌' });
+    }
+    
+    if (lead.email) {
+      breakdown.push({ label: 'Email Address Extracted', score: 'Bonus', type: 'text-blue-500', icon: '📧' });
+    } else {
+      breakdown.push({ label: 'Missing Email', score: '-', type: 'text-muted-foreground', icon: '🚫' });
     }
     
     return breakdown;
@@ -595,12 +601,12 @@ export default function Dashboard() {
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setScoreDetailsLead(null)}>
           <div className="bg-card rounded-2xl p-8 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-gray-800">Profile Data Completeness</h3>
+              <h3 className="text-xl font-bold text-foreground">Lead Potential Score</h3>
               <button onClick={() => setScoreDetailsLead(null)} className="text-muted-foreground hover:text-foreground">
                 ✖
               </button>
             </div>
-            <div className="mb-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
+            <div className="mb-4 bg-muted p-4 rounded-lg border border-border">
               <p className="text-sm text-foreground mb-1">Business</p>
               <p className="font-semibold text-foreground">{scoreDetailsLead.business_name}</p>
             </div>

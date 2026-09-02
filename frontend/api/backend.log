@@ -6,3 +6,405 @@ INFO:     Started reloader process [21516] using StatReload
 INFO:     Started server process [21541]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:50470 - "DELETE /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50470 - "GET /api/leads?t=1788390451741 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50470 - "GET /api/export HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50472 - "POST /api/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50472 - "GET /api/leads?t=1788390484907 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50475 - "DELETE /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50475 - "GET /api/leads?t=1788390511088 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50478 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390581852 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390582861 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390583864 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+Searching for: Spa and Wellness in Delaware City, Delaware, United States
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390584860 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390585864 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390586861 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390587858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390588858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390589860 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390590865 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390591864 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390592858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390593859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390594859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390595861 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390596858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390597859 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390598859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390599860 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390600861 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390601865 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390602859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390603858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390604858 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390605859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390606862 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390607861 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390608858 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390609859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390610860 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390611863 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390612861 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390613858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390614858 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390615859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390616860 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390617866 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390618861 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390619859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390620859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390621859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390622861 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390623859 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390624858 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390625860 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/leads?t=1788390625876 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390651549 HTTP/1.1" 200 OK
+Searching for: Spa and Wellness in Delaware City, Delaware, United States
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390652561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390653563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390654555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390655554 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390656556 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390657559 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390658555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390659556 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390660555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390661558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390662556 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390663554 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390664555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390665561 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390666559 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390667562 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390668555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390669554 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390670561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390671562 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390672557 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390673555 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390674555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390675558 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390676561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390677561 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390678553 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390679555 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390680564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390681560 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390682558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390683555 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390684555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390685555 HTTP/1.1" 200 OK
+Loaded 3 items...
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390686554 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390687561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390688558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390689558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390690558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390691555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50511 - "GET /api/leads?t=1788390691565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50532 - "POST /api/emails/campaign HTTP/1.1" 200 OK
+Email Campaign: No emails to send.
+INFO:     127.0.0.1:50532 - "GET /api/emails/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50539 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390801032 HTTP/1.1" 200 OK
+Searching for: Spa and Wellness in Delaware City, Delaware, United States
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390802041 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390803045 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390804040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390805040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390806039 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390807039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390808040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390809037 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390810040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390811041 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390812038 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390813039 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390814036 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390815040 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390816040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390817043 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390818041 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390819039 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390820039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390821042 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390822040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390823041 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390824037 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390825039 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390826037 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390827042 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390828044 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390829040 HTTP/1.1" 200 OK
+Loaded 4 items...
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390830040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390831044 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390832039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390833044 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390834045 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390835039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390836040 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390837041 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50540 - "GET /api/leads?t=1788390837061 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390842120 HTTP/1.1" 200 OK
+Searching for: Beauty Salon in Delaware City, Delaware, United States
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390843129 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390844128 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390845126 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390846126 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390847521 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390848127 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390849126 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390850127 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390851131 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390852162 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390853132 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390854128 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390855127 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390856128 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390857129 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390858130 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390859131 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390860128 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390861130 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390862128 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390863129 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390864134 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390865133 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390866127 HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390867695 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390868705 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390869696 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+Loaded 9 items...
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390870694 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390871702 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390872695 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390873698 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390874696 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390875696 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390876694 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390877697 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390878696 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390879695 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390880696 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390881703 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390882695 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390883694 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390884694 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390885693 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390886359 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50565 - "GET /api/leads?t=1788390886693 HTTP/1.1" 200 OK
