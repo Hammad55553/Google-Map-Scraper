@@ -1,19 +1,10 @@
 INFO:     Will watch for changes in these directories: ['/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/frontend/api']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [17773] using StatReload
+INFO:     Started reloader process [17865] using StatReload
 /Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(
-INFO:     Started server process [17798]
+INFO:     Started server process [17890]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:63354 - "POST /api/calls/outbound HTTP/1.1" 200 OK
-WARNING:  StatReload detected changes in 'index.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [17798]
-/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-  warnings.warn(
-INFO:     Started server process [17845]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
+INFO:     127.0.0.1:63447 - "DELETE /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63447 - "GET /api/leads HTTP/1.1" 200 OK

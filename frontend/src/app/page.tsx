@@ -308,6 +308,7 @@ export default function Dashboard() {
                 id="email-campaign-address"
                 className="w-full border p-2 rounded text-black" 
                 placeholder="you@gmail.com"
+                defaultValue="asperinfotech@gmail.com"
               />
             </div>
             <div>
@@ -317,6 +318,7 @@ export default function Dashboard() {
                 id="email-campaign-password"
                 className="w-full border p-2 rounded text-black" 
                 placeholder="16-character app password"
+                defaultValue="snqr frzo ivyy pmzo"
               />
             </div>
             <div>
