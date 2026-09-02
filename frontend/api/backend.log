@@ -6,3 +6,885 @@ INFO:     Started reloader process [19791] using StatReload
 INFO:     Started server process [19819]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:64668 - "DELETE /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64668 - "GET /api/leads?t=1788387208501 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387288252 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387289259 HTTP/1.1" 200 OK
+Searching for: Plumbers in Orlando, Florida, United States
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387290259 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387291260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387292268 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387293259 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387294258 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387295259 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387296264 HTTP/1.1" 200 OK
+Loaded 16 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387297260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387298258 HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387299260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387300259 HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387301258 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387302259 HTTP/1.1" 200 OK
+Loaded 30 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387303271 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387304570 HTTP/1.1" 200 OK
+Loaded 38 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387305564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387306564 HTTP/1.1" 200 OK
+Loaded 44 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387307569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387308562 HTTP/1.1" 200 OK
+Loaded 52 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387309565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387310567 HTTP/1.1" 200 OK
+Loaded 60 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387311569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387312564 HTTP/1.1" 200 OK
+Loaded 64 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387313561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387314568 HTTP/1.1" 200 OK
+Loaded 72 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387315564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387316573 HTTP/1.1" 200 OK
+Loaded 80 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387317563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387318563 HTTP/1.1" 200 OK
+Loaded 84 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387319563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387320566 HTTP/1.1" 200 OK
+Loaded 84 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387321566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387322572 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387323258 HTTP/1.1" 200 OK
+Loaded 92 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387324334 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387325562 HTTP/1.1" 200 OK
+Loaded 100 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387326566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387327574 HTTP/1.1" 200 OK
+Loaded 104 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387328564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387329564 HTTP/1.1" 200 OK
+Loaded 112 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387330563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387331564 HTTP/1.1" 200 OK
+Loaded 120 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387332567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387333563 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387334562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387335563 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387336567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387337569 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387338569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387339563 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387340563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387341565 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387342568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387343568 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387344563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387345564 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387346565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387347567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387348570 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387349564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387350563 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387351564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387352564 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387353567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387354567 HTTP/1.1" 200 OK
+Loaded 124 items...
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387355444 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387356257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387357260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387358270 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387359565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387360560 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387361560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387362563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387363564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387364563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387365579 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387366577 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387367562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387368564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387369567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387370563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387371562 HTTP/1.1" 200 OK
+Could not extract email for El Plomero Latino: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET http://www.elplomerolatino.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 301 Moved Permanently
+    - keep-alive: timeout=5, max=100
+    - content-type: text/html
+    - content-length: 795
+    - date: Wed, 02 Sep 2026 22:16:07 GMT
+    - server: LiteSpeed
+    - location: https://www.elplomerolatino.com/
+    - x-turbo-charged-by: LiteSpeed
+  - → GET https://www.elplomerolatino.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 301 Moved Permanently
+    - keep-alive: timeout=5, max=100
+    - x-powered-by: PHP/8.3.33
+    - content-type: text/html; charset=UTF-8
+    - x-redirect-by: WordPress
+    - location: https://elplomerolatino.com/
+    - cache-control: public, max-age=0
+    - expires: Wed, 02 Sep 2026 22:16:10 GMT
+    - content-length: 0
+    - date: Wed, 02 Sep 2026 22:16:10 GMT
+    - server: LiteSpeed
+    - vary: Accept-Encoding
+    - x-turbo-charged-by: LiteSpeed
+  - → GET https://elplomerolatino.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 200 OK
+    - keep-alive: timeout=5, max=100
+    - x-powered-by: PHP/8.3.33
+    - last-modified: Wed, 02 Sep 2026 06:06:46 GMT
+    - content-type: text/html; charset=UTF-8
+    - cache-control: public, max-age=0
+    - expires: Wed, 02 Sep 2026 22:16:11 GMT
+    - transfer-encoding: chunked
+    - content-encoding: br
+    - vary: Accept-Encoding,Accept-Encoding
+    - date: Wed, 02 Sep 2026 22:16:11 GMT
+    - server: LiteSpeed
+    - x-turbo-charged-by: LiteSpeed
+
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387372562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387373562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387374561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387375562 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387376561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387377563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387378565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387379569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387380588 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387381567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387382575 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387383568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387384563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387385578 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387386579 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387387565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387388567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387389570 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387390568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387391566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387392567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387393567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387394574 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387395567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387396571 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387397603 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387398562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387399561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387400594 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387401593 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387402569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387403565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387404568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387405565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387406567 HTTP/1.1" 200 OK
+Could not extract email for Associated Piping Services Inc.: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://www.apsorl.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 403 Forbidden
+    - date: Wed, 02 Sep 2026 22:16:43 GMT
+    - server: Apache
+    - x-powered-by: PHP/8.2.33
+    - x-ua-compatible: IE=edge
+    - link: <https://www.apsorl.com/wp-json/>; rel="https://api.w.org/", <https://www.apsorl.com/wp-json/wp/v2/pages/1059>; rel="alternate"; title="JSON"; type="application/json", <https://www.apsorl.com/>; rel=shortlink
+    - keep-alive: timeout=2, max=500
+    - connection: Keep-Alive
+    - transfer-encoding: chunked
+    - content-type: text/html; charset=UTF-8
+
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387407564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387408568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387409565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387410568 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387411570 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387412566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387413564 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387414564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387415569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387416608 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64678 - "GET /api/leads?t=1788387417562 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Could not extract email for Brownie's, A Wind River Company: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://wrenvironmental.com/north-orlando-fl
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 301 Moved Permanently
+    - server: nginx
+    - date: Wed, 02 Sep 2026 22:17:38 GMT
+    - content-type: text/html
+    - content-length: 162
+    - connection: keep-alive
+    - location: https://www.wrenvironmental.com/north-orlando-fl
+    - strict-transport-security: max-age=63072000; includeSubDomains; preload
+  - → GET https://www.wrenvironmental.com/north-orlando-fl
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64855 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64855 - "GET /api/leads?t=1788387471584 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Could not extract email for American Veteran Plumbing: APIRequestContext.get: Hostname/IP does not match certificate's altnames: Host: americanveteranplumbing1.com. is not in the cert's altnames: DNS:*.yolasite.com, DNS:yolasite.com
+Call log:
+  - → GET https://americanveteranplumbing1.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64885 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64885 - "GET /api/leads?t=1788387531619 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Could not extract email for ServiceOne Air Conditioning & Plumbing: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://www.serviceoneac.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+Could not extract email for All Pro Plumbing Services Inc: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET http://www.allproplumbing.org/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 301 Moved Permanently
+    - connection: Keep-Alive
+    - keep-alive: timeout=5, max=100
+    - content-type: text/html
+    - content-length: 795
+    - date: Wed, 02 Sep 2026 22:19:19 GMT
+    - server: LiteSpeed
+    - location: https://www.allproplumbing.org/
+    - platform: hostinger
+    - panel: hpanel
+    - content-security-policy: upgrade-insecure-requests
+  - → GET https://www.allproplumbing.org/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 301 Moved Permanently
+    - connection: Keep-Alive
+    - keep-alive: timeout=5, max=100
+    - x-powered-by: PHP/8.2.30
+    - content-type: text/html; charset=UTF-8
+    - x-redirect-by: Permalink Manager
+    - location: https://allproplumbing.org/
+    - cache-control: public, max-age=0
+    - expires: Wed, 02 Sep 2026 22:19:23 GMT
+    - content-length: 0
+    - date: Wed, 02 Sep 2026 22:19:23 GMT
+    - server: LiteSpeed
+    - platform: hostinger
+    - panel: hpanel
+    - content-security-policy: upgrade-insecure-requests
+    - vary: Accept-Encoding
+    - alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
+  - → GET https://allproplumbing.org/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64930 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64930 - "GET /api/leads?t=1788387591601 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Could not extract email for A1 Service Plumbing: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://a1serviceplumbing.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387640776 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387641255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387642256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387643258 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387644256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387645258 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387646255 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387647256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387648256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387649258 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387650255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387651256 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387652257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387653256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387654255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387655255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387656256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387657257 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387658256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387659255 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387660257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387661263 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387662255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387663256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387664257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387665260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387666254 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387667256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387668257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387669257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387670276 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387671257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387672259 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387673264 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387674257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387675256 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387676256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387677256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387678262 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387679257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387680257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387681261 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387682255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387683256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387684254 HTTP/1.1" 200 OK
+Could not extract email for A1 Service Plumbing: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://a1serviceplumbing.com/
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387685253 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387686257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387687254 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387688255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387689257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387690255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387691255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387692255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387693254 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387694257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387695259 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387696256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387697256 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387698260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387699259 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387700564 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387701662 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387702565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387703564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387704562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387705564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387706565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387707584 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387708563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387709564 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387710565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387711563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387712560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387713558 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387714562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387715566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387716563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387717560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387718563 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387719566 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387720572 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387721561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387722563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387723557 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387724562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387725570 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387726561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387727570 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387728564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387729561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387730567 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387731562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387732559 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387733560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387734569 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387735562 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387736564 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387737560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387738560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387739565 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387740578 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387741563 HTTP/1.1" 200 OK
+Could not extract email for Ferguson: APIRequestContext.get: Timeout 5000ms exceeded.
+Call log:
+  - → GET https://www.ferguson.com/store/fl/orlando/plumbingpvf-0052?utm_source=google&utm_medium=organic&utm_campaign=rt_lis_listingtraffic&utm_content=listing
+    - user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387742576 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387743575 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387744263 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387745262 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387746255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387747255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387748256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387749257 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387750259 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387751252 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387752255 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387753253 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387754256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387755256 HTTP/1.1" 200 OK
+Error extracting item: name 'contacted_emails' is not defined
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387756252 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387757256 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387758260 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64971 - "GET /api/leads?t=1788387758344 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65023 - "GET /api/export HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65028 - "POST /api/emails/campaign HTTP/1.1" 200 OK
+Email Campaign: No emails to send.
+INFO:     127.0.0.1:65028 - "GET /api/emails/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "DELETE /api/leads HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387935713 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "POST /api/scrape HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387938800 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387939809 HTTP/1.1" 200 OK
+Searching for: Dentists in Austin, Texas, United States
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387940813 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387942450 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387942815 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387943806 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387944807 HTTP/1.1" 200 OK
+Feed loaded
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387945809 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387946812 HTTP/1.1" 200 OK
+Loaded 12 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387947811 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387948807 HTTP/1.1" 200 OK
+Loaded 18 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387949808 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387950809 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387951815 HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387952810 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387953808 HTTP/1.1" 200 OK
+Loaded 22 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387954827 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387955811 HTTP/1.1" 200 OK
+Loaded 28 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387957556 HTTP/1.1" 200 OK
+Loaded 34 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387958555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387959560 HTTP/1.1" 200 OK
+Loaded 40 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387960616 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387961555 HTTP/1.1" 200 OK
+Loaded 44 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387962572 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387963558 HTTP/1.1" 200 OK
+Loaded 50 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387964561 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387965557 HTTP/1.1" 200 OK
+Loaded 56 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387966560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387967555 HTTP/1.1" 200 OK
+Loaded 62 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387968555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387969560 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387970560 HTTP/1.1" 200 OK
+Loaded 64 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387971554 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387972556 HTTP/1.1" 200 OK
+Loaded 70 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387973556 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387974560 HTTP/1.1" 200 OK
+Loaded 76 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387975555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387976555 HTTP/1.1" 200 OK
+Loaded 82 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387977555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387978556 HTTP/1.1" 200 OK
+Loaded 84 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387979563 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387980556 HTTP/1.1" 200 OK
+Loaded 90 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387981558 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387982556 HTTP/1.1" 200 OK
+Loaded 96 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387983555 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387984556 HTTP/1.1" 200 OK
+Loaded 102 items...
+INFO:     127.0.0.1:65048 - "GET /api/scrape/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387985557 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387985882 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65048 - "GET /api/leads?t=1788387985882 HTTP/1.1" 200 OK

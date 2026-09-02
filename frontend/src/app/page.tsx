@@ -35,6 +35,17 @@ export default function Dashboard() {
   const [emailMessage, setEmailMessage] = useState('');
   const [isEmailing, setIsEmailing] = useState(false);
   const [sentEmailIds, setSentEmailIds] = useState<number[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") setIsDarkMode(true);
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    localStorage.setItem("theme", !isDarkMode ? "dark" : "light");
+  };
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [editedPitch, setEditedPitch] = useState('');
   const [scoreDetailsLead, setScoreDetailsLead] = useState<Lead | null>(null);
@@ -259,17 +270,20 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-900 font-sans selection:bg-indigo-100">
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-900 dark:text-slate-100 font-sans selection:bg-indigo-100">
       <div className="max-w-7xl mx-auto space-y-8">
         
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 gap-4 md:gap-0">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
-              <span className="text-indigo-600">⚡</span> LeadGen Pro
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              <span className="text-indigo-600 dark:text-indigo-400">⚡</span> LeadGen Pro
             </h1>
-            <p className="text-sm text-slate-500 mt-1 font-medium">B2B Lead Generation & Outreach System</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">B2B Lead Generation & Outreach System</p>
           </div>
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <button onClick={toggleTheme} className="px-4 py-2.5 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors" title="Toggle Dark Mode">
+              {isDarkMode ? "☀️ Light" : "🌙 Dark"}
+            </button>
             <a
               href="/api/export"
               target="_blank"
@@ -321,14 +335,14 @@ export default function Dashboard() {
         <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
           <h2 className="text-xl font-bold mb-1 text-slate-800">1. Target Audience</h2>
-          <p className="text-sm text-slate-500 mb-6 font-medium">Find highly-qualified B2B leads on Google Maps.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 font-medium">Find highly-qualified B2B leads on Google Maps.</p>
           <form onSubmit={handleScrape} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5 items-end">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Country</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Country</label>
               <input 
                 type="text" 
                 list="countries-list"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 value={form.country} 
                 onChange={e => setForm({...form, country: e.target.value})} 
                 placeholder="Type or select a country..."
@@ -338,11 +352,11 @@ export default function Dashboard() {
               </datalist>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">State/Province</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">State/Province</label>
               <input 
                 type="text" 
                 list="states-list"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 value={form.state} 
                 onChange={e => setForm({...form, state: e.target.value})} 
                 placeholder="Select a state..."
@@ -352,11 +366,11 @@ export default function Dashboard() {
               </datalist>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">City</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">City</label>
               <input 
                 type="text" 
                 list="cities-list"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 value={form.city} 
                 onChange={e => setForm({...form, city: e.target.value})} 
                 placeholder="Type or select a city..."
@@ -366,11 +380,11 @@ export default function Dashboard() {
               </datalist>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Category (Business Type)</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Category (Business Type)</label>
               <input 
                 type="text" 
                 list="categories-list"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 value={form.category} 
                 onChange={e => setForm({...form, category: e.target.value})} 
                 placeholder="E.g. Real Estate, Plumber..."
@@ -380,8 +394,8 @@ export default function Dashboard() {
               </datalist>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Radius (km)</label>
-              <input type="text" className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" value={form.radius} onChange={e => setForm({...form, radius: e.target.value})} />
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Radius (km)</label>
+              <input type="text" className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" value={form.radius} onChange={e => setForm({...form, radius: e.target.value})} />
             </div>
             <div>
               <button disabled={isScraping || loading} type="submit" className="w-full h-[46px] bg-indigo-600 text-white px-4 rounded-lg hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transform transition-all duration-200 font-semibold shadow-sm flex justify-center items-center gap-2">
@@ -409,24 +423,24 @@ export default function Dashboard() {
         <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-violet-500"></div>
           <h2 className="text-xl font-bold mb-1 text-slate-800">2. Email Outreach</h2>
-          <p className="text-sm text-slate-500 mb-6 font-medium">Send highly personalized AI pitches to all leads with an email address.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 font-medium">Send highly personalized AI pitches to all leads with an email address.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Your Gmail Address</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Your Gmail Address</label>
               <input 
                 type="email" 
                 id="email-campaign-address"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 placeholder="you@gmail.com"
                 defaultValue="asperinfotech@gmail.com"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1.5">Google App Password</label>
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Google App Password</label>
               <input 
                 type="password" 
                 id="email-campaign-password"
-                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 dark:text-slate-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400" 
                 placeholder="16-character app password"
                 defaultValue="snqr frzo ivyy pmzo"
               />
@@ -469,7 +483,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <section className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
           <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
              <h2 className="text-lg font-bold text-slate-800">3. Lead Database</h2>
              <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">{leads.length} Leads</span>
@@ -478,19 +492,19 @@ export default function Dashboard() {
           <table className="min-w-full divide-y divide-slate-100">
             <thead className="bg-slate-50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Business</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Score</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Email/Web</th>
-                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Action</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Business</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Score</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Email/Web</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-50">
+            <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-50 dark:divide-slate-700">
               {leads.map((lead, idx) => (
-                <tr key={idx} className={`transition-colors ${['Contacted', 'Duplicate'].includes(lead.status) ? 'bg-slate-50/80 opacity-75 grayscale-[20%]' : 'hover:bg-slate-50/80'}`}>
+                <tr key={idx} className={`transition-colors ${['Contacted', 'Duplicate'].includes(lead.status) ? 'bg-slate-50/80 dark:bg-slate-900/80 opacity-75 grayscale-[20%]' : 'hover:bg-slate-50/80 dark:hover:bg-slate-700/50'}`}>
                   <td className="px-6 py-4">
                     <div className="font-medium text-slate-800">{lead.business_name}</div>
-                    <div className="text-xs text-slate-500">{lead.category} • {lead.city} • {lead.rating} ★</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">{lead.category} • {lead.city} • {lead.rating} ★</div>
                     {lead.address && <div className="text-xs text-slate-400 mt-1">{lead.address}</div>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -500,7 +514,7 @@ export default function Dashboard() {
                     >
                       {lead.lead_score}/100 {lead.lead_score === 100 && <span className="ml-1 text-green-500 text-lg" title="Profile Complete">✅</span>}
                     </button>
-                    <div className="text-xs text-slate-500 mt-1">{lead.lead_grade}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{lead.lead_grade}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
@@ -511,15 +525,15 @@ export default function Dashboard() {
                       {lead.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">
                     <div>{lead.has_website ? '✅ Web' : '❌ Web'}</div>
-                    {lead.email && <div className="text-xs text-indigo-600 font-medium mt-1 w-[150px] xl:w-[200px] truncate" title={lead.email}>📧 {lead.email}</div>}
+                    {lead.email && <div className="text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-1 w-[150px] xl:w-[200px] truncate" title={lead.email}>📧 {lead.email}</div>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2 flex items-center pt-6">
                     <a 
                       href={lead.map_url} 
                       target="_blank" 
-                      className="text-slate-700 hover:text-slate-800 bg-slate-100 hover:bg-gray-200 px-3 py-1 rounded border border-slate-200 transition-colors inline-flex items-center text-xs font-semibold"
+                      className="text-slate-700 dark:text-slate-300 hover:text-slate-800 bg-slate-100 hover:bg-gray-200 px-3 py-1 rounded border border-slate-200 transition-colors inline-flex items-center text-xs font-semibold"
                     >
                       📍 Map
                     </a>
@@ -576,7 +590,7 @@ export default function Dashboard() {
               ))}
               {leads.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500">No leads found. Start a new search above.</td>
+                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500 dark:text-slate-400">No leads found. Start a new search above.</td>
                 </tr>
               )}
             </tbody>
@@ -605,7 +619,7 @@ export default function Dashboard() {
                 <div key={idx} className="flex items-center justify-between p-3 bg-white border rounded-lg shadow-sm">
                   <div className="flex items-center space-x-3">
                     <span>{item.icon}</span>
-                    <span className="text-sm font-medium text-slate-700">{item.label}</span>
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{item.label}</span>
                   </div>
                   <span className={`font-bold ${item.type}`}>{item.score}</span>
                 </div>
@@ -633,12 +647,12 @@ export default function Dashboard() {
           <div className="bg-white rounded-2xl p-8 max-w-3xl w-full shadow-2xl">
             <h3 className="text-xl font-bold mb-4 text-gray-800">Edit Pitch for {editingLead.business_name}</h3>
             <textarea
-              className="w-full h-96 p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-4 font-mono text-sm text-slate-700 bg-gray-50"
+              className="w-full h-96 p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-4 font-mono text-sm text-slate-700 dark:text-slate-300 bg-gray-50"
               value={editedPitch}
               onChange={(e) => setEditedPitch(e.target.value)}
             ></textarea>
             <div className="flex justify-between items-center">
-              <span className="text-xs text-slate-500">You can edit the pitch directly and save it to the database.</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">You can edit the pitch directly and save it to the database.</span>
               <div className="flex space-x-3">
                 <button 
                   onClick={() => setEditingLead(null)}
