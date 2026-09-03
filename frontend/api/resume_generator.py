@@ -26,7 +26,8 @@ def generate_resume_pdf():
 
     pdf.set_font("Helvetica", "", 9)
     pdf.set_text_color(80, 80, 80)
-    pdf.cell(0, 5, safe("+92 303 6629101  |  hammadaslam78612@gmail.com  |  LinkedIn  |  GitHub"), new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 5, safe("+92 303 6629101  |  hammadaslam78612@gmail.com"), new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 5, safe("linkedin.com/in/hammadaslamkamboh  |  github.com/Hammad55553"), new_x="LMARGIN", new_y="NEXT", align="C")
     pdf.ln(3)
 
     pdf.set_draw_color(100, 100, 220)

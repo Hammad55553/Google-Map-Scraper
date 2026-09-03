@@ -26,6 +26,8 @@ I have attached my CV for your review. I would love a quick call to discuss how 
 
 📱 WhatsApp/Phone: +92 303 6629101
 📧 Email: hammadaslam78612@gmail.com
+💼 LinkedIn: https://www.linkedin.com/in/hammadaslamkamboh/
+💻 GitHub: https://github.com/Hammad55553/
 
 Thank you for your time. I look forward to hearing from you.
 
