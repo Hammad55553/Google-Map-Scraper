@@ -24,6 +24,7 @@ type Lead = {
 
 export default function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [newLeadIds, setNewLeadIds] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ country: '', state: '', city: '', category: '', radius: '20' });
 
@@ -146,8 +147,29 @@ export default function Dashboard() {
       const res = await fetch('/api/leads?t=' + new Date().getTime(), {
         cache: 'no-store'
       });
-      const data = await res.json();
-      setLeads(data);
+      const data: Lead[] = await res.json();
+      
+      // Track which IDs are NEW (not previously in the list)
+      setLeads(prev => {
+        const existingIds = new Set(prev.map(l => l.id));
+        const freshIds = data.filter(l => !existingIds.has(l.id)).map(l => l.id);
+        if (freshIds.length > 0) {
+          setNewLeadIds(ids => {
+            const next = new Set(ids);
+            freshIds.forEach(id => next.add(id));
+            // Remove highlight after 2s
+            setTimeout(() => {
+              setNewLeadIds(cur => {
+                const cleared = new Set(cur);
+                freshIds.forEach(id => cleared.delete(id));
+                return cleared;
+              });
+            }, 2000);
+            return next;
+          });
+        }
+        return data;
+      });
     } catch (e) {
       console.error(e);
     }
@@ -482,8 +504,16 @@ export default function Dashboard() {
         </section>
 
         <section className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
-          <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
-             <h2 className="text-lg font-bold text-foreground">3. Lead Database</h2>
+           <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
+             <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+               3. Lead Database
+               {isScraping && (
+                 <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400 px-2 py-0.5 rounded-full animate-pulse">
+                   <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block"></span>
+                   LIVE
+                 </span>
+               )}
+             </h2>
              <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">{leads.length} Leads</span>
           </div>
           <div className="overflow-x-auto">
@@ -498,8 +528,17 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody className="bg-card divide-y divide-border">
-              {leads.map((lead, idx) => (
-                <tr key={idx} className={`transition-colors ${['Contacted', 'Duplicate'].includes(lead.status) ? 'bg-muted/80 opacity-75 grayscale-[20%]' : 'hover:bg-muted/50'}`}>
+              {leads.map((lead) => (
+                <tr 
+                  key={lead.id} 
+                  className={`transition-all duration-500 ${
+                    newLeadIds.has(lead.id)
+                      ? 'bg-emerald-50 dark:bg-emerald-950/30 animate-pulse'
+                      : ['Contacted', 'Duplicate'].includes(lead.status) 
+                        ? 'bg-muted/80 opacity-75 grayscale-[20%]' 
+                        : 'hover:bg-muted/50'
+                  }`}
+                >
                   <td className="px-6 py-4">
                     <div className="font-medium text-foreground">{lead.business_name}</div>
                     <div className="text-xs text-muted-foreground">{lead.category} • {lead.city} • {lead.rating} ★</div>
