@@ -1004,109 +1004,10 @@ export default function Dashboard() {
             )}
           </section>
 
-          {/* Companies Table */}
-          {jobCompanies.length > 0 && (
-            <section className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
-              <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
-                <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-                  2. Companies Found
-                  {isJobScraping && (
-                    <span className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-400 px-2 py-0.5 rounded-full animate-pulse">
-                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full inline-block"></span>
-                      LIVE
-                    </span>
-                  )}
-                </h2>
-                <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">
-                  {jobCompanies.filter(c => c.email).length} with email / {jobCompanies.length} total
-                </span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-border">
-                  <thead className="bg-muted">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Company</th>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Email</th>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Website</th>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Status</th>
-                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-card divide-y divide-border">
-                    {jobCompanies.map((company, idx) => (
-                      <tr key={idx} className={`transition-all duration-500 ${
-                        company.email && newCompanyEmails.has(company.email)
-                          ? 'bg-indigo-50 dark:bg-indigo-950/30 animate-pulse'
-                          : 'hover:bg-muted/50'
-                      }`}>
-                        <td className="px-6 py-4">
-                          <div className="font-medium text-foreground">{company.name}</div>
-                          <div className="text-xs text-muted-foreground">{company.address}</div>
-                        </td>
-                        <td className="px-6 py-4">
-                          {company.email
-                            ? <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{company.email}</span>
-                            : <span className="text-xs text-muted-foreground italic">No email found</span>
-                          }
-                        </td>
-                        <td className="px-6 py-4">
-                          {company.website
-                            ? <a href={company.website} target="_blank" className="text-xs text-blue-500 hover:underline">🌐 Visit</a>
-                            : <span className="text-xs text-muted-foreground">-</span>
-                          }
-                        </td>
-                        <td className="px-6 py-4">
-                          {sentApplications.includes(company.email)
-                            ? <span className="px-2 py-1 text-xs font-bold bg-emerald-100 text-emerald-700 rounded-full">✅ Sent</span>
-                            : company.email
-                              ? <span className="px-2 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded-full">Ready</span>
-                              : <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">No Email</span>
-                          }
-                        </td>
-                        <td className="px-6 py-4">
-                          {company.email && !sentApplications.includes(company.email) && (
-                            <button 
-                              onClick={async () => {
-                                if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password below first.");
-                                
-                                setIsApplying(true);
-                                setApplyMsg(`Sending to ${company.name}...`);
-                                
-                                await fetch('/api/jobs/apply', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    gmail_address: jobSenderEmail,
-                                    app_password: jobAppPassword,
-                                    custom_pitch: jobCustomPitch,
-                                    target_company: company.name,
-                                    target_email: company.email
-                                  })
-                                });
-                                
-                                setSentApplications(prev => [...prev, company.email]);
-                                setIsApplying(false);
-                                setApplyMsg('Sent successfully!');
-                              }}
-                              disabled={isApplying}
-                              className="text-emerald-600 hover:text-emerald-900 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-semibold disabled:opacity-50"
-                            >
-                              📤 Send
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          )}
-
-          {/* Send Applications (Always Visible Now) */}
+          {/* Start Email Campaign (Always Visible Now) */}
           <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-              <h2 className="text-xl font-bold mb-1 text-foreground">3. Send Job Applications</h2>
+              <h2 className="text-xl font-bold mb-1 text-foreground">2. Start Email Campaign</h2>
               <p className="text-sm text-muted-foreground mb-4">Auto-send your CV + professional pitch to all {jobCompanies.filter(c => c.email).length} companies with emails. Resume will be auto-attached.</p>
               <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-4 flex justify-between items-center flex-wrap gap-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -1223,10 +1124,109 @@ export default function Dashboard() {
                 }}
                 className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 disabled:opacity-50 transition-all shadow-md w-full md:w-auto"
               >
-                {isApplying ? `📤 Sending Applications... (${sentApplications.length} sent)` : `📤 Send All Applications (${jobCompanies.filter(c => c.email).length} ready)`}
+                {isApplying ? `⏳ Sending... (${sentApplications.length} sent)` : `Start Email Campaign (${jobCompanies.filter(c => c.email).length} ready)`}
               </button>
             </section>
-        </div>
+{/* Companies Table */}
+          {jobCompanies.length > 0 && (
+            <section className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
+              <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
+                <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+                  3. Lead Database
+                  {isJobScraping && (
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-400 px-2 py-0.5 rounded-full animate-pulse">
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full inline-block"></span>
+                      LIVE
+                    </span>
+                  )}
+                </h2>
+                <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">
+                  {jobCompanies.filter(c => c.email).length} with email / {jobCompanies.length} total
+                </span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Company</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Website</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-card divide-y divide-border">
+                    {jobCompanies.map((company, idx) => (
+                      <tr key={idx} className={`transition-all duration-500 ${
+                        company.email && newCompanyEmails.has(company.email)
+                          ? 'bg-indigo-50 dark:bg-indigo-950/30 animate-pulse'
+                          : 'hover:bg-muted/50'
+                      }`}>
+                        <td className="px-6 py-4">
+                          <div className="font-medium text-foreground">{company.name}</div>
+                          <div className="text-xs text-muted-foreground">{company.address}</div>
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.email
+                            ? <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{company.email}</span>
+                            : <span className="text-xs text-muted-foreground italic">No email found</span>
+                          }
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.website
+                            ? <a href={company.website} target="_blank" className="text-xs text-blue-500 hover:underline">🌐 Visit</a>
+                            : <span className="text-xs text-muted-foreground">-</span>
+                          }
+                        </td>
+                        <td className="px-6 py-4">
+                          {sentApplications.includes(company.email)
+                            ? <span className="px-2 py-1 text-xs font-bold bg-emerald-100 text-emerald-700 rounded-full">✅ Sent</span>
+                            : company.email
+                              ? <span className="px-2 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded-full">Ready</span>
+                              : <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">No Email</span>
+                          }
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.email && !sentApplications.includes(company.email) && (
+                            <button 
+                              onClick={async () => {
+                                if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password below first.");
+                                
+                                setIsApplying(true);
+                                setApplyMsg(`Sending to ${company.name}...`);
+                                
+                                await fetch('/api/jobs/apply', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({
+                                    gmail_address: jobSenderEmail,
+                                    app_password: jobAppPassword,
+                                    custom_pitch: jobCustomPitch,
+                                    target_company: company.name,
+                                    target_email: company.email
+                                  })
+                                });
+                                
+                                setSentApplications(prev => [...prev, company.email]);
+                                setIsApplying(false);
+                                setApplyMsg('Sent successfully!');
+                              }}
+                              disabled={isApplying}
+                              className="text-emerald-600 hover:text-emerald-900 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-semibold disabled:opacity-50"
+                            >
+                              📤 Send
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+                  </div>
       )}
 
     </div>
