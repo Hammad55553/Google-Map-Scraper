@@ -48,7 +48,12 @@ export default function Dashboard() {
   const [cities, setCities] = useState<string[]>([]);
   
   // Tab system
-  const [activeTab, setActiveTab] = useState<'leads' | 'jobs'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct'>('leads');
+  
+  // Direct Link state
+  const [directUrl, setDirectUrl] = useState('');
+  const [isDirectExtracting, setIsDirectExtracting] = useState(false);
+  const [directResult, setDirectResult] = useState<any>(null);
 
   // Job Hunt state
   const [jobQuery, setJobQuery] = useState('');
@@ -450,6 +455,16 @@ export default function Dashboard() {
                 }`}
               >
                 💼 Job Hunt
+              </button>
+              <button
+                onClick={() => setActiveTab('direct')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'direct'
+                    ? 'bg-card text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                🔗 Direct Link
               </button>
             </div>
             <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="px-4 py-2.5 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors" title="Toggle Dark Mode">
@@ -1229,6 +1244,126 @@ export default function Dashboard() {
 
                   </div>
       )}
+
+        {activeTab === 'direct' && (
+          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+            <h2 className="text-xl font-bold mb-1 text-foreground">Direct Link Extractor</h2>
+            <p className="text-sm text-muted-foreground mb-6 font-medium">Extract contact info from any website or social media profile and generate a smart pitch.</p>
+            
+            <div className="flex gap-2 mb-6">
+              <input
+                type="url"
+                value={directUrl}
+                onChange={e => setDirectUrl(e.target.value)}
+                placeholder="https://example.com or LinkedIn/Instagram URL"
+                className="flex-1 bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+              />
+              <button
+                disabled={isDirectExtracting || !directUrl}
+                onClick={async () => {
+                  setIsDirectExtracting(true);
+                  setDirectResult(null);
+                  try {
+                    const res = await fetch('/api/extract-link', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ url: directUrl })
+                    });
+                    const data = await res.json();
+                    setDirectResult(data);
+                  } catch (e) {
+                    console.error(e);
+                  }
+                  setIsDirectExtracting(false);
+                }}
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:opacity-50 transition-all"
+              >
+                {isDirectExtracting ? '⏳ Extracting...' : 'Extract & Pitch'}
+              </button>
+            </div>
+
+            {directResult && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-muted rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-2">Company Name</h3>
+                    <p className="text-foreground font-semibold">{directResult.company_name || 'N/A'}</p>
+                  </div>
+                  <div className="bg-muted rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-2">Email Extracted</h3>
+                    <p className="text-foreground font-semibold">{directResult.email || 'No email found'}</p>
+                  </div>
+                  <div className="bg-muted rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-2">WhatsApp Link</h3>
+                    {directResult.whatsapp_link ? (
+                      <a href={directResult.whatsapp_link} target="_blank" className="text-blue-500 hover:underline font-semibold break-all">
+                        {directResult.whatsapp_link}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">No WhatsApp found</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <h3 className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
+                    🤖 AI Pitch Suggestion
+                  </h3>
+                  <p className="text-sm text-blue-700 dark:text-blue-400">
+                    Based on the content of this link, we suggest sending a <strong>{directResult.suggested_pitch_type === 'job' ? 'Job/CV Pitch' : 'B2B Services Pitch'}</strong>.
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-foreground">Generated Pitch</label>
+                  <textarea
+                    value={directResult.pitch}
+                    onChange={e => setDirectResult({...directResult, pitch: e.target.value})}
+                    className="w-full h-64 p-4 bg-muted border border-border rounded-xl text-sm font-mono focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
+                
+                <div className="flex flex-col md:flex-row gap-3 pt-2">
+                  <button
+                    disabled={!directResult.email}
+                    onClick={() => {
+                      if (!directResult.email) return;
+                      // Logic to send email directly via API
+                      fetch('/api/jobs/apply', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          gmail_address: process.env.NEXT_PUBLIC_JOBS_GMAIL,
+                          app_password: process.env.NEXT_PUBLIC_JOBS_PASSWORD,
+                          target_email: directResult.email,
+                          target_company: directResult.company_name,
+                          custom_pitch: directResult.pitch
+                        })
+                      }).then(() => alert('Email sent successfully!'));
+                    }}
+                    className="flex-1 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-all shadow-sm"
+                  >
+                    📤 Send Email {directResult.email ? `(${directResult.email})` : '(No Email)'}
+                  </button>
+                  <button
+                    disabled={!directResult.whatsapp_link}
+                    onClick={() => {
+                      if (directResult.whatsapp_link) {
+                        const waUrl = new URL(directResult.whatsapp_link);
+                        waUrl.searchParams.set('text', directResult.pitch);
+                        window.open(waUrl.toString(), '_blank');
+                      }
+                    }}
+                    className="flex-1 bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-emerald-700 disabled:opacity-50 transition-all shadow-sm"
+                  >
+                    💬 Send WhatsApp {directResult.phone ? `(${directResult.phone})` : '(No Phone)'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
 
     </div>
     </div>

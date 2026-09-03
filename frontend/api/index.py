@@ -327,6 +327,9 @@ class JobApplyRequest(BaseModel):
     target_email: Optional[str] = None
     companies: Optional[list] = None
 
+class ExtractLinkRequest(BaseModel):
+    url: str
+
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
     job_status["status"] = "scraping"
@@ -515,4 +518,21 @@ def send_job_applications(req: JobApplyRequest, background_tasks: BackgroundTask
 @app.get("/api/jobs/apply/status")
 def get_job_apply_status():
     return job_apply_status
+
+from link_extractor import extract_from_link
+from pitch_generator import generate_bilingual_pitch
+from job_pitch_generator import generate_job_pitch
+
+@app.post("/api/extract-link")
+async def extract_link_endpoint(req: ExtractLinkRequest):
+    result = await extract_from_link(req.url)
+    
+    # Generate pitches
+    if result["suggested_pitch_type"] == "job":
+        pitch = generate_job_pitch(result["company_name"])
+    else:
+        pitch = generate_bilingual_pitch(result["company_name"], "Unknown")
+        
+    result["pitch"] = pitch
+    return result
 
