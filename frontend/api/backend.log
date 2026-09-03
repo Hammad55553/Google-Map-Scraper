@@ -93,3 +93,30 @@ INFO:     Finished server process [27008]
 INFO:     Started server process [27016]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:64810 - "GET /api/leads?t=1788416064038 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64811 - "GET /api/leads?t=1788416064039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64840 - "GET /api/leads?t=1788416069537 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64841 - "GET /api/leads?t=1788416069538 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64841 - "GET /api/leads?t=1788416070356 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64840 - "GET /api/leads?t=1788416070357 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64840 - "GET /api/jobs/pitch/preview HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'resume_generator.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [27016]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [27073]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [27073]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [27083]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -425,18 +425,20 @@ def send_job_applications_task(req: JobApplyRequest):
 
     try:
         import os
-        if os.path.exists("uploaded_resume.pdf"):
-            with open("uploaded_resume.pdf", "rb") as f:
-                resume_pdf = f.read()
-        else:
-            resume_pdf = generate_resume_pdf()
-
+        
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(req.gmail_address, req.app_password)
 
         for idx, company in enumerate(targets):
             try:
+                # Generate tailored CV for this specific company if custom CV not uploaded
+                if os.path.exists("uploaded_resume.pdf"):
+                    with open("uploaded_resume.pdf", "rb") as f:
+                        resume_pdf = f.read()
+                else:
+                    resume_pdf = generate_resume_pdf(target_company=company["name"])
+            
                 job_apply_status["message"] = f"Sending to {company['name']} ({idx+1}/{total})..."
                 job_apply_status["progress"] = int(((idx + 1) / total) * 100)
 
