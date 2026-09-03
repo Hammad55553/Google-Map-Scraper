@@ -64,8 +64,8 @@ export default function Dashboard() {
   const [sentApplications, setSentApplications] = useState<string[]>([]);
   const [jobCustomPitch, setJobCustomPitch] = useState('');
   const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company', radius: '20' });
-  const [jobSenderEmail, setJobSenderEmail] = useState('hammadaslam78612@gmail.com');
-  const [jobAppPassword, setJobAppPassword] = useState('tqmb xojp sjux yjjm');
+  const [jobSenderEmail, setJobSenderEmail] = useState('');
+  const [jobAppPassword, setJobAppPassword] = useState('');
   const [jobCustomResume, setJobCustomResume] = useState<string | null>(null);
   const [jobStates, setJobStates] = useState<string[]>([]);
   const [jobCities, setJobCities] = useState<string[]>([]);
@@ -605,7 +605,7 @@ export default function Dashboard() {
                 id="email-campaign-address"
                 className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 placeholder="you@gmail.com"
-                defaultValue="asperinfotech@gmail.com"
+                defaultValue=""
               />
             </div>
             <div>
@@ -615,7 +615,7 @@ export default function Dashboard() {
                 id="email-campaign-password"
                 className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                 placeholder="16-character app password"
-                defaultValue="snqr frzo ivyy pmzo"
+                defaultValue=""
               />
             </div>
             <div>

@@ -320,8 +320,8 @@ class JobSearchRequest(BaseModel):
     limit: int = 500
 
 class JobApplyRequest(BaseModel):
-    gmail_address: str = "hammadaslam78612@gmail.com"
-    app_password: str = "tqmb xojp sjux yjjm"
+    gmail_address: str
+    app_password: str
     custom_pitch: str = ""
     target_company: Optional[str] = None
     target_email: Optional[str] = None
@@ -446,6 +446,7 @@ def send_job_applications_task(req: JobApplyRequest):
                 # Check for duplicates
                 if db.query(ContactHistory).filter(ContactHistory.email == company["email"]).first():
                     print(f"Skipping {company['email']} (already contacted)")
+                    job_apply_status["sent"].append(company["email"])
                     continue
 
                 # Generate tailored CV for this specific company if custom CV not uploaded
