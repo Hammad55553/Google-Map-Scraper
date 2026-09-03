@@ -1,14 +1,20 @@
-from fastapi import FastAPI, BackgroundTasks, Depends
+from fastapi import FastAPI, BackgroundTasks, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from pydantic import BaseModel
 from database import SessionLocal, Lead, ContactHistory
 import asyncio
 import uuid
 import random
-from datetime import datetime
+import datetime
+import io
+import pandas as pd
 from scraper import run_scraper
 from pitch_generator import generate_bilingual_pitch
+from excel_export import generate_excel_from_leads
 
 app = FastAPI()
 
@@ -47,10 +53,10 @@ scrape_status = {
     "message": ""
 }
 
-def update_progress(current, total):
+def update_progress(current, total, message=""):
     scrape_status["progress"] = current
     scrape_status["total"] = total
-    scrape_status["message"] = f"Loaded {current}/{total} items..."
+    scrape_status["message"] = message or f"Loaded {current}/{total} items..."
 
 def real_scraper_task(req: ScrapeRequest):
     global scrape_status
@@ -60,9 +66,9 @@ def real_scraper_task(req: ScrapeRequest):
     
     search_query = f"{req.category} in {req.city}, {req.state}, {req.country}"
     
-    def update_progress(current, total):
+    def update_progress(current, total, message=""):
         scrape_status["progress"] = int((current / total) * 100) if total > 0 else 0
-        scrape_status["message"] = f"Processing item {current} of {total}"
+        scrape_status["message"] = message or f"Processing item {current} of {total}"
 
     try:
         db = SessionLocal()
@@ -112,7 +118,8 @@ def real_scraper_task(req: ScrapeRequest):
             db.commit()
 
         # Scrape and stream
-        run_scraper(search_query, limit=5000, progress_callback=update_progress, on_lead_found=handle_lead)
+        cancel_fn = lambda: scrape_status.get("cancel", False)
+        run_scraper(search_query, limit=500, progress_callback=update_progress, on_lead_found=handle_lead, cancel_check=cancel_fn)
         
         db.close()
         scrape_status["status"] = "idle"
@@ -199,11 +206,11 @@ def clear_leads(db: Session = Depends(get_db)):
     db.query(Lead).delete()
     db.commit()
     return {"message": "All leads cleared"}
-from index import app
-from fastapi.responses import StreamingResponse
-from database import SessionLocal, Lead, ContactHistory
-from excel_export import generate_excel_from_leads
-import datetime
+
+@app.post("/api/scrape/stop")
+def stop_scraping():
+    scrape_status["cancel"] = True
+    return {"message": "Stop signal sent"}
 
 @app.get("/api/export")
 def export_leads():
@@ -212,7 +219,6 @@ def export_leads():
     db.close()
     
     excel_file = generate_excel_from_leads(leads)
-    
     date_str = datetime.datetime.now().strftime("%Y%m%d_%H%M")
     
     if leads and leads[0].category and leads[0].city:
@@ -228,56 +234,58 @@ def export_leads():
         headers={"Content-Disposition": f"attachment; filename={filename}"}
     )
 
-
-from fastapi import UploadFile, File
-import pandas as pd
-import io
-
 @app.post("/api/import")
 async def import_leads_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
     try:
         contents = await file.read()
-        
-        # Check if it's an excel file or csv
         if file.filename.endswith('.csv'):
             df = pd.read_csv(io.BytesIO(contents))
         else:
             df = pd.read_excel(io.BytesIO(contents), engine='openpyxl')
             
-        # Load history
         contacted_emails = {h.email.lower() for h in db.query(ContactHistory.email).all()}
-        
-        # Clear existing leads
         db.query(Lead).delete()
         
         for _, row in df.iterrows():
             def get_val(col_name, default=""):
                 val = row.get(col_name)
-                if pd.isna(val):
-                    return default
+                if pd.isna(val): return default
                 return str(val).strip()
 
             phone_val = get_val("Phone")
             if phone_val.startswith("'"):
                 phone_val = phone_val[1:]
                 
+            try:
+                rating_val = float(get_val("Rating", 0))
+            except:
+                rating_val = 0.0
+            try:
+                reviews_val = int(float(get_val("Reviews Count", 0)))
+            except:
+                reviews_val = 0
+            try:
+                score_val = int(float(get_val("Lead Score", 0)))
+            except:
+                score_val = 0
+                
             lead = Lead(
                 place_id=str(uuid.uuid4()),
                 business_name=get_val("Business Name"),
                 category=get_val("Category"),
                 city=get_val("City"),
-                rating=float(get_val("Rating", 0)),
-                reviews_count=int(float(get_val("Reviews Count", 0))),
+                rating=rating_val,
+                reviews_count=reviews_val,
                 phone=phone_val,
                 whatsapp_link=get_val("WhatsApp Link"),
-                has_website=bool(get_val("Website")),
+                has_website=get_val("Website") not in ["", "False", "false", "0"],
                 website=get_val("Website"),
                 email=get_val("Email"),
                 address=get_val("Address"),
                 map_url=get_val("Map URL"),
-                lead_score=int(float(get_val("Lead Score", 0))),
+                lead_score=score_val,
                 lead_grade=get_val("Lead Grade"),
-                status="Duplicate" if get_val("Email").lower() in contacted_emails else get_val("Status"),
+                status="Duplicate" if get_val("Email") and get_val("Email").lower() in contacted_emails else get_val("Status") or "New",
                 recommended_pitch=get_val("Recommended Pitch")
             )
             db.add(lead)
@@ -287,4 +295,3 @@ async def import_leads_csv(file: UploadFile = File(...), db: Session = Depends(g
         
     except Exception as e:
         return {"error": str(e)}
-

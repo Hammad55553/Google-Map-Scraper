@@ -2,6 +2,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import asyncio
+import datetime
+from sqlalchemy.exc import IntegrityError
+from database import SessionLocal, ContactHistory
 
 async def send_bulk_emails(sender_email: str, app_password: str, leads: list, update_status_callback):
     """
@@ -81,13 +84,16 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 # Update database status permanently
                 lead.status = "Contacted"
                 try:
+                    db = SessionLocal()
                     history = ContactHistory(email=lead.email.lower(), contacted_at=str(datetime.datetime.now()))
                     db.add(history)
                     db.commit()
+                    db.close()
                 except IntegrityError:
-                    db.rollback() # Email already in history
-                except Exception:
                     db.rollback()
+                    db.close()
+                except Exception:
+                    pass
                 
                 # Update status with lead_id so UI can show the tick mark!
                 update_status_callback(f"Sent successfully to {lead.business_name}", idx + 1, total, lead.id)
