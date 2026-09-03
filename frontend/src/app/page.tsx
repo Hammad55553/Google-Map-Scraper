@@ -29,6 +29,7 @@ export default function Dashboard() {
   const [form, setForm] = useState({ country: '', state: '', city: '', category: '', radius: '20' });
 
   const [isMounted, setIsMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // New state variables for progress tracking and modal
   const [progress, setProgress] = useState(0);
@@ -38,7 +39,6 @@ export default function Dashboard() {
   const [emailMessage, setEmailMessage] = useState('');
   const [isEmailing, setIsEmailing] = useState(false);
   const [sentEmailIds, setSentEmailIds] = useState<number[]>([]);
-  const { theme, setTheme } = useTheme();
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
   const [editedPitch, setEditedPitch] = useState('');
   const [scoreDetailsLead, setScoreDetailsLead] = useState<Lead | null>(null);
@@ -194,9 +194,7 @@ export default function Dashboard() {
   useEffect(() => {
     setIsMounted(true);
     fetchLeads();
-    
-    // Auto-refresh removed to prevent network spam when idle
-  }, [isScraping]);
+  }, []);
 
   useEffect(() => {
     let emailInterval: NodeJS.Timeout;
