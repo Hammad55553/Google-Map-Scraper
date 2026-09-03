@@ -317,7 +317,7 @@ job_companies = []  # In-memory store for job hunt results
 
 class JobSearchRequest(BaseModel):
     query: str  # e.g. "React Native software company" or "software company London"
-    limit: int = 30
+    limit: int = 500
 
 class JobApplyRequest(BaseModel):
     gmail_address: str = "hammadaslam78612@gmail.com"

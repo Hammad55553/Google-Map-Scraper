@@ -52,7 +52,7 @@ export default function Dashboard() {
 
   // Job Hunt state
   const [jobQuery, setJobQuery] = useState('');
-  const [jobLimit, setJobLimit] = useState(30);
+  const [jobLimit, setJobLimit] = useState(500);
   const [isJobScraping, setIsJobScraping] = useState(false);
   const [jobProgress, setJobProgress] = useState(0);
   const [jobProgressMsg, setJobProgressMsg] = useState('');
