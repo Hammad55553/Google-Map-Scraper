@@ -295,3 +295,167 @@ async def import_leads_csv(file: UploadFile = File(...), db: Session = Depends(g
         
     except Exception as e:
         return {"error": str(e)}
+
+
+# ==================================================================
+# JOB HUNT TAB — Search tech companies & send job applications
+# ==================================================================
+from job_scraper import run_job_scraper
+from job_pitch_generator import generate_job_pitch
+from resume_generator import generate_resume_pdf
+
+job_status = {
+    "status": "idle",
+    "progress": 0,
+    "total": 0,
+    "message": "",
+    "cancel": False
+}
+
+job_companies = []  # In-memory store for job hunt results
+
+class JobSearchRequest(BaseModel):
+    query: str  # e.g. "React Native software company" or "software company London"
+    limit: int = 30
+
+class JobApplyRequest(BaseModel):
+    gmail_address: str = "hammadaslam78612@gmail.com"
+    app_password: str = "tqmb xojp sjux yjjm"
+
+def job_scraper_task(req: JobSearchRequest):
+    global job_status, job_companies
+    job_status["status"] = "scraping"
+    job_status["progress"] = 0
+    job_status["cancel"] = False
+    job_status["message"] = "Starting job search..."
+    job_companies.clear()
+
+    def on_progress(current, total, msg=""):
+        job_status["progress"] = int((current / total) * 100) if total > 0 else 0
+        job_status["total"] = total
+        job_status["message"] = msg or f"Processing {current}/{total}..."
+
+    def on_company(item):
+        job_companies.append(item)
+
+    try:
+        cancel_fn = lambda: job_status.get("cancel", False)
+        run_job_scraper(
+            query=req.query,
+            limit=req.limit,
+            progress_callback=on_progress,
+            on_company_found=on_company,
+            cancel_check=cancel_fn
+        )
+        job_status["status"] = "idle"
+        job_status["progress"] = 100
+        job_status["message"] = f"Done! Found {len(job_companies)} companies."
+    except Exception as e:
+        job_status["status"] = "error"
+        job_status["message"] = f"Error: {str(e)}"
+
+@app.post("/api/jobs/scrape")
+def start_job_scrape(req: JobSearchRequest, background_tasks: BackgroundTasks):
+    background_tasks.add_task(job_scraper_task, req)
+    return {"message": "Job search started"}
+
+@app.get("/api/jobs/status")
+def get_job_status():
+    return job_status
+
+@app.get("/api/jobs/companies")
+def get_job_companies():
+    return job_companies
+
+@app.post("/api/jobs/stop")
+def stop_job_scrape():
+    job_status["cancel"] = True
+    return {"message": "Stop signal sent"}
+
+job_apply_status = {
+    "status": "idle",
+    "message": "",
+    "progress": 0,
+    "sent": []
+}
+
+def send_job_applications_task(req: JobApplyRequest):
+    global job_apply_status
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.base import MIMEBase
+    from email import encoders
+
+    job_apply_status["status"] = "running"
+    job_apply_status["sent"] = []
+    job_apply_status["progress"] = 0
+
+    targets = [c for c in job_companies if c.get("email")]
+    total = len(targets)
+    if total == 0:
+        job_apply_status["status"] = "idle"
+        job_apply_status["message"] = "No companies with emails found."
+        return
+
+    try:
+        resume_pdf = generate_resume_pdf()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(req.gmail_address, req.app_password)
+
+        for idx, company in enumerate(targets):
+            try:
+                job_apply_status["message"] = f"Sending to {company['name']} ({idx+1}/{total})..."
+                job_apply_status["progress"] = int(((idx + 1) / total) * 100)
+
+                pitch = generate_job_pitch(company["name"])
+
+                import re
+                html_body = re.sub(r'\*(.*?)\*', r'<b>\1</b>', pitch)
+                html_body = html_body.replace('\n', '<br>')
+
+                msg = MIMEMultipart()
+                msg["From"] = req.gmail_address
+                msg["To"] = company["email"]
+                msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote Opportunities"
+
+                msg.attach(MIMEText(f"""
+                <html><body style="font-family:Arial,sans-serif;line-height:1.7;color:#333;max-width:640px">
+                {html_body}
+                </body></html>
+                """, "html"))
+
+                # Attach resume PDF
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload(resume_pdf)
+                encoders.encode_base64(part)
+                part.add_header("Content-Disposition", 'attachment; filename="Hammad_Aslam_CV.pdf"')
+                msg.attach(part)
+
+                server.send_message(msg)
+                job_apply_status["sent"].append(company["email"])
+
+                import time; time.sleep(2)  # avoid Gmail rate limit
+
+            except Exception as e:
+                print(f"Failed to send to {company.get('email')}: {e}")
+
+        server.quit()
+        job_apply_status["status"] = "idle"
+        job_apply_status["message"] = f"Done! Sent {len(job_apply_status['sent'])}/{total} applications."
+    except Exception as e:
+        job_apply_status["status"] = "error"
+        job_apply_status["message"] = f"SMTP Error: {str(e)}"
+
+@app.post("/api/jobs/apply")
+def send_job_applications(req: JobApplyRequest, background_tasks: BackgroundTasks):
+    if job_apply_status["status"] == "running":
+        return {"error": "Applications already being sent"}
+    background_tasks.add_task(send_job_applications_task, req)
+    return {"message": "Sending applications..."}
+
+@app.get("/api/jobs/apply/status")
+def get_job_apply_status():
+    return job_apply_status
+

@@ -47,6 +47,22 @@ export default function Dashboard() {
   const [states, setStates] = useState<any[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   
+  // Tab system
+  const [activeTab, setActiveTab] = useState<'leads' | 'jobs'>('leads');
+
+  // Job Hunt state
+  const [jobQuery, setJobQuery] = useState('');
+  const [jobLimit, setJobLimit] = useState(30);
+  const [isJobScraping, setIsJobScraping] = useState(false);
+  const [jobProgress, setJobProgress] = useState(0);
+  const [jobProgressMsg, setJobProgressMsg] = useState('');
+  const [jobCompanies, setJobCompanies] = useState<any[]>([]);
+  const [newCompanyEmails, setNewCompanyEmails] = useState<Set<string>>(new Set());
+  const [isApplying, setIsApplying] = useState(false);
+  const [applyProgress, setApplyProgress] = useState(0);
+  const [applyMsg, setApplyMsg] = useState('');
+  const [sentApplications, setSentApplications] = useState<string[]>([]);
+
   const popularCategories = [
     "Real Estate Agency", "Dental Clinic", "Plumbing Service", "Restaurant", 
     "Law Firm", "Accounting Firm", "Spa and Wellness", "Beauty Salon", 
@@ -289,6 +305,64 @@ export default function Dashboard() {
     }
   };
 
+  // ---- Job Hunt polling ----
+  useEffect(() => {
+    let jobInterval: NodeJS.Timeout;
+    if (isJobScraping) {
+      jobInterval = setInterval(async () => {
+        try {
+          const [statusRes, companiesRes] = await Promise.all([
+            fetch('/api/jobs/status'),
+            fetch('/api/jobs/companies')
+          ]);
+          const statusData = await statusRes.json();
+          const companiesData: any[] = await companiesRes.json();
+          setJobProgress(statusData.progress || 0);
+          setJobProgressMsg(statusData.message || '');
+          // Detect new companies
+          setJobCompanies(prev => {
+            const existingEmails = new Set(prev.map((c: any) => c.email));
+            const fresh = companiesData.filter((c: any) => c.email && !existingEmails.has(c.email)).map((c: any) => c.email);
+            if (fresh.length > 0) {
+              setNewCompanyEmails(s => {
+                const n = new Set(s);
+                fresh.forEach(e => n.add(e));
+                setTimeout(() => setNewCompanyEmails(cur => { const c = new Set(cur); fresh.forEach(e => c.delete(e)); return c; }), 2000);
+                return n;
+              });
+            }
+            return companiesData;
+          });
+          if (statusData.status === 'idle' || statusData.status === 'error') {
+            clearInterval(jobInterval);
+            setIsJobScraping(false);
+          }
+        } catch (e) { console.error(e); }
+      }, 1000);
+    }
+    return () => clearInterval(jobInterval);
+  }, [isJobScraping]);
+
+  useEffect(() => {
+    let applyInterval: NodeJS.Timeout;
+    if (isApplying) {
+      applyInterval = setInterval(async () => {
+        try {
+          const res = await fetch('/api/jobs/apply/status');
+          const data = await res.json();
+          setApplyProgress(data.progress || 0);
+          setApplyMsg(data.message || '');
+          setSentApplications(data.sent || []);
+          if (data.status === 'idle' || data.status === 'error') {
+            clearInterval(applyInterval);
+            setIsApplying(false);
+          }
+        } catch (e) { console.error(e); }
+      }, 1000);
+    }
+    return () => clearInterval(applyInterval);
+  }, [isApplying]);
+
   return (
     <div className={`min-h-screen p-4 md:p-8 font-sans selection:bg-primary/20 bg-background text-foreground transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto space-y-8">
@@ -301,6 +375,29 @@ export default function Dashboard() {
             <p className="text-sm text-muted-foreground mt-1 font-medium">B2B Lead Generation & Outreach System</p>
           </div>
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            {/* Tab Switcher */}
+            <div className="flex bg-muted rounded-lg p-1 gap-1">
+              <button
+                onClick={() => setActiveTab('leads')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'leads'
+                    ? 'bg-card text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                🎯 Lead Gen
+              </button>
+              <button
+                onClick={() => setActiveTab('jobs')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'jobs'
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                💼 Job Hunt
+              </button>
+            </div>
             <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="px-4 py-2.5 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors" title="Toggle Dark Mode">
               {theme === 'dark' ? "☀️ Light" : "🌙 Dark"}
             </button>
@@ -352,6 +449,8 @@ export default function Dashboard() {
           </div>
         </header>
 
+        {activeTab === 'leads' && (
+        <>
         <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
           <h2 className="text-xl font-bold mb-1 text-foreground">1. Target Audience</h2>
@@ -643,7 +742,8 @@ export default function Dashboard() {
           </table>
           </div>
         </section>
-      </div>
+        </>
+        )}
 
       {/* Score Breakdown Modal */}
       {scoreDetailsLead && (
@@ -729,6 +829,196 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      {/* ========= JOB HUNT TAB ========= */}
+      {activeTab === 'jobs' && (
+        <div className="space-y-6">
+
+          {/* Search Panel */}
+          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
+            <h2 className="text-xl font-bold mb-1 text-foreground">1. Find Tech Companies</h2>
+            <p className="text-sm text-muted-foreground mb-6">Search for software companies on Google Maps and extract their emails for job applications.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-foreground mb-1">Search Query</label>
+                <input
+                  value={jobQuery}
+                  onChange={e => setJobQuery(e.target.value)}
+                  placeholder="e.g. software company New York, React Native company London"
+                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Limit</label>
+                <input
+                  type="number"
+                  value={jobLimit}
+                  onChange={e => setJobLimit(Number(e.target.value))}
+                  min={5} max={100}
+                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex gap-3 flex-wrap">
+              <button
+                disabled={isJobScraping || !jobQuery}
+                onClick={async () => {
+                  setIsJobScraping(true);
+                  setJobProgress(0);
+                  setJobProgressMsg('Starting...');
+                  setJobCompanies([]);
+                  await fetch('/api/jobs/scrape', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: jobQuery, limit: jobLimit })
+                  });
+                }}
+                className="px-6 py-2.5 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 transition-all"
+              >
+                {isJobScraping ? '🔍 Searching...' : '🔍 Search Companies'}
+              </button>
+              {isJobScraping && (
+                <button
+                  onClick={() => fetch('/api/jobs/stop', { method: 'POST' }).then(() => setIsJobScraping(false))}
+                  className="px-6 py-2.5 bg-rose-100 text-rose-600 border border-rose-200 rounded-lg font-bold hover:bg-rose-200 transition-all"
+                >
+                  ⛔ Stop
+                </button>
+              )}
+            </div>
+            {(isJobScraping || jobProgressMsg) && (
+              <div className="mt-4">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                  <span>{jobProgressMsg}</span>
+                  <span>{jobProgress}%</span>
+                </div>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div className="h-2 rounded-full bg-indigo-500 transition-all duration-300" style={{ width: `${jobProgress}%` }}></div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          {/* Companies Table */}
+          {jobCompanies.length > 0 && (
+            <section className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
+              <div className="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
+                <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+                  2. Companies Found
+                  {isJobScraping && (
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-400 px-2 py-0.5 rounded-full animate-pulse">
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full inline-block"></span>
+                      LIVE
+                    </span>
+                  )}
+                </h2>
+                <span className="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">
+                  {jobCompanies.filter(c => c.email).length} with email / {jobCompanies.length} total
+                </span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Company</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Website</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-card divide-y divide-border">
+                    {jobCompanies.map((company, idx) => (
+                      <tr key={idx} className={`transition-all duration-500 ${
+                        company.email && newCompanyEmails.has(company.email)
+                          ? 'bg-indigo-50 dark:bg-indigo-950/30 animate-pulse'
+                          : 'hover:bg-muted/50'
+                      }`}>
+                        <td className="px-6 py-4">
+                          <div className="font-medium text-foreground">{company.name}</div>
+                          <div className="text-xs text-muted-foreground">{company.address}</div>
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.email
+                            ? <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{company.email}</span>
+                            : <span className="text-xs text-muted-foreground italic">No email found</span>
+                          }
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.website
+                            ? <a href={company.website} target="_blank" className="text-xs text-blue-500 hover:underline">🌐 Visit</a>
+                            : <span className="text-xs text-muted-foreground">-</span>
+                          }
+                        </td>
+                        <td className="px-6 py-4">
+                          {sentApplications.includes(company.email)
+                            ? <span className="px-2 py-1 text-xs font-bold bg-emerald-100 text-emerald-700 rounded-full">✅ Sent</span>
+                            : company.email
+                              ? <span className="px-2 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded-full">Ready</span>
+                              : <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">No Email</span>
+                          }
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+          {/* Send Applications */}
+          {jobCompanies.filter(c => c.email).length > 0 && (
+            <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+              <h2 className="text-xl font-bold mb-1 text-foreground">3. Send Job Applications</h2>
+              <p className="text-sm text-muted-foreground mb-4">Auto-send your CV + professional pitch to all {jobCompanies.filter(c => c.email).length} companies with emails. Resume will be auto-attached.</p>
+              <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-4">
+                <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Resume: Hammad_Aslam_CV.pdf (auto-generated & attached)</p>
+                <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">From: hammadaslam78612@gmail.com</p>
+              </div>
+              {isApplying && (
+                <div className="mb-4">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                    <span>{applyMsg}</span>
+                    <span>{applyProgress}%</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-2">
+                    <div className="h-2 rounded-full bg-emerald-500 transition-all duration-300" style={{ width: `${applyProgress}%` }}></div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">{sentApplications.length} applications sent so far</p>
+                </div>
+              )}
+              {applyMsg && !isApplying && (
+                <div className="mb-4 p-3 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 rounded-lg">
+                  <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400">{applyMsg}</p>
+                </div>
+              )}
+              <button
+                disabled={isApplying}
+                onClick={async () => {
+                  setIsApplying(true);
+                  setApplyProgress(0);
+                  setApplyMsg('Starting...');
+                  setSentApplications([]);
+                  await fetch('/api/jobs/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      gmail_address: 'hammadaslam78612@gmail.com',
+                      app_password: 'tqmb xojp sjux yjjm'
+                    })
+                  });
+                }}
+                className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 disabled:opacity-50 transition-all shadow-md"
+              >
+                {isApplying ? `📤 Sending Applications... (${sentApplications.length} sent)` : '📤 Send All Applications'}
+              </button>
+            </section>
+          )}
+        </div>
+      )}
+
+    </div>
     </div>
   );
 }
