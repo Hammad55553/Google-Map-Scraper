@@ -1118,7 +1118,8 @@ export default function Dashboard() {
                     body: JSON.stringify({
                       gmail_address: jobSenderEmail,
                       app_password: jobAppPassword,
-                      custom_pitch: jobCustomPitch
+                      custom_pitch: jobCustomPitch,
+                      companies: jobCompanies
                     })
                   });
                 }}

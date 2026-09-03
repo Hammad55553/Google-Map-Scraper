@@ -5,6 +5,7 @@ from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from pydantic import BaseModel
+from typing import Optional
 from database import SessionLocal, Lead, ContactHistory
 import asyncio
 import uuid
@@ -324,6 +325,7 @@ class JobApplyRequest(BaseModel):
     custom_pitch: str = ""
     target_company: Optional[str] = None
     target_email: Optional[str] = None
+    companies: Optional[list] = None
 
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
@@ -420,6 +422,8 @@ def send_job_applications_task(req: JobApplyRequest):
 
     if getattr(req, "target_email", None):
         targets = [{"name": getattr(req, "target_company", "Company"), "email": req.target_email}]
+    elif getattr(req, "companies", None):
+        targets = [c for c in req.companies if c.get("email")]
     else:
         targets = [c for c in job_companies if c.get("email")]
 
