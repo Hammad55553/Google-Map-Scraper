@@ -256,8 +256,6 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, [isScraping]);
 
-  if (!isMounted) return null;
-
   const handleScrape = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -360,6 +358,8 @@ export default function Dashboard() {
     }
     return () => clearInterval(applyInterval);
   }, [isApplying]);
+
+  if (!isMounted) return null;
 
   return (
     <div className={`min-h-screen p-4 md:p-8 font-sans selection:bg-primary/20 bg-background text-foreground transition-colors duration-300`}>
