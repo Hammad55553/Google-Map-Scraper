@@ -49,3 +49,9 @@ INFO:     Finished server process [26376]
 INFO:     Started server process [26487]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:63219 - "GET /api/leads?t=1788415705075 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63218 - "GET /api/leads?t=1788415705075 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63296 - "GET /api/leads?t=1788415720978 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63297 - "GET /api/leads?t=1788415720978 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63333 - "GET /api/leads?t=1788415727752 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63334 - "GET /api/leads?t=1788415727753 HTTP/1.1" 200 OK

@@ -64,6 +64,8 @@ export default function Dashboard() {
   const [sentApplications, setSentApplications] = useState<string[]>([]);
   const [jobCustomPitch, setJobCustomPitch] = useState('');
   const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company' });
+  const [jobSenderEmail, setJobSenderEmail] = useState('hammadaslam78612@gmail.com');
+  const [jobAppPassword, setJobAppPassword] = useState('tqmb xojp sjux yjjm');
 
   const popularCategories = [
     "Real Estate Agency", "Dental Clinic", "Plumbing Service", "Restaurant", 
@@ -1001,20 +1003,38 @@ export default function Dashboard() {
             </section>
           )}
 
-          {/* Send Applications */}
-          {jobCompanies.filter(c => c.email).length > 0 && (
-            <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+          {/* Send Applications (Always Visible Now) */}
+          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
               <h2 className="text-xl font-bold mb-1 text-foreground">3. Send Job Applications</h2>
               <p className="text-sm text-muted-foreground mb-4">Auto-send your CV + professional pitch to all {jobCompanies.filter(c => c.email).length} companies with emails. Resume will be auto-attached.</p>
               <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-4 flex justify-between items-center flex-wrap gap-4">
-                <div>
-                  <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Resume: Hammad_Aslam_CV.pdf (auto-generated & attached)</p>
-                  <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">From: hammadaslam78612@gmail.com</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                  <div>
+                    <label className="block text-xs font-bold text-indigo-700 dark:text-indigo-300 mb-1">Sender Email</label>
+                    <input 
+                      type="email" 
+                      value={jobSenderEmail}
+                      onChange={e => setJobSenderEmail(e.target.value)}
+                      className="w-full bg-white dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 text-sm rounded p-2 focus:ring-1 focus:ring-indigo-500 outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-indigo-700 dark:text-indigo-300 mb-1">App Password</label>
+                    <input 
+                      type="password" 
+                      value={jobAppPassword}
+                      onChange={e => setJobAppPassword(e.target.value)}
+                      className="w-full bg-white dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 text-sm rounded p-2 focus:ring-1 focus:ring-indigo-500 outline-none"
+                    />
+                  </div>
                 </div>
-                <a href="/api/jobs/resume/download" target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
-                  👁️ Preview / Download CV
-                </a>
+                <div className="w-full flex justify-between items-center mt-2 border-t border-indigo-200 dark:border-indigo-800 pt-3">
+                  <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Auto-Attached: Hammad_Aslam_CV.pdf</p>
+                  <a href="/api/jobs/resume/download" target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
+                    👁️ Preview CV
+                  </a>
+                </div>
               </div>
 
               <div className="mb-6">
@@ -1046,8 +1066,10 @@ export default function Dashboard() {
                 </div>
               )}
               <button
-                disabled={isApplying}
+                disabled={isApplying || jobCompanies.filter(c => c.email).length === 0}
                 onClick={async () => {
+                  if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password.");
+                  
                   setIsApplying(true);
                   setApplyProgress(0);
                   setApplyMsg('Starting...');
@@ -1056,18 +1078,17 @@ export default function Dashboard() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                      gmail_address: 'hammadaslam78612@gmail.com',
-                      app_password: 'tqmb xojp sjux yjjm',
+                      gmail_address: jobSenderEmail,
+                      app_password: jobAppPassword,
                       custom_pitch: jobCustomPitch
                     })
                   });
                 }}
-                className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 disabled:opacity-50 transition-all shadow-md"
+                className="px-8 py-3 bg-emerald-600 text-white rounded-lg font-bold hover:bg-emerald-700 disabled:opacity-50 transition-all shadow-md w-full md:w-auto"
               >
-                {isApplying ? `📤 Sending Applications... (${sentApplications.length} sent)` : '📤 Send All Applications'}
+                {isApplying ? `📤 Sending Applications... (${sentApplications.length} sent)` : `📤 Send All Applications (${jobCompanies.filter(c => c.email).length} ready)`}
               </button>
             </section>
-          )}
         </div>
       )}
 
