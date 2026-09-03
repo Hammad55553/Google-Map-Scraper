@@ -55,3 +55,7 @@ INFO:     127.0.0.1:63296 - "GET /api/leads?t=1788415720978 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63297 - "GET /api/leads?t=1788415720978 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63333 - "GET /api/leads?t=1788415727752 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63334 - "GET /api/leads?t=1788415727753 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63493 - "GET /api/jobs/pitch/preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63586 - "GET /api/leads?t=1788415786484 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63587 - "GET /api/leads?t=1788415786484 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63621 - "GET /api/jobs/pitch/preview HTTP/1.1" 200 OK

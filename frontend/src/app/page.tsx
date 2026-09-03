@@ -63,7 +63,7 @@ export default function Dashboard() {
   const [applyMsg, setApplyMsg] = useState('');
   const [sentApplications, setSentApplications] = useState<string[]>([]);
   const [jobCustomPitch, setJobCustomPitch] = useState('');
-  const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company' });
+  const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company', radius: '20' });
   const [jobSenderEmail, setJobSenderEmail] = useState('hammadaslam78612@gmail.com');
   const [jobAppPassword, setJobAppPassword] = useState('tqmb xojp sjux yjjm');
 
@@ -850,80 +850,100 @@ export default function Dashboard() {
             <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
             <h2 className="text-xl font-bold mb-1 text-foreground">1. Find Tech Companies</h2>
             <p className="text-sm text-muted-foreground mb-6">Search for software companies on Google Maps and extract their emails for job applications.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5 items-end">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Country</label>
-                <input
-                  type="text"
+                <label className="block text-sm font-semibold text-foreground mb-1.5">Country</label>
+                <input 
+                  type="text" 
                   list="job-countries-list"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
-                  value={jobForm.country}
-                  onChange={e => setJobForm({...jobForm, country: e.target.value})}
-                  placeholder="e.g. USA, UK"
+                  className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
+                  value={jobForm.country} 
+                  onChange={e => setJobForm({...jobForm, country: e.target.value})} 
+                  placeholder="Type or select a country..."
                 />
-                <datalist id="job-countries-list">{countries.map(c => <option key={c} value={c} />)}</datalist>
+                <datalist id="job-countries-list">
+                  {countries.map(c => <option key={c} value={c} />)}
+                </datalist>
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">State/City</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
-                  value={jobForm.city}
-                  onChange={e => setJobForm({...jobForm, city: e.target.value})}
-                  placeholder="e.g. New York, London"
+                <label className="block text-sm font-semibold text-foreground mb-1.5">State/Province</label>
+                <input 
+                  type="text" 
+                  list="job-states-list"
+                  className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
+                  value={jobForm.state} 
+                  onChange={e => setJobForm({...jobForm, state: e.target.value})} 
+                  placeholder="Select a state..."
                 />
+                <datalist id="job-states-list">
+                  {states.map(s => <option key={s} value={s} />)}
+                </datalist>
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Company Type</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
-                  value={jobForm.category}
-                  onChange={e => setJobForm({...jobForm, category: e.target.value})}
+                <label className="block text-sm font-semibold text-foreground mb-1.5">City</label>
+                <input 
+                  type="text" 
+                  list="job-cities-list"
+                  className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
+                  value={jobForm.city} 
+                  onChange={e => setJobForm({...jobForm, city: e.target.value})} 
+                  placeholder="Type or select a city..."
+                />
+                <datalist id="job-cities-list">
+                  {cities.map(c => <option key={c} value={c} />)}
+                </datalist>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-1.5">Category</label>
+                <input 
+                  type="text" 
+                  className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
+                  value={jobForm.category} 
+                  onChange={e => setJobForm({...jobForm, category: e.target.value})} 
                   placeholder="e.g. Software Company"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Limit</label>
-                <input
-                  type="number"
-                  value={jobLimit}
-                  onChange={e => setJobLimit(Number(e.target.value))}
-                  min={5} max={100}
-                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
-                />
+                <label className="block text-sm font-semibold text-foreground mb-1.5">Radius (km)</label>
+                <input type="text" className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" value={jobForm.radius} onChange={e => setJobForm({...jobForm, radius: e.target.value})} />
+              </div>
+              <div>
+                <button 
+                  disabled={isJobScraping || !jobForm.category} 
+                  onClick={async () => {
+                    const finalQuery = `${jobForm.category} ${jobForm.city} ${jobForm.state} ${jobForm.country}`.trim();
+                    if (!finalQuery) return alert("Please enter at least a category");
+                    setIsJobScraping(true);
+                    setJobProgress(0);
+                    setJobProgressMsg('Starting...');
+                    setJobCompanies([]);
+                    await fetch('/api/jobs/scrape', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ query: finalQuery, limit: jobLimit })
+                    });
+                  }}
+                  className="w-full h-[46px] bg-indigo-600 text-white px-4 rounded-lg hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transform transition-all duration-200 font-semibold shadow-sm flex justify-center items-center gap-2">
+                  {isJobScraping ? (
+                    <><span className="animate-spin">⏳</span> Scraping</>
+                  ) : (
+                    <><span className="text-lg">🔍</span> Search</>
+                  )}
+                </button>
               </div>
             </div>
-            <div className="mt-4 flex gap-3 flex-wrap">
-              <button
-                disabled={isJobScraping || (!jobForm.category && !jobForm.city)}
-                onClick={async () => {
-                  const finalQuery = `${jobForm.category} ${jobForm.city} ${jobForm.state} ${jobForm.country}`.trim();
-                  if (!finalQuery) return alert("Please enter at least a category or city");
-                  setJobQuery(finalQuery);
-                  setIsJobScraping(true);
-                  setJobProgress(0);
-                  setJobProgressMsg('Starting...');
-                  setJobCompanies([]);
-                  await fetch('/api/jobs/scrape', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query: finalQuery, limit: jobLimit })
-                  });
-                }}
-                className="px-6 py-2.5 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 transition-all"
-              >
-                {isJobScraping ? '🔍 Searching...' : '🔍 Search Companies'}
-              </button>
-              {isJobScraping && (
+            
+            {isJobScraping && (
+              <div className="mt-4 flex gap-3">
                 <button
                   onClick={() => fetch('/api/jobs/stop', { method: 'POST' }).then(() => setIsJobScraping(false))}
                   className="px-6 py-2.5 bg-rose-100 text-rose-600 border border-rose-200 rounded-lg font-bold hover:bg-rose-200 transition-all"
                 >
-                  ⛔ Stop
+                  ⛔ Stop Scraping
                 </button>
-              )}
-            </div>
+              </div>
+            )}
+
             {(isJobScraping || jobProgressMsg) && (
               <div className="mt-4">
                 <div className="flex justify-between text-xs text-muted-foreground mb-1">
