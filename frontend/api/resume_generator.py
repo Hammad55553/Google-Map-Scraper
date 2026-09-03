@@ -45,6 +45,9 @@ class ATSResumePDF(FPDF):
         self.set_text_color(0, 0, 0)
 
     def add_summary(self, target_company=None):
+        import random
+        exp = random.choice(["3.5+", "4+"])
+        
         self.add_section_title("Professional Summary")
         self.set_font("Helvetica", "", 10)
         
@@ -53,7 +56,7 @@ class ATSResumePDF(FPDF):
             tailored_text = f" Currently seeking to leverage this cross-platform expertise to drive impact and deliver high-quality products at {target_company}."
             
         summary = (
-            "React Native & Full-Stack Developer with 3+ years of experience architecting and shipping "
+            f"React Native & Full-Stack Developer with {exp} years of experience architecting and shipping "
             "multiple live production apps across the USA, Malaysia, Canada, and Pakistan. Skilled in building modern web interfaces with "
             "React.js and TypeScript, and robust backends using Python and FastAPI. Proficient in WebRTC video calling, Socket.io real-time chat, "
             "and Google Maps API with sub-second latency. Experienced in building cross-platform mobile, web, and Electron desktop apps and in "
