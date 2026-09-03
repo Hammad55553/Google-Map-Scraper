@@ -64,6 +64,12 @@ async def scrape_tech_companies(query, limit=30, progress_callback=None, on_comp
 
         async def get_email(website):
             if not website: return ""
+            
+            is_social = any(
+                d in website.lower() for d in ['facebook.com', 'instagram.com', 'twitter.com', 'linkedin.com', 'tiktok.com']
+            )
+            if is_social: return ""
+
             for url in [website, website.rstrip('/') + '/contact', website.rstrip('/') + '/about']:
                 try:
                     await email_page.goto(url, timeout=7000, wait_until="domcontentloaded")
@@ -74,6 +80,7 @@ async def scrape_tech_companies(query, limit=30, progress_callback=None, on_comp
                     found = clean_emails(re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}', html))
                     if found: return found[0]
                 except: pass
+            
             # Domain pattern fallback
             try:
                 from urllib.parse import urlparse
@@ -94,6 +101,7 @@ async def scrape_tech_companies(query, limit=30, progress_callback=None, on_comp
 
                 address_el = page.locator('button[data-item-id="address"]')
                 address = await address_el.text_content() if await address_el.count() > 0 else ""
+                address = address.replace("", "").strip() # Remove google map icon character
 
                 website_element = page.locator('a[data-item-id="authority"]')
                 website = ""
