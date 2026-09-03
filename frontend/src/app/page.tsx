@@ -898,11 +898,15 @@ export default function Dashboard() {
                 <label className="block text-sm font-semibold text-foreground mb-1.5">Category</label>
                 <input 
                   type="text" 
+                  list="job-categories-list"
                   className="w-full bg-muted border border-border text-foreground rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none placeholder:text-muted-foreground" 
                   value={jobForm.category} 
                   onChange={e => setJobForm({...jobForm, category: e.target.value})} 
                   placeholder="e.g. Software Company"
                 />
+                <datalist id="job-categories-list">
+                  {popularCategories.map(c => <option key={c} value={c} />)}
+                </datalist>
               </div>
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-1.5">Radius (km)</label>
