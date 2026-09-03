@@ -26,3 +26,15 @@ INFO:     127.0.0.1:60598 - "GET /api/leads?t=1788415081952 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60597 - "GET /api/leads?t=1788415081951 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60659 - "GET /api/leads?t=1788415094694 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:60660 - "GET /api/leads?t=1788415094695 HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [25769]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [26376]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62448 - "GET /api/leads?t=1788415522902 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62449 - "GET /api/leads?t=1788415522903 HTTP/1.1" 200 OK

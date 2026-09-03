@@ -321,6 +321,7 @@ class JobSearchRequest(BaseModel):
 class JobApplyRequest(BaseModel):
     gmail_address: str = "hammadaslam78612@gmail.com"
     app_password: str = "tqmb xojp sjux yjjm"
+    custom_pitch: str = ""
 
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
@@ -362,6 +363,18 @@ def start_job_scrape(req: JobSearchRequest, background_tasks: BackgroundTasks):
 @app.get("/api/jobs/status")
 def get_job_status():
     return job_status
+
+@app.get("/api/jobs/pitch/preview")
+def preview_job_pitch():
+    # Return a sample pitch with [Company Name]
+    sample = generate_job_pitch("[Company Name]")
+    return {"pitch": sample}
+
+@app.get("/api/jobs/resume/download")
+def download_resume():
+    from fastapi.responses import Response
+    pdf_bytes = generate_resume_pdf()
+    return Response(content=pdf_bytes, media_type="application/pdf", headers={"Content-Disposition": "inline; filename=Hammad_Aslam_CV.pdf"})
 
 @app.get("/api/jobs/companies")
 def get_job_companies():
@@ -409,7 +422,8 @@ def send_job_applications_task(req: JobApplyRequest):
                 job_apply_status["message"] = f"Sending to {company['name']} ({idx+1}/{total})..."
                 job_apply_status["progress"] = int(((idx + 1) / total) * 100)
 
-                pitch = generate_job_pitch(company["name"])
+                # Use custom pitch if provided, otherwise generate one
+                pitch = req.custom_pitch.replace("[Company Name]", company["name"]) if req.custom_pitch else generate_job_pitch(company["name"])
 
                 import re
                 html_body = re.sub(r'\*(.*?)\*', r'<b>\1</b>', pitch)

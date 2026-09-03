@@ -62,6 +62,8 @@ export default function Dashboard() {
   const [applyProgress, setApplyProgress] = useState(0);
   const [applyMsg, setApplyMsg] = useState('');
   const [sentApplications, setSentApplications] = useState<string[]>([]);
+  const [jobCustomPitch, setJobCustomPitch] = useState('');
+  const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company' });
 
   const popularCategories = [
     "Real Estate Agency", "Dental Clinic", "Plumbing Service", "Restaurant", 
@@ -302,6 +304,15 @@ export default function Dashboard() {
   };
 
   // ---- Job Hunt polling ----
+  useEffect(() => {
+    if (activeTab === 'jobs' && !jobCustomPitch) {
+      fetch('/api/jobs/pitch/preview')
+        .then(res => res.json())
+        .then(data => setJobCustomPitch(data.pitch || ''))
+        .catch(console.error);
+    }
+  }, [activeTab]);
+
   useEffect(() => {
     let jobInterval: NodeJS.Timeout;
     if (isJobScraping) {
@@ -837,14 +848,37 @@ export default function Dashboard() {
             <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
             <h2 className="text-xl font-bold mb-1 text-foreground">1. Find Tech Companies</h2>
             <p className="text-sm text-muted-foreground mb-6">Search for software companies on Google Maps and extract their emails for job applications.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-foreground mb-1">Search Query</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Country</label>
                 <input
-                  value={jobQuery}
-                  onChange={e => setJobQuery(e.target.value)}
-                  placeholder="e.g. software company New York, React Native company London"
+                  type="text"
+                  list="job-countries-list"
                   className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
+                  value={jobForm.country}
+                  onChange={e => setJobForm({...jobForm, country: e.target.value})}
+                  placeholder="e.g. USA, UK"
+                />
+                <datalist id="job-countries-list">{countries.map(c => <option key={c} value={c} />)}</datalist>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">State/City</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
+                  value={jobForm.city}
+                  onChange={e => setJobForm({...jobForm, city: e.target.value})}
+                  placeholder="e.g. New York, London"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Company Type</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2.5 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-indigo-400 outline-none"
+                  value={jobForm.category}
+                  onChange={e => setJobForm({...jobForm, category: e.target.value})}
+                  placeholder="e.g. Software Company"
                 />
               </div>
               <div>
@@ -860,8 +894,11 @@ export default function Dashboard() {
             </div>
             <div className="mt-4 flex gap-3 flex-wrap">
               <button
-                disabled={isJobScraping || !jobQuery}
+                disabled={isJobScraping || (!jobForm.category && !jobForm.city)}
                 onClick={async () => {
+                  const finalQuery = `${jobForm.category} ${jobForm.city} ${jobForm.state} ${jobForm.country}`.trim();
+                  if (!finalQuery) return alert("Please enter at least a category or city");
+                  setJobQuery(finalQuery);
                   setIsJobScraping(true);
                   setJobProgress(0);
                   setJobProgressMsg('Starting...');
@@ -869,7 +906,7 @@ export default function Dashboard() {
                   await fetch('/api/jobs/scrape', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query: jobQuery, limit: jobLimit })
+                    body: JSON.stringify({ query: finalQuery, limit: jobLimit })
                   });
                 }}
                 className="px-6 py-2.5 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 transition-all"
@@ -970,10 +1007,27 @@ export default function Dashboard() {
               <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
               <h2 className="text-xl font-bold mb-1 text-foreground">3. Send Job Applications</h2>
               <p className="text-sm text-muted-foreground mb-4">Auto-send your CV + professional pitch to all {jobCompanies.filter(c => c.email).length} companies with emails. Resume will be auto-attached.</p>
-              <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-4">
-                <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Resume: Hammad_Aslam_CV.pdf (auto-generated & attached)</p>
-                <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">From: hammadaslam78612@gmail.com</p>
+              <div className="bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-4 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                  <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Resume: Hammad_Aslam_CV.pdf (auto-generated & attached)</p>
+                  <p className="text-xs text-indigo-600 dark:text-indigo-400 mt-1">From: hammadaslam78612@gmail.com</p>
+                </div>
+                <a href="/api/jobs/resume/download" target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
+                  👁️ Preview / Download CV
+                </a>
               </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-bold text-foreground mb-2">Edit Email Pitch Before Sending</label>
+                <textarea
+                  className="w-full h-40 p-4 bg-muted border border-border rounded-lg text-sm text-foreground focus:ring-2 focus:ring-emerald-500 outline-none resize-y font-mono"
+                  value={jobCustomPitch}
+                  onChange={(e) => setJobCustomPitch(e.target.value)}
+                  placeholder="Dear [Company Name], I am a software engineer..."
+                ></textarea>
+                <p className="text-xs text-muted-foreground mt-1">* Note: [Company Name] will be automatically replaced with the actual company's name.</p>
+              </div>
+
               {isApplying && (
                 <div className="mb-4">
                   <div className="flex justify-between text-xs text-muted-foreground mb-1">
@@ -1003,7 +1057,8 @@ export default function Dashboard() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                       gmail_address: 'hammadaslam78612@gmail.com',
-                      app_password: 'tqmb xojp sjux yjjm'
+                      app_password: 'tqmb xojp sjux yjjm',
+                      custom_pitch: jobCustomPitch
                     })
                   });
                 }}
