@@ -140,3 +140,5 @@ INFO:     Finished server process [27182]
 INFO:     Started server process [27188]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:49896 - "GET /api/leads?t=1788416408073 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49897 - "GET /api/leads?t=1788416408073 HTTP/1.1" 200 OK

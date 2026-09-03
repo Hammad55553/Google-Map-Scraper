@@ -67,6 +67,8 @@ export default function Dashboard() {
   const [jobSenderEmail, setJobSenderEmail] = useState('hammadaslam78612@gmail.com');
   const [jobAppPassword, setJobAppPassword] = useState('tqmb xojp sjux yjjm');
   const [jobCustomResume, setJobCustomResume] = useState<string | null>(null);
+  const [jobStates, setJobStates] = useState<string[]>([]);
+  const [jobCities, setJobCities] = useState<string[]>([]);
 
   const popularCategories = [
     "Real Estate Agency", "Dental Clinic", "Plumbing Service", "Restaurant", 
@@ -127,6 +129,46 @@ export default function Dashboard() {
       })
       .catch(err => console.error(err));
   }, [form.state]);
+
+  // ---- Job Form Location Fetching ----
+  useEffect(() => {
+    setJobForm(f => ({ ...f, state: '', city: '' }));
+    setJobStates([]);
+    setJobCities([]);
+    if (!jobForm.country) return;
+    
+    fetch('https://countriesnow.space/api/v0.1/countries/states', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ country: jobForm.country })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error && data.data && data.data.states) {
+          setJobStates(data.data.states.map((s: any) => s.name));
+        }
+      })
+      .catch(console.error);
+  }, [jobForm.country]);
+
+  useEffect(() => {
+    setJobForm(f => ({ ...f, city: '' }));
+    setJobCities([]);
+    if (!jobForm.country || !jobForm.state) return;
+    
+    fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ country: jobForm.country, state: jobForm.state })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error && data.data) {
+          setJobCities(data.data);
+        }
+      })
+      .catch(console.error);
+  }, [jobForm.state]);
 
   const getScoreBreakdown = (lead: Lead) => {
     const breakdown = [];
@@ -877,7 +919,7 @@ export default function Dashboard() {
                   placeholder="Select a state..."
                 />
                 <datalist id="job-states-list">
-                  {states.map(s => <option key={s} value={s} />)}
+                  {jobStates.map(s => <option key={s} value={s} />)}
                 </datalist>
               </div>
               <div>
@@ -891,7 +933,7 @@ export default function Dashboard() {
                   placeholder="Type or select a city..."
                 />
                 <datalist id="job-cities-list">
-                  {cities.map(c => <option key={c} value={c} />)}
+                  {jobCities.map(c => <option key={c} value={c} />)}
                 </datalist>
               </div>
               <div>
