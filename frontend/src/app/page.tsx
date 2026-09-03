@@ -1029,6 +1029,7 @@ export default function Dashboard() {
                       <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Email</th>
                       <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Website</th>
                       <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-muted-foreground uppercase">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-card divide-y divide-border">
@@ -1061,6 +1062,38 @@ export default function Dashboard() {
                               ? <span className="px-2 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded-full">Ready</span>
                               : <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">No Email</span>
                           }
+                        </td>
+                        <td className="px-6 py-4">
+                          {company.email && !sentApplications.includes(company.email) && (
+                            <button 
+                              onClick={async () => {
+                                if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password below first.");
+                                
+                                setIsApplying(true);
+                                setApplyMsg(`Sending to ${company.name}...`);
+                                
+                                await fetch('/api/jobs/apply', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({
+                                    gmail_address: jobSenderEmail,
+                                    app_password: jobAppPassword,
+                                    custom_pitch: jobCustomPitch,
+                                    target_company: company.name,
+                                    target_email: company.email
+                                  })
+                                });
+                                
+                                setSentApplications(prev => [...prev, company.email]);
+                                setIsApplying(false);
+                                setApplyMsg('Sent successfully!');
+                              }}
+                              disabled={isApplying}
+                              className="text-emerald-600 hover:text-emerald-900 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-semibold disabled:opacity-50"
+                            >
+                              📤 Send
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}

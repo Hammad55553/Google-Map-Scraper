@@ -322,6 +322,8 @@ class JobApplyRequest(BaseModel):
     gmail_address: str = "hammadaslam78612@gmail.com"
     app_password: str = "tqmb xojp sjux yjjm"
     custom_pitch: str = ""
+    target_company: Optional[str] = None
+    target_email: Optional[str] = None
 
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
@@ -416,7 +418,11 @@ def send_job_applications_task(req: JobApplyRequest):
     job_apply_status["sent"] = []
     job_apply_status["progress"] = 0
 
-    targets = [c for c in job_companies if c.get("email")]
+    if getattr(req, "target_email", None):
+        targets = [{"name": getattr(req, "target_company", "Company"), "email": req.target_email}]
+    else:
+        targets = [c for c in job_companies if c.get("email")]
+
     total = len(targets)
     if total == 0:
         job_apply_status["status"] = "idle"
@@ -430,8 +436,14 @@ def send_job_applications_task(req: JobApplyRequest):
         server.starttls()
         server.login(req.gmail_address, req.app_password)
 
+        db = SessionLocal()
         for idx, company in enumerate(targets):
             try:
+                # Check for duplicates
+                if db.query(ContactHistory).filter(ContactHistory.email == company["email"]).first():
+                    print(f"Skipping {company['email']} (already contacted)")
+                    continue
+
                 # Generate tailored CV for this specific company if custom CV not uploaded
                 if os.path.exists("uploaded_resume.pdf"):
                     with open("uploaded_resume.pdf", "rb") as f:
@@ -469,13 +481,19 @@ def send_job_applications_task(req: JobApplyRequest):
 
                 server.send_message(msg)
                 job_apply_status["sent"].append(company["email"])
-
-                import time; time.sleep(2)  # avoid Gmail rate limit
-
+                
+                # Add to ContactHistory so we don't send again
+                new_contact = ContactHistory(email=company["email"], contacted_at=datetime.datetime.now().isoformat())
+                db.add(new_contact)
+                db.commit()
+                
+                import time
+                time.sleep(2) # Avoid spamming
             except Exception as e:
-                print(f"Failed to send to {company.get('email')}: {e}")
-
+                print(f"Error sending to {company['email']}: {e}")
+        
         server.quit()
+        db.close()
         job_apply_status["status"] = "idle"
         job_apply_status["message"] = f"Done! Sent {len(job_apply_status['sent'])}/{total} applications."
     except Exception as e:
