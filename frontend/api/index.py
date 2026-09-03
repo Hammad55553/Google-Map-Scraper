@@ -370,10 +370,22 @@ def preview_job_pitch():
     sample = generate_job_pitch("[Company Name]")
     return {"pitch": sample}
 
+import os
+
+@app.post("/api/jobs/resume/upload")
+async def upload_job_resume(file: UploadFile = File(...)):
+    with open("uploaded_resume.pdf", "wb") as f:
+        f.write(await file.read())
+    return {"status": "success", "filename": file.filename}
+
 @app.get("/api/jobs/resume/download")
 def download_resume():
     from fastapi.responses import Response
-    pdf_bytes = generate_resume_pdf()
+    if os.path.exists("uploaded_resume.pdf"):
+        with open("uploaded_resume.pdf", "rb") as f:
+            pdf_bytes = f.read()
+    else:
+        pdf_bytes = generate_resume_pdf()
     return Response(content=pdf_bytes, media_type="application/pdf", headers={"Content-Disposition": "inline; filename=Hammad_Aslam_CV.pdf"})
 
 @app.get("/api/jobs/companies")
@@ -412,7 +424,13 @@ def send_job_applications_task(req: JobApplyRequest):
         return
 
     try:
-        resume_pdf = generate_resume_pdf()
+        import os
+        if os.path.exists("uploaded_resume.pdf"):
+            with open("uploaded_resume.pdf", "rb") as f:
+                resume_pdf = f.read()
+        else:
+            resume_pdf = generate_resume_pdf()
+
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(req.gmail_address, req.app_password)

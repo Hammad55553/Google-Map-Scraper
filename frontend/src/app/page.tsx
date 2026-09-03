@@ -66,6 +66,7 @@ export default function Dashboard() {
   const [jobForm, setJobForm] = useState({ country: '', state: '', city: '', category: 'Software Company', radius: '20' });
   const [jobSenderEmail, setJobSenderEmail] = useState('hammadaslam78612@gmail.com');
   const [jobAppPassword, setJobAppPassword] = useState('tqmb xojp sjux yjjm');
+  const [jobCustomResume, setJobCustomResume] = useState<string | null>(null);
 
   const popularCategories = [
     "Real Estate Agency", "Dental Clinic", "Plumbing Service", "Restaurant", 
@@ -1049,8 +1050,45 @@ export default function Dashboard() {
                     />
                   </div>
                 </div>
-                <div className="w-full flex justify-between items-center mt-2 border-t border-indigo-200 dark:border-indigo-800 pt-3">
-                  <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">📎 Auto-Attached: Hammad_Aslam_CV.pdf</p>
+                <div className="w-full flex justify-between items-center mt-2 border-t border-indigo-200 dark:border-indigo-800 pt-3 flex-wrap gap-3">
+                  <div>
+                    <p className="text-sm font-bold text-indigo-700 dark:text-indigo-300">
+                      📎 Attached: {jobCustomResume ? jobCustomResume : 'Hammad_Aslam_CV.pdf (Auto-generated)'}
+                    </p>
+                    <label className="text-xs text-indigo-600 dark:text-indigo-400 mt-1 cursor-pointer hover:underline inline-block">
+                      + Upload Custom PDF Resume
+                      <input 
+                        type="file" 
+                        accept="application/pdf"
+                        className="hidden"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          
+                          const formData = new FormData();
+                          formData.append('file', file);
+                          
+                          try {
+                            const res = await fetch('/api/jobs/resume/upload', {
+                              method: 'POST',
+                              body: formData
+                            });
+                            const data = await res.json();
+                            if (data.status === 'success') {
+                              setJobCustomResume(file.name);
+                              alert("Resume uploaded successfully!");
+                            } else {
+                              alert("Failed to upload resume.");
+                            }
+                          } catch (err) {
+                            console.error(err);
+                            alert("Failed to upload resume.");
+                          }
+                          e.target.value = '';
+                        }}
+                      />
+                    </label>
+                  </div>
                   <a href="/api/jobs/resume/download" target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
                     👁️ Preview CV
                   </a>

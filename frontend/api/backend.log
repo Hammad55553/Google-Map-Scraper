@@ -59,3 +59,16 @@ INFO:     127.0.0.1:63493 - "GET /api/jobs/pitch/preview HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63586 - "GET /api/leads?t=1788415786484 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63587 - "GET /api/leads?t=1788415786484 HTTP/1.1" 200 OK
 INFO:     127.0.0.1:63621 - "GET /api/jobs/pitch/preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63653 - "GET /api/jobs/resume/download HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [26487]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [26909]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:63968 - "GET /api/leads?t=1788415874169 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63969 - "GET /api/leads?t=1788415874170 HTTP/1.1" 200 OK
