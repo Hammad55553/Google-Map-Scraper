@@ -1352,8 +1352,8 @@ export default function Dashboard() {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({
-                            gmail_address: directResult.suggested_pitch_type === 'b2b' ? process.env.NEXT_PUBLIC_GMAIL_ADDRESS : process.env.NEXT_PUBLIC_JOBS_GMAIL,
-                            app_password: directResult.suggested_pitch_type === 'b2b' ? process.env.NEXT_PUBLIC_APP_PASSWORD : process.env.NEXT_PUBLIC_JOBS_PASSWORD,
+                            gmail_address: directResult.suggested_pitch_type === 'b2b' ? process.env.NEXT_PUBLIC_LEADS_GMAIL : process.env.NEXT_PUBLIC_JOBS_GMAIL,
+                            app_password: directResult.suggested_pitch_type === 'b2b' ? process.env.NEXT_PUBLIC_LEADS_PASSWORD : process.env.NEXT_PUBLIC_JOBS_PASSWORD,
                             target_email: directResult.email,
                             target_company: directResult.company_name,
                             custom_pitch: directResult.pitch,

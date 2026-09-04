@@ -126,3 +126,22 @@ INFO:     Finished server process [43522]
 INFO:     Started server process [43557]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:50624 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "POST /api/send-single-email HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50642 - "POST /api/send-single-email HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50796 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50804 - "POST /api/send-single-email HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51237 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51237 - "POST /api/send-single-email HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:51251 - "POST /api/send-single-email HTTP/1.1" 422 Unprocessable Entity
+WARNING:  StatReload detected changes in 'pitch_generator.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [43557]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [44328]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
