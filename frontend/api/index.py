@@ -472,7 +472,7 @@ def send_job_applications_task(req: JobApplyRequest):
                 msg = MIMEMultipart()
                 msg["From"] = req.gmail_address
                 msg["To"] = company["email"]
-                msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote Opportunities"
+                msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
 
                 msg.attach(MIMEText(f"""
                 <html><body style="font-family:Arial,sans-serif;line-height:1.7;color:#333;max-width:640px">
@@ -558,7 +558,7 @@ def send_single_email(req: JobApplyRequest):
         msg = MIMEMultipart()
         msg["From"] = req.gmail_address
         msg["To"] = target_email
-        msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote Opportunities"
+        msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
 
         msg.attach(MIMEText(f'<html><body style="font-family:Arial;line-height:1.7;color:#333;max-width:640px">{html_body}</body></html>', "html"))
 
