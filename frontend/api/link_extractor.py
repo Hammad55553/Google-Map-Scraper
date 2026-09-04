@@ -113,7 +113,8 @@ async def extract_from_link(url):
             
             # Navigate with a timeout
             try:
-                await page.goto(url, timeout=15000, wait_until='domcontentloaded')
+                await page.goto(url, timeout=25000, wait_until='networkidle')
+                await page.wait_for_timeout(2500)
             except Exception:
                 pass # Continue even if it times out, we might have some HTML
             
