@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 import asyncio
 import datetime
 from sqlalchemy.exc import IntegrityError
+from email_template import get_email_template
 from database import SessionLocal, ContactHistory
 
 async def send_bulk_emails(sender_email: str, app_password: str, leads: list, update_status_callback):
@@ -68,13 +69,7 @@ async def send_bulk_emails(sender_email: str, app_password: str, leads: list, up
                 html_body = html_body.replace('\n', '<br>')
                 
                 # Wrap in basic HTML structure with modern font
-                final_html = f"""
-                <html>
-                  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                    {html_body}
-                  </body>
-                </html>
-                """
+                final_html = get_email_template(html_body)
                 
                 msg.attach(MIMEText(final_html, 'html'))
                 

@@ -482,11 +482,7 @@ def send_job_applications_task(req: JobApplyRequest):
                 msg["To"] = company["email"]
                 msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
 
-                msg.attach(MIMEText(f"""
-                <html><body style="font-family:Arial,sans-serif;line-height:1.7;color:#333;max-width:640px">
-                {html_body}
-                </body></html>
-                """, "html"))
+                msg.attach(MIMEText(get_email_template(html_body), "html"))
 
                 # Attach resume PDF
                 part = MIMEBase("application", "octet-stream")
@@ -573,7 +569,7 @@ def send_single_email(req: JobApplyRequest):
             role = req.target_role if req.target_role else "Software Developer"
             msg["Subject"] = f"{role} — Open to Remote & On-site Opportunities"
 
-        msg.attach(MIMEText(f'<html><body style="font-family:Arial;line-height:1.7;color:#333;max-width:640px">{html_body}</body></html>', "html"))
+        msg.attach(MIMEText(get_email_template(html_body), "html"))
 
         if not req.is_b2b:
             part = MIMEBase("application", "octet-stream")
