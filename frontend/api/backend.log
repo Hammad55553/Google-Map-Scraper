@@ -43,3 +43,24 @@ INFO:     Started server process [38276]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     127.0.0.1:64157 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49750 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49758 - "POST /api/jobs/apply HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49761 - "POST /api/jobs/apply HTTP/1.1" 200 OK
+Skipping jobs@lumistory.ai (already contacted)
+INFO:     127.0.0.1:49887 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49937 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49937 - "POST /api/jobs/apply HTTP/1.1" 200 OK
+Skipping info@techgropse.com (already contacted)
+INFO:     127.0.0.1:49954 - "POST /api/jobs/apply HTTP/1.1" 200 OK
+Skipping info@techgropse.com (already contacted)
+INFO:     127.0.0.1:49991 - "POST /api/jobs/apply HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38276]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [42691]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

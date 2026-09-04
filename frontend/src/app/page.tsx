@@ -1207,30 +1207,48 @@ export default function Dashboard() {
                             <button 
                               onClick={async () => {
                                 if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password below first.");
+                          {company.email && (
+                            <button
+                              disabled={sentApplications.includes(company.email) || isApplying}
+                              onClick={async (e) => {
+                                if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password.");
+                                if (sentApplications.includes(company.email)) return;
                                 
-                                setIsApplying(true);
-                                setApplyMsg(`Sending to ${company.name}...`);
+                                const btn = e.currentTarget;
+                                const originalText = btn.innerHTML;
+                                btn.innerHTML = '⏳ Sending...';
+                                btn.disabled = true;
                                 
-                                await fetch('/api/jobs/apply', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    gmail_address: jobSenderEmail,
-                                    app_password: jobAppPassword,
-                                    custom_pitch: jobCustomPitch,
-                                    target_company: company.name,
-                                    target_email: company.email
-                                  })
-                                });
-                                
-                                setSentApplications(prev => [...prev, company.email]);
-                                setIsApplying(false);
-                                setApplyMsg('Sent successfully!');
+                                try {
+                                  const res = await fetch('/api/send-single-email', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                      gmail_address: jobSenderEmail,
+                                      app_password: jobAppPassword,
+                                      custom_pitch: jobCustomPitch,
+                                      target_company: company.name,
+                                      target_email: company.email
+                                    })
+                                  });
+                                  const data = await res.json();
+                                  if (data.error) {
+                                    alert(data.error);
+                                    btn.innerHTML = originalText;
+                                    btn.disabled = false;
+                                  } else {
+                                    setSentApplications(prev => [...prev, company.email]);
+                                    btn.innerHTML = '✅ Sent';
+                                  }
+                                } catch (err) {
+                                  alert("Failed to send. Check network or server.");
+                                  btn.innerHTML = originalText;
+                                  btn.disabled = false;
+                                }
                               }}
-                              disabled={isApplying}
-                              className="text-emerald-600 hover:text-emerald-900 bg-emerald-50 px-3 py-1 rounded border border-emerald-200 text-xs font-semibold disabled:opacity-50"
+                              className="w-full text-xs font-bold py-1.5 px-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50"
                             >
-                              📤 Send
+                              {sentApplications.includes(company.email) ? '✅ Sent' : '📤 Send'}
                             </button>
                           )}
                         </td>
@@ -1327,20 +1345,38 @@ export default function Dashboard() {
                 <div className="flex flex-col md:flex-row gap-3 pt-2">
                   <button
                     disabled={!directResult.email}
-                    onClick={() => {
+                    onClick={async (e) => {
                       if (!directResult.email) return;
-                      // Logic to send email directly via API
-                      fetch('/api/jobs/apply', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                          gmail_address: process.env.NEXT_PUBLIC_JOBS_GMAIL,
-                          app_password: process.env.NEXT_PUBLIC_JOBS_PASSWORD,
-                          target_email: directResult.email,
-                          target_company: directResult.company_name,
-                          custom_pitch: directResult.pitch
-                        })
-                      }).then(() => alert('Email sent successfully!'));
+                      const btn = e.currentTarget;
+                      const originalText = btn.innerHTML;
+                      btn.innerHTML = '⏳ Sending...';
+                      btn.disabled = true;
+                      try {
+                        const res = await fetch('/api/send-single-email', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            gmail_address: process.env.NEXT_PUBLIC_JOBS_GMAIL,
+                            app_password: process.env.NEXT_PUBLIC_JOBS_PASSWORD,
+                            target_email: directResult.email,
+                            target_company: directResult.company_name,
+                            custom_pitch: directResult.pitch
+                          })
+                        });
+                        const data = await res.json();
+                        if (data.error) {
+                          alert(data.error);
+                          btn.innerHTML = originalText;
+                          btn.disabled = false;
+                        } else {
+                          btn.innerHTML = '✅ Sent Successfully!';
+                          setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+                        }
+                      } catch (err) {
+                        alert("Failed to send. Check network or server.");
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                      }
                     }}
                     className="flex-1 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-all shadow-sm"
                   >

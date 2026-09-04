@@ -519,6 +519,67 @@ def send_job_applications(req: JobApplyRequest, background_tasks: BackgroundTask
 def get_job_apply_status():
     return job_apply_status
 
+@app.post("/api/send-single-email")
+def send_single_email(req: JobApplyRequest):
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.base import MIMEBase
+    from email import encoders
+    import os
+    import datetime
+    
+    try:
+        db = SessionLocal()
+        if req.target_email and db.query(ContactHistory).filter(ContactHistory.email == req.target_email).first():
+            db.close()
+            return {"error": "Already contacted this email"}
+            
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(req.gmail_address, req.app_password)
+        
+        company_name = req.target_company or "Company"
+        target_email = req.target_email
+        
+        if os.path.exists("uploaded_resume.pdf"):
+            with open("uploaded_resume.pdf", "rb") as f:
+                resume_pdf = f.read()
+        else:
+            from resume_generator import generate_resume_pdf
+            resume_pdf = generate_resume_pdf(target_company=company_name)
+            
+        pitch = req.custom_pitch.replace("[Company Name]", company_name) if req.custom_pitch else f"Hi {company_name},"
+        
+        import re
+        html_body = re.sub(r'\*(.*?)\*', r'<b>\1</b>', pitch)
+        html_body = html_body.replace('\n', '<br>')
+
+        msg = MIMEMultipart()
+        msg["From"] = req.gmail_address
+        msg["To"] = target_email
+        msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote Opportunities"
+
+        msg.attach(MIMEText(f'<html><body style="font-family:Arial;line-height:1.7;color:#333;max-width:640px">{html_body}</body></html>', "html"))
+
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(resume_pdf)
+        encoders.encode_base64(part)
+        part.add_header("Content-Disposition", 'attachment; filename="Hammad_Aslam_CV.pdf"')
+        msg.attach(part)
+        
+        server.send_message(msg)
+        
+        new_contact = ContactHistory(email=target_email, contacted_at=datetime.datetime.now().isoformat())
+        db.add(new_contact)
+        db.commit()
+        db.close()
+        
+        server.quit()
+        return {"success": True, "message": "Email sent successfully"}
+    except Exception as e:
+        return {"error": f"Failed to send: {str(e)}"}
+
 from link_extractor import extract_from_link
 from pitch_generator import generate_bilingual_pitch
 from job_pitch_generator import generate_job_pitch
