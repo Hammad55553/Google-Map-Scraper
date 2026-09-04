@@ -9,5 +9,5 @@ openpyxl
 twilio
 websockets
 python-multipart
-fpdf
+fpdf2
 beautifulsoup4

@@ -270,7 +270,10 @@ def generate_resume_pdf(target_company=None):
     # Skills
     pdf.add_skills()
 
-    return pdf.output(dest='S').encode('latin-1')
+    out = pdf.output(dest='S')
+    if isinstance(out, str):
+        return out.encode('latin-1')
+    return bytes(out)
 
 if __name__ == "__main__":
     data = generate_resume_pdf(target_company="Google")
