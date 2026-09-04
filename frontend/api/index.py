@@ -327,6 +327,7 @@ class JobApplyRequest(BaseModel):
     target_email: Optional[str] = None
     companies: Optional[list] = None
     is_b2b: Optional[bool] = False
+    target_role: Optional[str] = "Software Developer"
 
 class ExtractLinkRequest(BaseModel):
     url: str
@@ -563,7 +564,8 @@ def send_single_email(req: JobApplyRequest):
         if req.is_b2b:
             msg["Subject"] = f"Top-Tier Software & App Development Services for {company_name}"
         else:
-            msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
+            role = req.target_role if req.target_role else "Software Developer"
+            msg["Subject"] = f"{role} — Open to Remote & On-site Opportunities"
 
         msg.attach(MIMEText(f'<html><body style="font-family:Arial;line-height:1.7;color:#333;max-width:640px">{html_body}</body></html>', "html"))
 
@@ -595,8 +597,9 @@ async def extract_link_endpoint(req: ExtractLinkRequest):
     result = await extract_from_link(req.url)
     
     # Generate pitches
-    if result["suggested_pitch_type"] == "job":
-        pitch = generate_job_pitch(result["company_name"])
+    if result.get("suggested_pitch_type") == "job":
+        role = result.get("target_role", "Software Developer")
+        pitch = generate_job_pitch(result["company_name"], role)
     else:
         pitch = generate_bilingual_pitch(result["company_name"], "Unknown")
         

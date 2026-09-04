@@ -1,4 +1,7 @@
 import re
+import os
+import json
+import urllib.request
 from playwright.async_api import async_playwright
 import urllib.parse
 from bs4 import BeautifulSoup
@@ -45,11 +48,45 @@ def clean_company_name(title):
             
     return parts[0] if parts else "Company"
 
+def extract_job_title_from_text(text: str) -> str:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return "Software Developer"
+        
+    try:
+        url = "https://api.openai.com/v1/chat/completions"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}"
+        }
+        short_text = text[:3000]
+        
+        data = {
+            "model": "gpt-4o-mini",
+            "messages": [
+                {"role": "system", "content": "Extract the specific Job Title being hired for from this text. Return ONLY the job title (e.g. 'Senior React Developer', 'Node.js Backend Engineer'). If you cannot determine it, return 'Software Developer'. Do not include any other conversational text."},
+                {"role": "user", "content": short_text}
+            ],
+            "max_tokens": 30,
+            "temperature": 0.3
+        }
+        
+        req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers=headers, method='POST')
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            title = result['choices'][0]['message']['content'].strip()
+            title = title.replace('"', '').replace("'", "")
+            return title if title else "Software Developer"
+    except Exception as e:
+        print(f"Error extracting job title: {e}")
+        return "Software Developer"
+
 async def extract_from_link(url):
     email = ""
     phone = ""
     pitch_type = "b2b"
     title = "Company"
+    target_role = "Software Developer"
     
     try:
         async with async_playwright() as p:
@@ -103,6 +140,8 @@ async def extract_from_link(url):
                 phone = phones[0]
             
             pitch_type = suggest_pitch_type(text)
+            if pitch_type == 'job':
+                target_role = extract_job_title_from_text(text)
             
             await browser.close()
     except Exception as e:
@@ -115,5 +154,6 @@ async def extract_from_link(url):
         "phone": phone,
         "whatsapp_link": wa_link,
         "suggested_pitch_type": pitch_type,
-        "company_name": title
+        "company_name": title,
+        "target_role": target_role
     }

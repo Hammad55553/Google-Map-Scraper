@@ -1299,10 +1299,14 @@ export default function Dashboard() {
 
             {directResult && (
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="bg-muted rounded-xl p-4 border border-border">
                     <h3 className="text-sm font-bold text-muted-foreground mb-2">Company Name</h3>
                     <p className="text-foreground font-semibold">{directResult.company_name || 'N/A'}</p>
+                  </div>
+                  <div className="bg-muted rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-bold text-muted-foreground mb-2">Target Role</h3>
+                    <p className="text-foreground font-semibold text-blue-600 dark:text-blue-400">{directResult.target_role || 'N/A'}</p>
                   </div>
                   <div className="bg-muted rounded-xl p-4 border border-border">
                     <h3 className="text-sm font-bold text-muted-foreground mb-2">Email Extracted</h3>
@@ -1357,7 +1361,8 @@ export default function Dashboard() {
                             target_email: directResult.email,
                             target_company: directResult.company_name,
                             custom_pitch: directResult.pitch,
-                            is_b2b: directResult.suggested_pitch_type === 'b2b'
+                            is_b2b: directResult.suggested_pitch_type === 'b2b',
+                            target_role: directResult.target_role
                           })
                         });
                         const data = await res.json();

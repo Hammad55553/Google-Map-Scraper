@@ -1,12 +1,12 @@
 import random
 
-def generate_job_pitch(company_name: str) -> str:
+def generate_job_pitch(company_name: str, target_role: str = "Software Developer") -> str:
     exp = random.choice(["3.5+", "4+"])
     return f"""Dear Hiring Manager at {company_name},
 
 I hope this email finds you well. I'm Hammad Aslam, a React Native & Full-Stack Developer with {exp} years of experience building and shipping production-grade apps across the USA, Malaysia, Canada, and Pakistan.
 
-I'm writing to express my strong interest in software development opportunities (both remote and on-site) at {company_name}. I believe my background aligns well with modern tech teams building scalable mobile and web products.
+I'm writing to express my strong interest in {target_role} opportunities (both remote and on-site) at {company_name}. I believe my background aligns well with modern tech teams building scalable mobile and web products.
 
 🚀 What I Bring to the Table
 
