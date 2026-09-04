@@ -444,8 +444,8 @@ def send_job_applications_task(req: JobApplyRequest):
     global job_apply_status
     import smtplib
     from email.mime.text import MIMEText
-        from email.mime.image import MIMEImage
-        import base64
+    from email.mime.image import MIMEImage
+    import base64
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
     from email import encoders
@@ -550,8 +550,8 @@ def get_job_apply_status():
 def send_single_email(req: JobApplyRequest):
     import smtplib
     from email.mime.text import MIMEText
-        from email.mime.image import MIMEImage
-        import base64
+    from email.mime.image import MIMEImage
+    import base64
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
     from email import encoders
