@@ -474,7 +474,7 @@ export default function Dashboard() {
     <div className={`min-h-screen p-4 md:p-8 font-sans selection:bg-primary/20 bg-background text-foreground transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto space-y-8">
         
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border gap-4 md:gap-0">
+        <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border gap-4 md:gap-0">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
               <span className="text-primary">⚡</span> LeadGen Pro
@@ -483,7 +483,7 @@ export default function Dashboard() {
           </div>
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             {/* Tab Switcher */}
-            <div className="flex bg-muted rounded-lg p-1 gap-1">
+            <div className="flex bg-muted rounded-lg p-1 gap-1 overflow-x-auto whitespace-nowrap w-full max-w-full">
               <button
                 onClick={() => setActiveTab('leads')}
                 className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
@@ -588,7 +588,7 @@ export default function Dashboard() {
 
         {activeTab === 'leads' && (
         <>
-        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+        <section className="bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
           <h2 className="text-xl font-bold mb-1 text-foreground">1. Target Audience</h2>
           <p className="text-sm text-muted-foreground mb-6 font-medium">Find highly-qualified B2B leads on Google Maps.</p>
@@ -676,7 +676,7 @@ export default function Dashboard() {
           )}
         </section>
 
-        <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+        <section className="bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-violet-500"></div>
           <h2 className="text-xl font-bold mb-1 text-foreground">2. Email Outreach</h2>
           <p className="text-sm text-muted-foreground mb-6 font-medium">Send highly personalized AI pitches to all leads with an email address.</p>
@@ -802,7 +802,7 @@ export default function Dashboard() {
                     <div>{lead.has_website ? '✅ Web' : '❌ Web'}</div>
                     {lead.email && <div className="text-xs text-primary font-medium mt-1 w-[150px] xl:w-[200px] truncate" title={lead.email}>📧 {lead.email}</div>}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2 flex items-center pt-6">
+                  <td className="px-6 py-4 text-sm font-medium pt-6 flex flex-wrap gap-2 items-center">
                     <a 
                       href={lead.map_url} 
                       target="_blank" 
@@ -885,7 +885,7 @@ export default function Dashboard() {
       {/* Score Breakdown Modal */}
       {scoreDetailsLead && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setScoreDetailsLead(null)}>
-          <div className="bg-card rounded-2xl p-8 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
+          <div className="bg-card rounded-2xl p-5 md:p-8 max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-foreground">Lead Potential Score</h3>
               <button onClick={() => setScoreDetailsLead(null)} className="text-muted-foreground hover:text-foreground">
@@ -927,7 +927,7 @@ export default function Dashboard() {
       {/* Edit Pitch Modal */}
       {editingLead && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-card rounded-2xl p-8 max-w-3xl w-full shadow-2xl">
+          <div className="bg-card rounded-2xl p-5 md:p-8 max-w-3xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-bold mb-4 text-gray-800">Edit Pitch for {editingLead.business_name}</h3>
             <textarea
               className="w-full h-96 p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-4 font-mono text-sm text-foreground bg-gray-50"
@@ -972,7 +972,7 @@ export default function Dashboard() {
         <div className="space-y-6">
 
           {/* Search Panel */}
-          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+          <section className="bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-indigo-600"></div>
             <h2 className="text-xl font-bold mb-1 text-foreground">1. Find Tech Companies</h2>
             <p className="text-sm text-muted-foreground mb-6">Search for software companies on Google Maps and extract their emails for job applications.</p>
@@ -1088,7 +1088,7 @@ export default function Dashboard() {
           </section>
 
           {/* Start Email Campaign (Always Visible Now) */}
-          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+          <section className="bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
               <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
               <h2 className="text-xl font-bold mb-1 text-foreground">2. Start Email Campaign</h2>
               <p className="text-sm text-muted-foreground mb-4">Auto-send your CV + professional pitch to all {jobCompanies.filter(c => c.email).length} companies with emails. Resume will be auto-attached.</p>
@@ -1328,7 +1328,7 @@ export default function Dashboard() {
       )}
 
         {activeTab === 'direct' && (
-          <section className="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
+          <section className="bg-card p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm border border-border relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
             <h2 className="text-xl font-bold mb-1 text-foreground">Direct Link Extractor</h2>
             <p className="text-sm text-muted-foreground mb-6 font-medium">Extract contact info from any website or social media profile and generate a smart pitch.</p>
@@ -1473,7 +1473,7 @@ export default function Dashboard() {
 
         {/* Inbox Tab */}
         {activeTab === 'inbox' && (
-          <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-6 sm:p-8 mt-8 fade-in">
+          <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-4 sm:p-6 md:p-8 mt-8 fade-in">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               📥 Inbox
             </h2>
@@ -1509,7 +1509,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700 pb-4 overflow-x-auto">
+            <div className="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700 pb-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
               <button 
                 onClick={() => handleCategoryChange('primary')}
                 className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${inboxCategory === 'primary' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`}
@@ -1561,7 +1561,7 @@ export default function Dashboard() {
             {selectedEmail && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col border border-gray-200 dark:border-gray-700 overflow-hidden fade-in">
-                  <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/80">
+                  <div className="flex justify-between items-center p-4 md:p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/80">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate pr-4">{selectedEmail.subject}</h3>
                     <button 
                       onClick={() => setSelectedEmail(null)}
