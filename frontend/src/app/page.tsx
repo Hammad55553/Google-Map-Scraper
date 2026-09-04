@@ -48,7 +48,41 @@ export default function Dashboard() {
   const [cities, setCities] = useState<string[]>([]);
   
   // Tab system
-  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct' | 'inbox'>('leads');
+  const [inboxEmails, setInboxEmails] = useState<any[]>([]);
+  const [isFetchingInbox, setIsFetchingInbox] = useState(false);
+
+  const fetchInbox = async () => {
+    setIsFetchingInbox(true);
+    try {
+      const res = await fetch('/api/inbox', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          gmail_address: process.env.NEXT_PUBLIC_JOBS_GMAIL,
+          app_password: process.env.NEXT_PUBLIC_JOBS_PASSWORD,
+          limit: 20
+        })
+      });
+      const data = await res.json();
+      if (data.emails) {
+        setInboxEmails(data.emails);
+      } else {
+        alert(data.error || 'Failed to fetch emails');
+      }
+    } catch (e) {
+      console.error(e);
+      alert('Error fetching inbox');
+    }
+    setIsFetchingInbox(false);
+  };
+
+  useEffect(() => {
+    if (activeTab === 'inbox' && inboxEmails.length === 0) {
+      fetchInbox();
+    }
+  }, [activeTab]);
+
   
   // Direct Link state
   const [directUrl, setDirectUrl] = useState('');
@@ -465,6 +499,16 @@ export default function Dashboard() {
                 }`}
               >
                 🔗 Direct Link
+              </button>
+              <button
+                onClick={() => setActiveTab('inbox')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'inbox'
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                📥 Inbox
               </button>
             </div>
             <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="px-4 py-2.5 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors" title="Toggle Dark Mode">

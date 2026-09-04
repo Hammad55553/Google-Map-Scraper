@@ -332,6 +332,11 @@ class JobApplyRequest(BaseModel):
 class ExtractLinkRequest(BaseModel):
     url: str
 
+class InboxRequest(BaseModel):
+    gmail_address: str
+    app_password: str
+    limit: int = 20
+
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
     job_status["status"] = "scraping"
@@ -606,3 +611,108 @@ async def extract_link_endpoint(req: ExtractLinkRequest):
     result["pitch"] = pitch
     return result
 
+
+# ==================================================================
+# INBOX TAB — Fetch emails via IMAP
+# ==================================================================
+import imaplib
+import email
+from email.header import decode_header
+from bs4 import BeautifulSoup
+
+def clean_html_to_text(html_content):
+    if not html_content:
+        return ""
+    try:
+        soup = BeautifulSoup(html_content, "html.parser")
+        return soup.get_text(separator=" ", strip=True)
+    except:
+        return html_content
+
+@app.post("/api/inbox")
+def get_inbox_emails(req: InboxRequest):
+    try:
+        mail = imaplib.IMAP4_SSL("imap.gmail.com")
+        mail.login(req.gmail_address, req.app_password)
+        mail.select("inbox")
+
+        status, messages = mail.search(None, "ALL")
+        if status != "OK":
+            return {"emails": []}
+
+        email_ids = messages[0].split()
+        latest_email_ids = email_ids[-req.limit:]
+        
+        emails_list = []
+        for i in reversed(latest_email_ids):
+            res, msg_data = mail.fetch(i, "(RFC822)")
+            if res != "OK":
+                continue
+                
+            for response_part in msg_data:
+                if isinstance(response_part, tuple):
+                    msg = email.message_from_bytes(response_part[1])
+                    
+                    # Subject
+                    subject, encoding = decode_header(msg["Subject"])[0]
+                    if isinstance(subject, bytes):
+                        try:
+                            subject = subject.decode(encoding if encoding else "utf-8")
+                        except:
+                            subject = subject.decode("utf-8", errors="ignore")
+                            
+                    # From
+                    sender, sender_encoding = decode_header(msg.get("From"))[0]
+                    if isinstance(sender, bytes):
+                        try:
+                            sender = sender.decode(sender_encoding if sender_encoding else "utf-8")
+                        except:
+                            sender = sender.decode("utf-8", errors="ignore")
+                            
+                    # Date
+                    date_str = msg.get("Date")
+                    
+                    # Body Snippet
+                    body = ""
+                    if msg.is_multipart():
+                        for part in msg.walk():
+                            content_type = part.get_content_type()
+                            content_disposition = str(part.get("Content-Disposition"))
+                            
+                            if content_type == "text/plain" and "attachment" not in content_disposition:
+                                try:
+                                    body = part.get_payload(decode=True).decode()
+                                    break
+                                except:
+                                    pass
+                            elif content_type == "text/html" and "attachment" not in content_disposition:
+                                try:
+                                    html_body = part.get_payload(decode=True).decode()
+                                    body = clean_html_to_text(html_body)
+                                except:
+                                    pass
+                    else:
+                        try:
+                            content_type = msg.get_content_type()
+                            payload = msg.get_payload(decode=True).decode()
+                            if content_type == "text/html":
+                                body = clean_html_to_text(payload)
+                            else:
+                                body = payload
+                        except:
+                            pass
+                            
+                    snippet = (body[:100] + "...") if len(body) > 100 else body
+                    snippet = snippet.replace('\n', ' ').replace('\r', '').strip()
+                    
+                    emails_list.append({
+                        "id": i.decode(),
+                        "subject": subject or "No Subject",
+                        "sender": sender or "Unknown Sender",
+                        "date": date_str,
+                        "snippet": snippet
+                    })
+        mail.logout()
+        return {"emails": emails_list}
+    except Exception as e:
+        return {"error": f"Failed to fetch emails: {str(e)}"}
