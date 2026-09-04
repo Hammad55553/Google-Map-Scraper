@@ -85,8 +85,8 @@ async def scrape_google_maps(query, limit=20, progress_callback=None, on_lead_fo
             ]
             for url in pages_to_check:
                 try:
-                    await email_page.goto(url, timeout=15000, wait_until="networkidle")
-                    await email_page.wait_for_timeout(2500)
+                    await email_page.goto(url, timeout=15000, wait_until="domcontentloaded")
+                    await email_page.wait_for_timeout(5000)
                     html_c = await email_page.content()
                     # mailto: links are the most reliable source
                     mailto_links = re.findall(r'mailto:([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,})', html_c)

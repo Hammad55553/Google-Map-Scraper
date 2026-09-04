@@ -114,8 +114,8 @@ async def extract_from_link(url):
             # Navigate with a timeout
             debug_err = ""
             try:
-                await page.goto(url, timeout=25000, wait_until='networkidle')
-                await page.wait_for_timeout(2500)
+                await page.goto(url, timeout=25000, wait_until='domcontentloaded')
+                await page.wait_for_timeout(5000)
             except Exception as e:
                 debug_err = str(e)
             
