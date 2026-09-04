@@ -112,11 +112,12 @@ async def extract_from_link(url):
             page = await browser.new_page()
             
             # Navigate with a timeout
+            debug_err = ""
             try:
                 await page.goto(url, timeout=25000, wait_until='networkidle')
                 await page.wait_for_timeout(2500)
-            except Exception:
-                pass # Continue even if it times out, we might have some HTML
+            except Exception as e:
+                debug_err = str(e)
             
             html = await page.content()
             soup = BeautifulSoup(html, 'html.parser')
