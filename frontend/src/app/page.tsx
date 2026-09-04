@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
+const API = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+
+
 type Lead = {
   id: number;
   business_name: string;
@@ -63,7 +66,7 @@ export default function Dashboard() {
     }
     setIsFetchingInbox(true);
     try {
-      const res = await fetch('/api/inbox', {
+      const res = await fetch(`${API}/api/inbox`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -260,7 +263,7 @@ export default function Dashboard() {
 
   const fetchLeads = async () => {
     try {
-      const res = await fetch('/api/leads?t=' + new Date().getTime(), {
+      const res = await fetch(`${API}/api/leads?t=` + new Date().getTime(), {
         cache: 'no-store'
       });
       const data: Lead[] = await res.json();
@@ -301,7 +304,7 @@ export default function Dashboard() {
     if (isEmailing) {
       emailInterval = setInterval(async () => {
         try {
-          const res = await fetch('/api/emails/status');
+          const res = await fetch(`${API}/api/emails/status`);
           const data = await res.json();
           setEmailProgress(data.progress || 0);
           setEmailMessage(data.message || '');
@@ -328,7 +331,7 @@ export default function Dashboard() {
     if (isScraping) {
       interval = setInterval(async () => {
         try {
-          const res = await fetch('/api/scrape/status');
+          const res = await fetch(`${API}/api/scrape/status`);
           const statusData = await res.json();
           
           setProgress(statusData.progress);
@@ -363,7 +366,7 @@ export default function Dashboard() {
     setProgress(0);
     setProgressMessage('Starting...');
     try {
-      await fetch('/api/scrape', {
+      await fetch(`${API}/api/scrape`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -379,7 +382,7 @@ export default function Dashboard() {
   const handleSavePitch = async () => {
     if (!editingLead) return;
     try {
-      await fetch(`/api/leads/${editingLead.id}/pitch`, {
+      await fetch(`${API}/api/leads/${editingLead.id}/pitch`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pitch: editedPitch })
@@ -394,7 +397,7 @@ export default function Dashboard() {
   const handleClear = async () => {
     if (!confirm('Are you sure you want to clear all leads?')) return;
     try {
-      await fetch('/api/leads', { method: 'DELETE' });
+      await fetch(`${API}/api/leads`, { method: 'DELETE' });
       fetchLeads();
     } catch (e) {
       console.error(e);
@@ -404,7 +407,7 @@ export default function Dashboard() {
   // ---- Job Hunt polling ----
   useEffect(() => {
     if (activeTab === 'jobs' && !jobCustomPitch) {
-      fetch('/api/jobs/pitch/preview')
+      fetch(`${API}/api/jobs/pitch/preview`)
         .then(res => res.json())
         .then(data => setJobCustomPitch(data.pitch || ''))
         .catch(console.error);
@@ -417,8 +420,8 @@ export default function Dashboard() {
       jobInterval = setInterval(async () => {
         try {
           const [statusRes, companiesRes] = await Promise.all([
-            fetch('/api/jobs/status'),
-            fetch('/api/jobs/companies')
+            fetch(`${API}/api/jobs/status`),
+            fetch(`${API}/api/jobs/companies`)
           ]);
           const statusData = await statusRes.json();
           const companiesData: any[] = await companiesRes.json();
@@ -453,7 +456,7 @@ export default function Dashboard() {
     if (isApplying) {
       applyInterval = setInterval(async () => {
         try {
-          const res = await fetch('/api/jobs/apply/status');
+          const res = await fetch(`${API}/api/jobs/apply/status`);
           const data = await res.json();
           setApplyProgress(data.progress || 0);
           setApplyMsg(data.message || '');
@@ -539,7 +542,7 @@ export default function Dashboard() {
               {theme === 'dark' ? "☀️ Light" : "🌙 Dark"}
             </button>
             <a
-              href="/api/export"
+              href={`${API}/api/export`}
               target="_blank"
               className="flex-1 md:flex-none text-center px-5 py-2.5 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 hover:shadow-md transition-all duration-200 font-medium text-sm whitespace-nowrap"
             >
@@ -559,7 +562,7 @@ export default function Dashboard() {
                   formData.append('file', file);
                   
                   try {
-                    const res = await fetch('/api/import', {
+                    const res = await fetch(`${API}/api/import`, {
                       method: 'POST',
                       body: formData
                     });
@@ -712,7 +715,7 @@ export default function Dashboard() {
                     setIsEmailing(true);
                     setEmailProgress(0);
                     setEmailMessage('Starting campaign...');
-                    const res = await fetch('/api/emails/campaign', {
+                    const res = await fetch(`${API}/api/emails/campaign`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ gmail_address: gmail, app_password: password })
@@ -845,7 +848,7 @@ export default function Dashboard() {
                         <button
                           onClick={async () => {
                             try {
-                              const res = await fetch('/api/calls/outbound', {
+                              const res = await fetch(`${API}/api/calls/outbound`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ phone: lead.phone, pitch: lead.recommended_pitch })
@@ -1047,7 +1050,7 @@ export default function Dashboard() {
                     setJobProgress(0);
                     setJobProgressMsg('Starting...');
                     setJobCompanies([]);
-                    await fetch('/api/jobs/scrape', {
+                    await fetch(`${API}/api/jobs/scrape`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ query: finalQuery, limit: jobLimit })
@@ -1066,7 +1069,7 @@ export default function Dashboard() {
             {isJobScraping && (
               <div className="mt-4 flex gap-3">
                 <button
-                  onClick={() => fetch('/api/jobs/stop', { method: 'POST' }).then(() => setIsJobScraping(false))}
+                  onClick={() => fetch(`${API}/api/jobs/stop`, { method: 'POST' }).then(() => setIsJobScraping(false))}
                   className="px-6 py-2.5 bg-rose-100 text-rose-600 border border-rose-200 rounded-lg font-bold hover:bg-rose-200 transition-all"
                 >
                   ⛔ Stop Scraping
@@ -1132,7 +1135,7 @@ export default function Dashboard() {
                           formData.append('file', file);
                           
                           try {
-                            const res = await fetch('/api/jobs/resume/upload', {
+                            const res = await fetch(`${API}/api/jobs/resume/upload`, {
                               method: 'POST',
                               body: formData
                             });
@@ -1152,7 +1155,7 @@ export default function Dashboard() {
                       />
                     </label>
                   </div>
-                  <a href="/api/jobs/resume/download" target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
+                  <a href={`${API}/api/jobs/resume/download`} target="_blank" className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition-colors shadow-sm">
                     👁️ Preview CV
                   </a>
                 </div>
@@ -1195,7 +1198,7 @@ export default function Dashboard() {
                   setApplyProgress(0);
                   setApplyMsg('Starting...');
                   setSentApplications([]);
-                  await fetch('/api/jobs/apply', {
+                  await fetch(`${API}/api/jobs/apply`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1284,7 +1287,7 @@ export default function Dashboard() {
                                 btn.disabled = true;
                                 
                                 try {
-                                  const res = await fetch('/api/send-single-email', {
+                                  const res = await fetch(`${API}/api/send-single-email`, {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
                                     body: JSON.stringify({
@@ -1347,7 +1350,7 @@ export default function Dashboard() {
                   setIsDirectExtracting(true);
                   setDirectResult(null);
                   try {
-                    const res = await fetch('/api/extract-link', {
+                    const res = await fetch(`${API}/api/extract-link`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ url: directUrl })
@@ -1420,7 +1423,7 @@ export default function Dashboard() {
                       btn.innerHTML = '⏳ Sending...';
                       btn.disabled = true;
                       try {
-                        const res = await fetch('/api/send-single-email', {
+                        const res = await fetch(`${API}/api/send-single-email`, {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({
