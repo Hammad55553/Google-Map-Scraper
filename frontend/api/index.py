@@ -322,10 +322,11 @@ class JobSearchRequest(BaseModel):
 class JobApplyRequest(BaseModel):
     gmail_address: str
     app_password: str
-    custom_pitch: str = ""
+    custom_pitch: Optional[str] = None
     target_company: Optional[str] = None
     target_email: Optional[str] = None
     companies: Optional[list] = None
+    is_b2b: Optional[bool] = False
 
 class ExtractLinkRequest(BaseModel):
     url: str
@@ -558,15 +559,20 @@ def send_single_email(req: JobApplyRequest):
         msg = MIMEMultipart()
         msg["From"] = req.gmail_address
         msg["To"] = target_email
-        msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
+        
+        if req.is_b2b:
+            msg["Subject"] = f"Top-Tier Software & App Development Services for {company_name}"
+        else:
+            msg["Subject"] = f"React Native / Full-Stack Developer — Open to Remote & On-site Opportunities"
 
         msg.attach(MIMEText(f'<html><body style="font-family:Arial;line-height:1.7;color:#333;max-width:640px">{html_body}</body></html>', "html"))
 
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(resume_pdf)
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition", 'attachment; filename="Hammad_Aslam_CV.pdf"')
-        msg.attach(part)
+        if not req.is_b2b:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(resume_pdf)
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition", 'attachment; filename="Hammad_Aslam_CV.pdf"')
+            msg.attach(part)
         
         server.send_message(msg)
         
