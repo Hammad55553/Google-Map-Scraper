@@ -163,7 +163,7 @@ def get_email_template(body_content: str, image_url: str = "", top_body_content:
                         <a href="https://www.facebook.com/AsperInfoTech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"></a>
                         <a href="https://www.linkedin.com/company/asperinfotech/" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"></a>
                         <a href="https://www.instagram.com/asperinfotech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a>
-                        <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
+                        <a href="https://tiktok.com/@asperinfotech/" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
                         <a href="https://x.com/AsperInfoTech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/x.png" alt="X"></a>
                     </div>
                     
