@@ -1203,10 +1203,6 @@ export default function Dashboard() {
                           }
                         </td>
                         <td className="px-6 py-4">
-                          {company.email && !sentApplications.includes(company.email) && (
-                            <button 
-                              onClick={async () => {
-                                if (!jobSenderEmail || !jobAppPassword) return alert("Please enter Sender Email and App Password below first.");
                           {company.email && (
                             <button
                               disabled={sentApplications.includes(company.email) || isApplying}
