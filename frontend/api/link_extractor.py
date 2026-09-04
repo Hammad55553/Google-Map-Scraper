@@ -28,6 +28,23 @@ def suggest_pitch_type(text):
         return 'job'
     return 'b2b'
 
+def clean_company_name(title):
+    import re
+    title = re.sub(r'#\w+', '', title)
+    suffixes = ['| LinkedIn', '- LinkedIn', '| Facebook', '- Facebook', ' - Home', '…']
+    for s in suffixes:
+        title = title.replace(s, '')
+        
+    parts = [p.strip() for p in title.split('|') if p.strip()]
+    
+    if len(parts) > 1:
+        if len(parts[0]) > 40:
+            return parts[-1]
+        else:
+            return parts[0]
+            
+    return parts[0] if parts else "Company"
+
 async def extract_from_link(url):
     email = ""
     phone = ""
@@ -50,7 +67,7 @@ async def extract_from_link(url):
             text = soup.get_text(separator=' ', strip=True)
             
             if soup.title and soup.title.string:
-                title = soup.title.string.strip()
+                title = clean_company_name(soup.title.string)
             
             # Extract Emails
             emails = extract_emails(text)
