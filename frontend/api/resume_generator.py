@@ -9,6 +9,8 @@ def safe(text):
         .replace('\u2018', "'").replace('\u2019', "'")
         .replace('\u201c', '"').replace('\u201d', '"')
         .replace('\u2022', '*').replace('\u00a0', ' ')
+        .replace('\u2026', '...')
+        .encode('latin-1', 'replace').decode('latin-1')
     )
 
 class ATSResumePDF(FPDF):

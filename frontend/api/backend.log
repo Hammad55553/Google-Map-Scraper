@@ -103,3 +103,16 @@ INFO:     Finished server process [42996]
 INFO:     Started server process [43398]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:50592 - "POST /api/extract-link HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50599 - "POST /api/send-single-email HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50602 - "POST /api/send-single-email HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'resume_generator.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [43398]
+/Users/mac/.gemini/antigravity-ide/scratch/lead-gen-system/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [43522]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
