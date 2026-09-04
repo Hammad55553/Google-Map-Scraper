@@ -1,9 +1,17 @@
-def get_email_template(body_content: str) -> str:
+def get_email_template(body_content: str, image_url: str = "", top_body_content: str = "") -> str:
     """
     Wraps the email body content in a beautiful, modern HTML template.
     Includes a placeholder for a custom image.
     """
     
+    image_tag = ""
+    if image_url:
+        image_tag = f'<img src="{image_url}" alt="Cover Image" class="hero-image">'
+        
+    top_body_tag = ""
+    if top_body_content:
+        top_body_tag = f'<div class="content-body top-body">{top_body_content}</div>'
+
     return f"""
     <!DOCTYPE html>
     <html lang="en">
@@ -38,8 +46,7 @@ def get_email_template(body_content: str) -> str:
             /* Hero Image Area */
             .hero-image {{
                 width: 100%;
-                max-height: 300px;
-                object-fit: cover;
+                height: auto;
                 display: block;
                 background-color: #1e293b;
             }}
@@ -61,6 +68,10 @@ def get_email_template(body_content: str) -> str:
                 font-size: 16px;
                 color: #334155;
             }}
+            .top-body {{
+                padding-bottom: 0px !important;
+                margin-bottom: 20px;
+            }}
             /* Styling for AI generated text elements */
             .content-body b, .content-body strong {{
                 color: #0f172a;
@@ -68,16 +79,36 @@ def get_email_template(body_content: str) -> str:
             }}
             /* Footer */
             .footer {{
-                background-color: #f8fafc;
-                border-top: 1px solid #e2e8f0;
-                padding: 24px;
+                background-color: #0c527c;
+                padding: 40px 24px;
                 text-align: center;
-                font-size: 13px;
-                color: #64748b;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
             }}
-            .footer a {{
-                color: #3b82f6;
+            .social-icons {{
+                margin-bottom: 30px;
+            }}
+            .social-icons a {{
+                display: inline-block;
+                margin: 0 10px;
                 text-decoration: none;
+            }}
+            .social-icons img {{
+                width: 20px;
+                height: 20px;
+            }}
+            .footer-address {{
+                margin-bottom: 15px;
+                font-size: 14px;
+            }}
+            .footer-links {{
+                font-size: 14px;
+                font-weight: bold;
+            }}
+            .footer-links a {{
+                color: #3b9cdb;
+                text-decoration: underline;
+                margin: 0 5px;
             }}
             /* Responsive */
             @media screen and (max-width: 600px) {{
@@ -90,6 +121,22 @@ def get_email_template(body_content: str) -> str:
                 .content-body {{
                     padding: 20px;
                 }}
+                .social-icons a {{
+                    margin: 0 5px;
+                }}
+                .social-icons img {{
+                    width: 18px;
+                    height: 18px;
+                }}
+                .footer {{
+                    padding: 30px 15px;
+                }}
+                .footer-address {{
+                    font-size: 12px;
+                }}
+                .footer-links {{
+                    font-size: 12px;
+                }}
             }}
         </style>
     </head>
@@ -97,16 +144,12 @@ def get_email_template(body_content: str) -> str:
         <div class="wrapper">
             <div class="main-content">
                 
-                <!-- AAP APNI POST KI IMAGE YAHAN ADD KAREIN -->
-                <!-- src="" ke andar apne image ka direct link daal dain (jaise https://example.com/my-post.jpg) -->
-                <!-- Agar image na lagani ho to is line ko delete kar dain -->
-                <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=600&h=200" alt="Cover Image" class="hero-image">
+                <!-- Top Text Section -->
+                {top_body_tag}
                 
-                <!-- Header (Optional) -->
-                <!-- <div class="header">
-                    <h1>Your Custom Title</h1>
-                </div> -->
-
+                <!-- Image Section -->
+                {image_tag}
+                
                 <!-- Main Email Text -->
                 <div class="content-body">
                     {body_content}
@@ -114,8 +157,23 @@ def get_email_template(body_content: str) -> str:
 
                 <!-- Footer -->
                 <div class="footer">
-                    <p>Sent via Professional Outreach</p>
-                    <p>Contact: <a href="mailto:asperinfotech@gmail.com">asperinfotech@gmail.com</a></p>
+                    <img src="https://asperinfotech.vercel.app/unnamed.png" alt="Asper Infotech" style="max-height: 50px; margin-bottom: 15px;">
+                    <div class="social-icons">
+                        <a href="https://youtube.com/@asperinfotech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" alt="YouTube"></a>
+                        <a href="https://www.facebook.com/AsperInfoTech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"></a>
+                        <a href="https://www.linkedin.com/company/asperinfotech/" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"></a>
+                        <a href="https://www.instagram.com/asperinfotech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a>
+                        <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
+                        <a href="https://x.com/AsperInfoTech" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/x.png" alt="X"></a>
+                    </div>
+                    
+                    <div class="footer-address">
+                        Asper Infotech Private Limited, Quaid-E-Azam Colony Hasilpur, Pakistan
+                    </div>
+                    
+                    <div class="footer-links">
+                        <a href="https://asperinfotech.vercel.app/#" target="_blank">Unsubscribe (Coming Soon)</a> &nbsp;|&nbsp; <a href="https://asperinfotech.vercel.app/contact" target="_blank">Contact Us</a>
+                    </div>
                 </div>
             </div>
         </div>

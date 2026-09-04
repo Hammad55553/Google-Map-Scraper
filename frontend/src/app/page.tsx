@@ -51,13 +51,24 @@ export default function Dashboard() {
   const [cities, setCities] = useState<string[]>([]);
   
   // Tab system
-  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct' | 'inbox' | 'passwords'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct' | 'inbox' | 'passwords' | 'marketing'>('leads');
   const [inboxEmails, setInboxEmails] = useState<any[]>([]);
   const [isFetchingInbox, setIsFetchingInbox] = useState(false);
   const [inboxEmail, setInboxEmail] = useState(process.env.NEXT_PUBLIC_JOBS_GMAIL || '');
   const [inboxPassword, setInboxPassword] = useState(process.env.NEXT_PUBLIC_JOBS_PASSWORD || '');
   const [inboxCategory, setInboxCategory] = useState<'primary' | 'promotions' | 'sent'>('primary');
   const [selectedEmail, setSelectedEmail] = useState<any>(null);
+
+  // Promo/Marketing Campaign
+  const [promoEmails, setPromoEmails] = useState('');
+  const [promoSubject, setPromoSubject] = useState('Exclusive Offer from Asper InfoTech');
+  const [promoTopBody, setPromoTopBody] = useState('Hope you are doing well!');
+  const [promoBody, setPromoBody] = useState('Hi there!\n\nWe are offering a special discount...');
+  const [promoImage, setPromoImage] = useState('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=600&h=200');
+  const [isHtmlMode, setIsHtmlMode] = useState(false);
+  const [promoStatus, setPromoStatus] = useState<any>(null);
+  const [isPromoRunning, setIsPromoRunning] = useState(false);
+  const [promoPreviewHtml, setPromoPreviewHtml] = useState<string>('');
 
   const fetchInbox = async (categoryOverride?: string) => {
     if (!inboxEmail || !inboxPassword) {
@@ -404,6 +415,116 @@ export default function Dashboard() {
     }
   };
 
+
+
+  // Fetch promo preview HTML when body changes
+  useEffect(() => {
+    const fetchPreview = async () => {
+      try {
+        const res = await fetch(`${API}/api/emails/promo/preview`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ body: promoBody, top_body: promoTopBody, image_url: promoImage, is_html: isHtmlMode })
+        });
+        const data = await res.json();
+        if (data.html) {
+          setPromoPreviewHtml(data.html);
+        }
+      } catch (e) {
+        console.error("Failed to fetch promo preview");
+      }
+    };
+    
+    // Simple debounce
+    const timeout = setTimeout(fetchPreview, 500);
+    return () => clearTimeout(timeout);
+  }, [promoBody, promoTopBody, promoImage, isHtmlMode]);
+
+  // Promo polling
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isPromoRunning) {
+      interval = setInterval(async () => {
+        try {
+          const res = await fetch(`${API}/api/emails/promo/status`);
+          const data = await res.json();
+          setPromoStatus(data);
+          if (data.status === 'completed' || data.status === 'error' || data.status === 'stopped') {
+            setIsPromoRunning(false);
+          }
+        } catch (e) {}
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [isPromoRunning]);
+
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPromoImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleStartPromo = async () => {
+    if (!promoEmails.trim() || !promoSubject.trim() || (!promoBody.trim() && !promoTopBody.trim())) {
+      alert("Please fill in Target Emails, Subject, and at least one message field.");
+      return;
+    }
+    if (!inboxEmail || !inboxPassword) {
+      alert("Please enter your Gmail Address and App Password in the main SETTINGS tab on the left menu.");
+      return;
+    }
+    
+    // Split emails by newline or comma and clean up
+    const emailList = promoEmails
+      .split(/[\n,]+/)
+      .map(e => e.trim())
+      .filter(e => e.includes('@'));
+      
+    if (emailList.length === 0) {
+      alert("No valid email addresses found.");
+      return;
+    }
+    
+    setIsPromoRunning(true);
+    setPromoStatus({ status: 'running', message: 'Starting campaign...', progress: 0, success_count: 0 });
+    
+    try {
+      const res = await fetch(`${API}/api/emails/promo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          emails: emailList,
+          subject: promoSubject,
+          body: promoBody,
+          top_body: promoTopBody,
+          gmail_address: inboxEmail,
+          app_password: inboxPassword,
+          image_url: promoImage,
+          is_html: isHtmlMode
+        })
+      });
+      const data = await res.json();
+      if (data.status === 'error') {
+        alert(data.message);
+        setIsPromoRunning(false);
+      }
+    } catch (e) {
+      alert("Error starting campaign");
+      setIsPromoRunning(false);
+    }
+  };
+
+  const handleStopPromo = async () => {
+    await fetch(`${API}/api/emails/promo/stop`, { method: 'POST' });
+    setIsPromoRunning(false);
+  };
+
   // ---- Job Hunt polling ----
   useEffect(() => {
     if (activeTab === 'jobs' && !jobCustomPitch) {
@@ -516,6 +637,16 @@ export default function Dashboard() {
                 }`}
               >
                 🔗 Direct Link
+              </button>
+              <button
+                onClick={() => setActiveTab('marketing')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'marketing'
+                    ? 'bg-orange-600 text-white shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                📣 Marketing
               </button>
               <button
                 onClick={() => setActiveTab('inbox')}
@@ -1473,6 +1604,136 @@ export default function Dashboard() {
             )}
           </section>
         )}
+
+        
+      {/* ========= MARKETING TAB ========= */}
+      {activeTab === 'marketing' && (
+        <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-4 sm:p-6 md:p-8 mt-8 fade-in">
+          <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+          <h2 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">Bulk Promotional Campaigns</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 font-medium">Send beautifully designed HTML emails to custom lists directly.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Sender Email</label>
+                    <input type="email" value={inboxEmail} onChange={e => setInboxEmail(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 text-sm" placeholder="your@email.com" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">App Password</label>
+                    <input type="password" value={inboxPassword} onChange={e => setInboxPassword(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 text-sm" placeholder="16-digit app password" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Email Subject</label>
+                    <input type="text" value={promoSubject} onChange={e => setPromoSubject(e.target.value)} className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 text-sm font-bold" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1 flex justify-between items-center">
+                  <span>Recipient Emails (One per line or comma-separated)</span>
+                  <span className="text-xs text-gray-500">{promoEmails.split(/[\n,]+/).filter(e => e.trim().includes('@')).length} emails</span>
+                </label>
+                <textarea 
+                  value={promoEmails} 
+                  onChange={e => setPromoEmails(e.target.value)}
+                  className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-3 text-sm h-32" 
+                  placeholder="client1@example.com&#10;client2@example.com" 
+                />
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Hero Image (Paste URL OR Upload from Gallery)</label>
+                  <div className="flex gap-2">
+                    <input type="text" value={promoImage} onChange={e => setPromoImage(e.target.value)} className="flex-1 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 text-sm" placeholder="Paste URL here..." />
+                    <label className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer text-sm font-bold flex items-center justify-center whitespace-nowrap">
+                      Upload Image
+                      <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                    </label>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input type="checkbox" id="htmlMode" checked={isHtmlMode} onChange={e => setIsHtmlMode(e.target.checked)} className="rounded text-orange-600 focus:ring-orange-500" />
+                  <label htmlFor="htmlMode" className="text-sm font-bold text-gray-700 dark:text-gray-300 cursor-pointer">Paste Raw HTML Code (Skip default text formatting)</label>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Top Message (Above Image)</label>
+                <textarea 
+                  value={promoTopBody} 
+                  onChange={e => setPromoTopBody(e.target.value)}
+                  className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-3 text-sm h-24 mb-6" 
+                  placeholder="Appears above the image..."
+                />
+                
+                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">Bottom Message (Below Image) {isHtmlMode ? '(Raw HTML)' : '(Text)'}</label>
+                <textarea 
+                  value={promoBody} 
+                  onChange={e => setPromoBody(e.target.value)}
+                  className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-sm h-48" 
+                />
+              </div>
+
+              {promoStatus && (
+                <div className={`p-4 rounded-xl border ${promoStatus.status === 'running' ? 'bg-orange-50 border-orange-200 dark:bg-orange-900/20 dark:border-orange-800' : promoStatus.status === 'completed' ? 'bg-green-50 border-green-200 dark:bg-green-900/20' : 'bg-red-50 border-red-200 dark:bg-red-900/20'}`}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold text-sm flex items-center gap-2">
+                      {promoStatus.status === 'running' && <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-orange-600"></span>}
+                      {promoStatus.message}
+                    </span>
+                    <span className="text-xs font-bold bg-white/50 dark:bg-black/20 px-2 py-1 rounded-md">
+                      {promoStatus.success_count} Sent
+                    </span>
+                  </div>
+                  {promoStatus.status === 'running' && (
+                    <div className="w-full bg-black/5 dark:bg-white/10 rounded-full h-2 mb-3 overflow-hidden">
+                      <div className="bg-orange-500 h-2 rounded-full transition-all duration-300" style={{ width: `${promoStatus.progress}%` }}></div>
+                    </div>
+                  )}
+                  {promoStatus.status === 'running' && (
+                     <button onClick={handleStopPromo} className="text-xs bg-red-100 hover:bg-red-200 text-red-700 font-bold px-3 py-1.5 rounded-md transition-colors">
+                       🛑 Stop Campaign
+                     </button>
+                  )}
+                </div>
+              )}
+
+              {!isPromoRunning && (
+                <button onClick={handleStartPromo} className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold rounded-xl py-3 shadow-md hover:shadow-lg transition-all active:scale-[0.98] flex justify-center items-center gap-2">
+                  🚀 Send Bulk Promotional Campaign
+                </button>
+              )}
+            </div>
+            
+            {/* Live Preview Section */}
+            <div className="flex flex-col border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm h-[800px] lg:h-auto bg-gray-50 dark:bg-gray-900">
+              <div className="bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-between items-center">
+                <h3 className="font-bold text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                  👀 Live Email Preview
+                </h3>
+              </div>
+              <div className="flex-1 w-full bg-white relative">
+                {promoPreviewHtml ? (
+                  <iframe 
+                    title="Email Preview"
+                    srcDoc={promoPreviewHtml}
+                    className="w-full h-full border-0 absolute top-0 left-0"
+                  />
+                ) : (
+                  <div className="flex justify-center items-center h-full text-gray-400">Loading preview...</div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
         {/* Inbox Tab */}
         {activeTab === 'inbox' && (

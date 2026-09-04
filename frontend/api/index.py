@@ -1,3 +1,5 @@
+from email_template import get_email_template
+
 from fastapi import FastAPI, BackgroundTasks, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -336,7 +338,26 @@ class InboxRequest(BaseModel):
     gmail_address: str
     app_password: str
     limit: int = 20
-    category: str = "primary" # primary, promotions, sent
+    category: str = "primary"
+    image_url: str = "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=600&h=200"
+    top_body: str = ""
+    is_html: bool = False # primary, promotions, sent
+
+class PromoPreviewRequest(BaseModel):
+    body: str
+    image_url: str = "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=600&h=200"
+    top_body: str = ""
+    is_html: bool = False
+
+class PromoCampaignRequest(BaseModel):
+    emails: list[str]
+    subject: str
+    body: str
+    image_url: str = "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=600&h=200"
+    top_body: str = ""
+    is_html: bool = False
+    gmail_address: str
+    app_password: str
 
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
@@ -725,3 +746,88 @@ def get_inbox_emails(req: InboxRequest):
         return {"emails": emails_list}
     except Exception as e:
         return {"error": f"Failed to fetch emails: {str(e)}"}
+
+promo_status = {"status": "idle", "message": "", "progress": 0, "success_count": 0}
+promo_campaign_active = False
+
+def update_promo_status(msg: str, current: int, total: int, success: int):
+    global promo_status
+    promo_status["message"] = msg
+    promo_status["progress"] = int((current / total) * 100) if total > 0 else 0
+    promo_status["success_count"] = success
+
+async def promo_campaign_task(req: PromoCampaignRequest):
+    global promo_status, promo_campaign_active
+    promo_campaign_active = True
+    promo_status = {"status": "running", "message": "Starting promotional campaign...", "progress": 0, "success_count": 0}
+    
+    total = len(req.emails)
+    success = 0
+    
+    try:
+        import smtplib
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        server.login(req.gmail_address, req.app_password)
+        
+        for idx, email_addr in enumerate(req.emails):
+            if not promo_campaign_active:
+                break
+                
+            update_promo_status(f"Sending to {email_addr} ({idx+1}/{total})...", idx, total, success)
+            
+            try:
+                await asyncio.sleep(2)
+                msg = MIMEMultipart()
+                msg["From"] = req.gmail_address
+                msg["To"] = email_addr
+                msg["Subject"] = req.subject
+                
+                html_body = req.body if req.is_html else req.body.replace('\n', '<br>')
+                top_html = req.top_body if req.is_html else req.top_body.replace('\n', '<br>')
+                msg.attach(MIMEText(get_email_template(html_body, req.image_url, top_html), "html"))
+                server.send_message(msg)
+                success += 1
+            except Exception as e:
+                print(f"Error sending promo to {email_addr}: {e}")
+                
+        server.quit()
+        update_promo_status(f"Campaign complete! Sent {success} of {total} emails.", total, total, success)
+        promo_status["status"] = "completed"
+        
+    except Exception as e:
+        promo_status = {"status": "error", "message": f"SMTP Error: {str(e)}", "progress": 0, "success_count": success}
+    
+    promo_campaign_active = False
+
+@app.post("/api/emails/promo")
+async def start_promo_campaign(req: PromoCampaignRequest, background_tasks: BackgroundTasks):
+    global promo_status, promo_campaign_active
+    if promo_campaign_active:
+        return {"status": "error", "message": "A promotional campaign is already running"}
+    
+    background_tasks.add_task(promo_campaign_task, req)
+    return {"status": "success", "message": "Promotional campaign started"}
+
+@app.get("/api/emails/promo/status")
+async def get_promo_status():
+    global promo_status
+    return promo_status
+
+@app.post("/api/emails/promo/stop")
+async def stop_promo_campaign():
+    global promo_campaign_active, promo_status
+    promo_campaign_active = False
+    if promo_status["status"] == "running":
+        promo_status["status"] = "stopped"
+        promo_status["message"] = "Campaign stopped by user."
+    return {"status": "success", "message": "Stopping campaign..."}
+
+@app.post("/api/emails/promo/preview")
+async def get_promo_preview(req: PromoPreviewRequest):
+    html_body = req.body if req.is_html else req.body.replace('\n', '<br>')
+    top_html = req.top_body if req.is_html else req.top_body.replace('\n', '<br>')
+    final_html = get_email_template(html_body, req.image_url, top_html)
+    return {"html": final_html}
+
