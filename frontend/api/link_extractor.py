@@ -2,15 +2,26 @@ import re
 import os
 import json
 import urllib.request
+import socket
 from playwright.async_api import async_playwright
 import urllib.parse
 from bs4 import BeautifulSoup
+
+def is_valid_email_domain(email):
+    try:
+        domain = email.split('@')[-1]
+        socket.gethostbyname(domain)
+        return True
+    except Exception:
+        return False
 
 def extract_emails(text):
     email_regex = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     emails = re.findall(email_regex, text)
     valid_emails = [e for e in emails if not e.endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.wixpress.com', 'sentry.io'))]
-    return list(set(valid_emails))
+    valid_emails = list(set(valid_emails))
+    # Domain validation
+    return [e for e in valid_emails if is_valid_email_domain(e)]
 
 def format_whatsapp_number(phone):
     if not phone: return ""
@@ -38,13 +49,20 @@ def clean_company_name(title):
     for s in suffixes:
         title = title.replace(s, '')
         
-    parts = [p.strip() for p in title.split('|') if p.strip()]
+    # Split by | or -
+    parts = [p.strip() for p in re.split(r'\||-', title) if p.strip()]
     
     if len(parts) > 1:
-        if len(parts[0]) > 40:
-            return parts[-1]
+        last_part = parts[-1]
+        first_part = parts[0]
+        
+        # Usually for job listings: "Job Title | Company" -> Company is the shorter last part
+        if len(last_part) < len(first_part) and len(last_part) <= 30:
+            return last_part
+        elif len(first_part) <= 30:
+            return first_part
         else:
-            return parts[0]
+            return last_part
             
     return parts[0] if parts else "Company"
 
@@ -120,7 +138,14 @@ async def extract_from_link(url):
                             emails.append(e)
             
             if emails:
-                email = emails[0]
+                # Prioritize emails containing recruitment keywords
+                keywords = ['hr', 'career', 'job', 'recruit', 'talent', 'hire', 'people']
+                best_email = None
+                for e in emails:
+                    if any(k in e.lower() for k in keywords):
+                        best_email = e
+                        break
+                email = best_email if best_email else emails[0]
                 
             # Extract Phone (simple regex for common formats)
             phone_regex = r'(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}'

@@ -24,21 +24,21 @@ class ATSResumePDF(FPDF):
         # Name
         self.set_font("Helvetica", "B", 24)
         self.set_text_color(0, 0, 0)
-        self.cell(0, 8, safe("Hammad Aslam"), new_x="LMARGIN", new_y="NEXT", align="C")
+        self.cell(0, 8, safe("Hammad Aslam"), ln=1, align="C")
         
         # Title
         self.set_font("Helvetica", "", 12)
-        self.cell(0, 6, safe("React Native & Full-Stack Developer"), new_x="LMARGIN", new_y="NEXT", align="C")
+        self.cell(0, 6, safe("React Native & Full-Stack Developer"), ln=1, align="C")
         
         # Contact Info
         self.set_font("Helvetica", "", 10)
-        self.cell(0, 5, safe("+92 303 6629101 | hammadaslam78612@gmail.com | linkedin.com/in/hammadaslamkamboh | github.com/hammad55553"), new_x="LMARGIN", new_y="NEXT", align="C")
+        self.cell(0, 5, safe("+92 303 6629101 | hammadaslam78612@gmail.com | linkedin.com/in/hammadaslamkamboh | github.com/hammad55553"), ln=1, align="C")
         self.ln(4)
 
     def add_section_title(self, title):
         self.set_font("Helvetica", "B", 12)
         self.set_text_color(25, 25, 112) # MidnightBlue-like
-        self.cell(0, 6, safe(title.upper()), new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 6, safe(title.upper()), ln=1)
         # Draw line
         self.set_draw_color(25, 25, 112)
         self.set_line_width(0.4)
@@ -71,30 +71,30 @@ class ATSResumePDF(FPDF):
     def add_education(self):
         self.add_section_title("Education")
         self.set_font("Helvetica", "B", 10.5)
-        self.cell(140, 5, safe("Superior University"), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe("Lahore, Pakistan"), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(140, 5, safe("Superior University"), ln=0)
+        self.cell(0, 5, safe("Lahore, Pakistan"), ln=1, align="R")
         
         self.set_font("Helvetica", "I", 10)
-        self.cell(140, 5, safe("Bachelor of Computer Science (Major in Software Development)"), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe("2020 - 2024"), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(140, 5, safe("Bachelor of Computer Science (Major in Software Development)"), ln=0)
+        self.cell(0, 5, safe("2020 - 2024"), ln=1, align="R")
         
         self.set_font("Helvetica", "B", 10.5)
-        self.cell(140, 5, safe("Superior Group of Colleges"), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe("Hasilpur, Pakistan"), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(140, 5, safe("Superior Group of Colleges"), ln=0)
+        self.cell(0, 5, safe("Hasilpur, Pakistan"), ln=1, align="R")
         
         self.set_font("Helvetica", "I", 10)
-        self.cell(140, 5, safe("Intermediate in Computer Science (ICS)"), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe("2018 - 2020"), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(140, 5, safe("Intermediate in Computer Science (ICS)"), ln=0)
+        self.cell(0, 5, safe("2018 - 2020"), ln=1, align="R")
         self.ln(3)
 
     def add_experience_item(self, title, date, company, location, bullets):
         self.set_font("Helvetica", "B", 10.5)
-        self.cell(130, 5, safe(title), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe(date), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(130, 5, safe(title), ln=0)
+        self.cell(0, 5, safe(date), ln=1, align="R")
         
         self.set_font("Helvetica", "I", 10)
-        self.cell(130, 5, safe(company), new_x="RIGHT", new_y="TOP")
-        self.cell(0, 5, safe(location), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(130, 5, safe(company), ln=0)
+        self.cell(0, 5, safe(location), ln=1, align="R")
         
         self.set_font("Helvetica", "", 10)
         for bullet in bullets:
@@ -104,9 +104,9 @@ class ATSResumePDF(FPDF):
 
     def add_project_item(self, name, tech, links, bullets):
         self.set_font("Helvetica", "B", 10)
-        self.cell(130, 5, safe(f"{name} | {tech}"), new_x="RIGHT", new_y="TOP")
+        self.cell(130, 5, safe(f"{name} | {tech}"), ln=0)
         self.set_font("Helvetica", "I", 9)
-        self.cell(0, 5, safe(links), new_x="LMARGIN", new_y="NEXT", align="R")
+        self.cell(0, 5, safe(links), ln=1, align="R")
         
         self.set_font("Helvetica", "", 10)
         for bullet in bullets:
@@ -132,7 +132,7 @@ class ATSResumePDF(FPDF):
         for category, value in skills:
             self.set_font("Helvetica", "B", 10)
             self.set_x(18)
-            self.cell(35, 5, safe(f"{category}:"), new_x="RIGHT", new_y="TOP")
+            self.cell(35, 5, safe(f"{category}:"), ln=0)
             self.set_font("Helvetica", "", 10)
             self.multi_cell(0, 5, safe(value))
         self.ln(2)
@@ -264,13 +264,13 @@ def generate_resume_pdf(target_company=None):
     
     pdf.set_font("Helvetica", "I", 9.5)
     pdf.set_x(15)
-    pdf.cell(0, 5, safe("And several other production apps & systems, including offline-first water delivery, kitchen management, and e-commerce solutions across web, mobile, and desktop."), new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 5, safe("And several other production apps & systems, including offline-first water delivery, kitchen management, and e-commerce solutions across web, mobile, and desktop."), ln=1)
     pdf.ln(3)
 
     # Skills
     pdf.add_skills()
 
-    return bytes(pdf.output())
+    return pdf.output(dest='S').encode('latin-1')
 
 if __name__ == "__main__":
     data = generate_resume_pdf(target_company="Google")

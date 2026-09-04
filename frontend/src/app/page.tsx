@@ -48,20 +48,29 @@ export default function Dashboard() {
   const [cities, setCities] = useState<string[]>([]);
   
   // Tab system
-  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct' | 'inbox'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'jobs' | 'direct' | 'inbox' | 'passwords'>('leads');
   const [inboxEmails, setInboxEmails] = useState<any[]>([]);
   const [isFetchingInbox, setIsFetchingInbox] = useState(false);
+  const [inboxEmail, setInboxEmail] = useState(process.env.NEXT_PUBLIC_JOBS_GMAIL || '');
+  const [inboxPassword, setInboxPassword] = useState(process.env.NEXT_PUBLIC_JOBS_PASSWORD || '');
+  const [inboxCategory, setInboxCategory] = useState<'primary' | 'promotions' | 'sent'>('primary');
+  const [selectedEmail, setSelectedEmail] = useState<any>(null);
 
-  const fetchInbox = async () => {
+  const fetchInbox = async (categoryOverride?: string) => {
+    if (!inboxEmail || !inboxPassword) {
+      alert("Please enter both Email and App Password");
+      return;
+    }
     setIsFetchingInbox(true);
     try {
       const res = await fetch('/api/inbox', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          gmail_address: process.env.NEXT_PUBLIC_JOBS_GMAIL,
-          app_password: process.env.NEXT_PUBLIC_JOBS_PASSWORD,
-          limit: 20
+          gmail_address: inboxEmail,
+          app_password: inboxPassword,
+          limit: 20,
+          category: categoryOverride || inboxCategory
         })
       });
       const data = await res.json();
@@ -82,6 +91,11 @@ export default function Dashboard() {
       fetchInbox();
     }
   }, [activeTab]);
+
+  const handleCategoryChange = (cat: 'primary' | 'promotions' | 'sent') => {
+    setInboxCategory(cat);
+    fetchInbox(cat);
+  };
 
   
   // Direct Link state
@@ -509,6 +523,16 @@ export default function Dashboard() {
                 }`}
               >
                 📥 Inbox
+              </button>
+              <button
+                onClick={() => setActiveTab('passwords')}
+                className={`px-4 py-2 rounded-md text-sm font-bold transition-all ${
+                  activeTab === 'passwords'
+                    ? 'bg-purple-600 text-white shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                🔑 Passwords
               </button>
             </div>
             <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="px-4 py-2.5 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors" title="Toggle Dark Mode">
@@ -1444,6 +1468,166 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
+          </section>
+        )}
+
+        {/* Inbox Tab */}
+        {activeTab === 'inbox' && (
+          <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-6 sm:p-8 mt-8 fade-in">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              📥 Inbox
+            </h2>
+            <div className="flex flex-col md:flex-row gap-4 mb-6">
+              <div className="flex-1">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Gmail Address</label>
+                <input
+                  type="email"
+                  value={inboxEmail}
+                  onChange={e => setInboxEmail(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder="your.email@gmail.com"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">App Password</label>
+                <input
+                  type="password"
+                  value={inboxPassword}
+                  onChange={e => setInboxPassword(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder="16-character app password"
+                />
+              </div>
+              <div className="flex items-end">
+                <button
+                  onClick={() => fetchInbox()}
+                  disabled={isFetchingInbox}
+                  className="w-full md:w-auto bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-all shadow-sm h-[42px]"
+                >
+                  {isFetchingInbox ? 'Fetching...' : 'Fetch Inbox'}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700 pb-4 overflow-x-auto">
+              <button 
+                onClick={() => handleCategoryChange('primary')}
+                className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${inboxCategory === 'primary' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`}
+              >
+                📥 Primary
+              </button>
+              <button 
+                onClick={() => handleCategoryChange('promotions')}
+                className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${inboxCategory === 'promotions' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`}
+              >
+                🏷️ Promotions
+              </button>
+              <button 
+                onClick={() => handleCategoryChange('sent')}
+                className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${inboxCategory === 'sent' ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'}`}
+              >
+                📤 Sent
+              </button>
+            </div>
+
+            {inboxEmails.length > 0 ? (
+              <div className="space-y-4">
+                {inboxEmails.map((email: any, i: number) => (
+                  <div 
+                    key={i} 
+                    onClick={() => setSelectedEmail(email)}
+                    className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-bold text-gray-900 dark:text-white truncate pr-4">{email.subject}</h3>
+                      <span className="text-xs text-gray-500 whitespace-nowrap">{new Date(email.date).toLocaleString()}</span>
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-3 border-b border-gray-200 dark:border-gray-600 pb-2">
+                      {inboxCategory === 'sent' ? 'To/From' : 'From'}: {email.sender}
+                    </div>
+                    <div className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap font-sans">
+                      {email.snippet ? (email.snippet.length > 300 ? email.snippet.substring(0, 300) + '...' : email.snippet) : '(No content)'}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-10 text-gray-500">
+                {isFetchingInbox ? 'Loading emails...' : 'No emails found. Enter your credentials and fetch.'}
+              </div>
+            )}
+
+            {/* Email Popup Modal */}
+            {selectedEmail && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col border border-gray-200 dark:border-gray-700 overflow-hidden fade-in">
+                  <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/80">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white truncate pr-4">{selectedEmail.subject}</h3>
+                    <button 
+                      onClick={() => setSelectedEmail(null)}
+                      className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors bg-gray-200/50 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full w-8 h-8 flex items-center justify-center font-bold"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="p-6 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <div><strong className="text-gray-900 dark:text-white">From:</strong> {selectedEmail.sender}</div>
+                    <div className="sm:text-right">{new Date(selectedEmail.date).toLocaleString()}</div>
+                  </div>
+                  <div className="p-6 overflow-y-auto flex-1 bg-white dark:bg-gray-900">
+                    <div className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap font-sans">
+                      {selectedEmail.body || selectedEmail.snippet || '(No content)'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* Passwords Tab */}
+        {activeTab === 'passwords' && (
+          <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-6 sm:p-8 mt-8 fade-in">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              🔑 Saved Credentials
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm">
+                <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Job Search Credentials</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Gmail Address</label>
+                    <div className="flex bg-white dark:bg-gray-800 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm text-gray-800 dark:text-gray-200 break-all select-all">
+                      {process.env.NEXT_PUBLIC_JOBS_GMAIL || 'Not configured'}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">App Password</label>
+                    <div className="flex bg-white dark:bg-gray-800 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm text-gray-800 dark:text-gray-200 select-all">
+                      {process.env.NEXT_PUBLIC_JOBS_PASSWORD || 'Not configured'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm">
+                <h3 className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Lead Gen Credentials</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Gmail Address</label>
+                    <div className="flex bg-white dark:bg-gray-800 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm text-gray-800 dark:text-gray-200 break-all select-all">
+                      {process.env.NEXT_PUBLIC_LEADS_GMAIL || 'Not configured'}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">App Password</label>
+                    <div className="flex bg-white dark:bg-gray-800 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 font-mono text-sm text-gray-800 dark:text-gray-200 select-all">
+                      {process.env.NEXT_PUBLIC_LEADS_PASSWORD || 'Not configured'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
         )}
 

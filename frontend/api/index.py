@@ -336,6 +336,7 @@ class InboxRequest(BaseModel):
     gmail_address: str
     app_password: str
     limit: int = 20
+    category: str = "primary" # primary, promotions, sent
 
 def job_scraper_task(req: JobSearchRequest):
     global job_status, job_companies
@@ -634,10 +635,21 @@ def get_inbox_emails(req: InboxRequest):
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(req.gmail_address, req.app_password)
-        mail.select("inbox")
+        
+        if req.category == "sent":
+            mail.select('"[Gmail]/Sent Mail"')
+            status, messages = mail.search(None, "ALL")
+        elif req.category == "promotions":
+            mail.select("inbox")
+            status, messages = mail.search(None, 'X-GM-RAW', 'category:promotions')
+        else: # primary
+            mail.select("inbox")
+            status, messages = mail.search(None, 'X-GM-RAW', 'category:primary')
+            # If standard primary search fails, fallback to ALL
+            if status != "OK" or not messages[0]:
+                status, messages = mail.search(None, "ALL")
 
-        status, messages = mail.search(None, "ALL")
-        if status != "OK":
+        if status != "OK" or not messages[0]:
             return {"emails": []}
 
         email_ids = messages[0].split()
@@ -710,7 +722,8 @@ def get_inbox_emails(req: InboxRequest):
                         "subject": subject or "No Subject",
                         "sender": sender or "Unknown Sender",
                         "date": date_str,
-                        "snippet": snippet
+                        "snippet": snippet,
+                        "body": body
                     })
         mail.logout()
         return {"emails": emails_list}
