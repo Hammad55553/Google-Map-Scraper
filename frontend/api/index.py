@@ -444,6 +444,8 @@ def send_job_applications_task(req: JobApplyRequest):
     global job_apply_status
     import smtplib
     from email.mime.text import MIMEText
+        from email.mime.image import MIMEImage
+        import base64
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
     from email import encoders
@@ -548,6 +550,8 @@ def get_job_apply_status():
 def send_single_email(req: JobApplyRequest):
     import smtplib
     from email.mime.text import MIMEText
+        from email.mime.image import MIMEImage
+        import base64
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
     from email import encoders
@@ -768,6 +772,8 @@ async def promo_campaign_task(req: PromoCampaignRequest):
         import smtplib
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
+        from email.mime.image import MIMEImage
+        import base64
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         server.login(req.gmail_address, req.app_password)
         
@@ -786,7 +792,25 @@ async def promo_campaign_task(req: PromoCampaignRequest):
                 
                 html_body = req.body if req.is_html else req.body.replace('\n', '<br>')
                 top_html = req.top_body if req.is_html else req.top_body.replace('\n', '<br>')
-                msg.attach(MIMEText(get_email_template(html_body, req.image_url, top_html), "html"))
+                
+                # Check if image is base64 (uploaded from gallery)
+                if req.image_url.startswith('data:image'):
+                    # Extract base64 data
+                    img_format, img_b64 = req.image_url.split(';base64,')
+                    img_bytes = base64.b64decode(img_b64)
+                    
+                    # Add inline image attachment
+                    image_part = MIMEImage(img_bytes)
+                    image_part.add_header('Content-ID', '<hero_image>')
+                    image_part.add_header('Content-Disposition', 'inline')
+                    msg.attach(image_part)
+                    
+                    # Use cid in HTML
+                    final_html = get_email_template(html_body, "cid:hero_image", top_html)
+                else:
+                    final_html = get_email_template(html_body, req.image_url, top_html)
+                
+                msg.attach(MIMEText(final_html, "html"))
                 server.send_message(msg)
                 success += 1
             except Exception as e:
